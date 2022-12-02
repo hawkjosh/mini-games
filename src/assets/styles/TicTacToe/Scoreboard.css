@@ -1,0 +1,68 @@
+.scoreboard-title {
+  text-align: center;
+  font-size: 3.5rem
+}
+
+/* .scoreboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 20rem;
+  font-size: 1.5rem;
+  background-color: white;
+  margin: 0 auto 3rem;
+  box-shadow: 0px 0px 8px #888;
+  border-radius: 0.5rem;
+  font-weight: bold;
+} */
+
+.scoreboard-heading {
+  width: 80%;
+  margin: 0 auto 0.5rem;
+}
+
+.scoreboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* width: 50%; */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* .score {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+} */
+
+.score {
+  width: 100%;
+  text-align: center;
+  padding: 0.75rem 0;
+  width: 20%;
+  font-size: 2.5rem;
+  background-color: white;
+  margin: 1rem auto;
+  box-shadow: 0px 0px 8px #888;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+.x-score {
+  color: rgb(255, 70, 37);
+  border: 5px solid rgb(255, 70, 37);
+  border-radius: 0.5rem;
+}
+
+.o-score {
+  color: rgb(44, 135, 255);
+  border: 5px solid rgb(44, 135, 255);
+  border-radius: 0.5rem;
+}
+
+.inactive {
+  border: 5px solid transparent;
+}

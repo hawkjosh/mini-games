@@ -1,0 +1,15 @@
+.board-background {
+  width: fit-content;
+  padding: 25px;
+  margin: auto;
+  border: solid black;
+  border-radius: 1rem;
+  background-color: rgb(187, 223, 187);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 10rem);
+  place-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,52 @@
+.winning-message {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .9);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 10rem;
+  flex-direction: column;
+}
+
+.winning-message button {
+  font-size: 3rem;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  padding: .25em .5em;
+  cursor: pointer;
+}
+
+.winning-message button:hover {
+  background-color: black;
+  color: white;
+  border-color: white;
+}
+
+.winning-message.x {
+  display: flex;
+  background-color: rgba(50, 0, 0, .9);
+}
+
+.winning-message.o {
+  display: flex;
+  background-color: rgba(0, 0, 50, .9);
+}
+
+.winning-message.draw {
+  display: flex;
+}
+
+.x-win {
+  color: rgb(255, 70, 37);
+}
+
+.o-win {
+  color: rgb(44, 135, 255);
+}
