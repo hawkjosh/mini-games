@@ -1,9 +1,35 @@
 import {useState} from 'react'
 
+import {
+  Box,
+  Button,
+  createTheme,
+  ThemeProvider
+} from '@mui/material'
+
 import Gameboard from '../components/TicTacToe/Gameboard.jsx'
 import Scoreboard from '../components/TicTacToe/Scoreboard.jsx'
 
 import '../assets/styles/TicTacToe/TicTacToe.css'
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      // Breakpoints below use vertical layout
+      xxs: 0,
+      xs: 375,
+      sm: 425,
+      md: 768,
+      md1: 832,
+      md2: 896,
+      md3: 960,
+      // Breakpoints below change to horizontal layout
+      lg: 1024,
+      xl: 1440,
+      xxl: 1620
+    }
+  }
+})
 
 export default function TicTacToe() {
 
@@ -83,15 +109,15 @@ export default function TicTacToe() {
   }
 
   return (
-    <div>
-      <div>
+    <ThemeProvider theme={theme}>
+      <Box>
         <Scoreboard score={score} xPlaying={xPlaying} />
         <Gameboard board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
-      </div>
-      <div className='winning-message' id='winningMessage'>
-        <div data-winning-message-text></div>
-        <button id="restartButton" onClick={resetBoard}>Play Again</button>
-      </div>
-    </div>
+      </Box>
+      <Box className='winning-message' id='winningMessage'>
+        <Box data-winning-message-text></Box>
+        <Button id="restartButton" onClick={resetBoard}>Play Again</Button>
+      </Box>
+    </ThemeProvider>
   )
 }
