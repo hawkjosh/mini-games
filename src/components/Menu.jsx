@@ -1,35 +1,21 @@
-import * as React from 'react'
+import * as React from 'react';
 
 import { Outlet } from 'react-router-dom'
 
-import { styled } from '@mui/material/styles'
-
 import {
+  AppBar,
   Box,
-  CssBaseline,
   createTheme,
-  Divider,
-  Drawer,
   IconButton,
   Link,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
+  Menu,
+  MenuItem,
   ThemeProvider,
   Toolbar,
   Typography
 } from '@mui/material'
 
-import MuiAppBar from '@mui/material/AppBar'
-
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone'
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports'
 import MenuIcon from '@mui/icons-material/Menu'
-
-const drawerWidth = 200
 
 const theme = createTheme({
   breakpoints: {
@@ -47,168 +33,114 @@ const theme = createTheme({
   }
 })
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen
-      }),
-      marginLeft: 0,
-    })
-  })
-)
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  })
-}))
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  padding: theme.spacing(0, 1),
-  ...theme.mixins.toolbar,
-  justifyContent: 'flex-end'
-}))
-
-const menu = [
-  {
-    title: 'Home',
-    icon: HomeTwoToneIcon,
-    link: '/',
-  },
-  {
-    title: 'Tic Tac Toe',
-    icon: SportsEsportsIcon,
-    link: '/tic-tac-toe',
-  },
-]
-
 export default function App() {
 
-  const [open, setOpen] = React.useState(false)
+  const [anchorEl, setAnchorEl] = React.useState(null)
 
-  const handleDrawerOpen = () => setOpen(true)
+  const open = Boolean(anchorEl)
 
-  const handleDrawerClose = () => setOpen(false)
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          display: 'flex'
+          flexGrow: 1
         }}
       >
-        <CssBaseline />
         <AppBar
-          position='fixed'
-          open={open}
+          position='sticky'
         >
-          <Toolbar
-            sx={{
-              bgcolor: 'var(--secondary)'
-            }}
-          >
+          <Toolbar>
             <IconButton
-              color='inherit'
-              aria-label='open drawer'
-              onClick={handleDrawerOpen}
+              id='menu-button'
+              aria-controls={open ? 'game-menu' : undefined}
+              aria-haspopup='true'
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick}
+              size='large'
               edge='start'
+              color='inherit'
+              aria-label='menu'
               sx={{
-                mr: 2,
-                ...(open && { display: 'none' })
+                mr: 2
               }}
             >
               <MenuIcon />
             </IconButton>
-            <Box
-              gap={2}
-              sx={{
-                display: 'flex',
-                alignItems: 'center'
+            <Menu
+              id='game-menu'
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'menu-button',
               }}
             >
-              <SportsEsportsIcon />
-              <Typography
-                noWrap
-                component='div'
-                sx={{
-                  textTransform: 'uppercase',
-                  fontSize: {
-                    xxs: '1.25rem',
-                    xs: '1.5rem',
-                    sm: '1.75rem',
-                    md: '2rem',
-                    lg: '2.25rem',
-                    xl: '2.5rem',
-                    xxl: '2.75rem'
-                  }
-                }}
-              >
-                Mini Games
-              </Typography>
-            </Box>
+              <MenuItem onClick={handleClose}>
+                <Link
+                  href='/'
+                  underline='none'
+                  sx={{
+                  color: 'inherit'
+                  }}
+                >
+                  Home
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link
+                  href='/tic-tac-toe'
+                  underline='none'
+                  sx={{
+                    color: 'inherit'
+                  }}
+                >
+                  Tic-Tac-Toe
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link
+                  href='/'
+                  underline='none'
+                  sx={{
+                    color: 'inherit'
+                  }}
+                >
+                  Hangman
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link
+                  href='/'
+                  underline='none'
+                  sx={{
+                    color: 'inherit'
+                  }}
+                >
+                  Word Search
+                </Link>
+              </MenuItem>
+            </Menu>
+            <Typography
+              variant='h2'
+              component="div"
+              sx={{
+                flexGrow: 1,
+                textAlign: 'center'
+              }}
+            >
+              Mini-Games
+            </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer
-          variant='persistent'
-          anchor='left'
-          open={open}
-          sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-              width: drawerWidth,
-              boxSizing: 'border-box',
-            },
-          }}
-        >
-          <DrawerHeader sx={{ bgcolor: 'var(--secondary)' }}>
-            <IconButton onClick={handleDrawerClose}>
-              <ChevronLeftIcon sx={{ color: 'white' }} />
-            </IconButton>
-          </DrawerHeader>
-          <Divider />
-          <List>
-            {menu.map((menu) => (
-              <ListItem disablePadding>
-                <ListItemButton
-                  component={Link}
-                  href={menu.link}
-                >
-                  <ListItemIcon>
-                    <menu.icon />
-                  </ListItemIcon>
-                  <ListItemText primary={menu.title} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-        <Main open={open}>
-          <DrawerHeader />
-          <Outlet />
-        </Main>
+        <Outlet />
       </Box>
     </ThemeProvider>
   )
