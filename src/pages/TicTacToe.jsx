@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import * as React from 'react'
 
 import {
   Box,
@@ -20,9 +20,6 @@ const theme = createTheme({
       xs: 375,
       sm: 425,
       md: 768,
-      md1: 832,
-      md2: 896,
-      md3: 960,
       // Breakpoints below change to horizontal layout
       lg: 1024,
       xl: 1440,
@@ -47,10 +44,10 @@ export default function TicTacToe() {
   const winningMessage = document.getElementById('winningMessage')
   const winningMessageText = document.querySelector('[data-winning-message-text]')
   
-  const [board, setBoard] = useState(Array(9).fill(null))
-  const [xPlaying, setXPlaying] = useState(true)
-  const [score, setScore] = useState({ xScore: 0, oScore: 0 })
-  const [gameOver, setGameOver] = useState(false)
+  const [board, setBoard] = React.useState(Array(9).fill(null))
+  const [xPlaying, setXPlaying] = React.useState(true)
+  const [score, setScore] = React.useState({ xScore: 0, oScore: 0 })
+  const [gameOver, setGameOver] = React.useState(false)
 
   const handleBoxClick = (squareIndex) => {
     const updatedBoard = board.map((value, index) => {
@@ -116,7 +113,7 @@ export default function TicTacToe() {
       </Box>
       <Box className='winning-message' id='winningMessage'>
         <Box data-winning-message-text></Box>
-        <Button id="restartButton" onClick={resetBoard}>Play Again</Button>
+        <Button onClick={resetBoard}>Play Again</Button>
       </Box>
     </ThemeProvider>
   )

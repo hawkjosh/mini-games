@@ -35,6 +35,10 @@ const theme = createTheme({
 
 export default function App() {
 
+  const gameTitles = ['Mini-Games', 'Tic-Tac-Toe', 'Hangman']
+
+  const [headerTitle, setHeaderTitle] = React.useState(gameTitles[0])
+
   const [anchorEl, setAnchorEl] = React.useState(null)
 
   const open = Boolean(anchorEl)
@@ -45,6 +49,11 @@ export default function App() {
 
   const handleClose = () => {
     setAnchorEl(null)
+  }
+
+  const updateTitle = (e) => {
+    const currTitle = e.currentTarget.innerText
+    setHeaderTitle(currTitle)
   }
 
   return (
@@ -83,7 +92,8 @@ export default function App() {
                 'aria-labelledby': 'menu-button',
               }}
             >
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={(e) => {handleClose(), updateTitle(e)}}>
                 <Link
                   href='/'
                   underline='none'
@@ -94,7 +104,8 @@ export default function App() {
                   Home
                 </Link>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={(e) => {handleClose(), updateTitle(e)}}>
                 <Link
                   href='/tic-tac-toe'
                   underline='none'
@@ -105,26 +116,16 @@ export default function App() {
                   Tic-Tac-Toe
                 </Link>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={(e) => {handleClose(), updateTitle(e)}}>
                 <Link
-                  href='/'
+                  href='/hangman'
                   underline='none'
                   sx={{
                     color: 'inherit'
                   }}
                 >
                   Hangman
-                </Link>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Link
-                  href='/'
-                  underline='none'
-                  sx={{
-                    color: 'inherit'
-                  }}
-                >
-                  Word Search
                 </Link>
               </MenuItem>
             </Menu>
@@ -136,7 +137,7 @@ export default function App() {
                 textAlign: 'center'
               }}
             >
-              Mini-Games
+              {headerTitle}
             </Typography>
           </Toolbar>
         </AppBar>

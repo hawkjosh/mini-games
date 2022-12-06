@@ -16,9 +16,6 @@ const theme = createTheme({
       xs: 375,
       sm: 425,
       md: 768,
-      md1: 832,
-      md2: 896,
-      md3: 960,
       // Breakpoints below change to horizontal layout
       lg: 1024,
       xl: 1440,
