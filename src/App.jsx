@@ -8,7 +8,8 @@ import {
 
 import './assets/styles/App.css'
 
-import Menu from './components/Menu.jsx'
+// import Navbar from './components/Navbar.jsx'
+import NavbarNewUpdate from './components/NavbarNewUpdate.jsx'
 import Home from './pages/Home.jsx'
 import TicTacToe from './pages/TicTacToe.jsx'
 import Hangman from './pages/Hangman.jsx'
@@ -19,7 +20,8 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Menu />}>
+        {/* <Route path='/' element={<Navbar />}> */}
+        <Route path='/' element={<NavbarNewUpdate />}>
           <Route index element={<Home />} />
           <Route path='/tic-tac-toe' element={<TicTacToe />} />
           <Route path='/hangman' element={<Hangman />} />

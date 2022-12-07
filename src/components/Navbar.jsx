@@ -8,6 +8,9 @@ import {
   createTheme,
   IconButton,
   Link,
+  List,
+  ListItem,
+  ListItemText,
   Menu,
   MenuItem,
   ThemeProvider,
@@ -33,27 +36,27 @@ const theme = createTheme({
   }
 })
 
-export default function App() {
+const menuInfo = ['Home', 'Tic-Tac-Toe', 'Hangman']
 
-  const gameTitles = ['Mini-Games', 'Tic-Tac-Toe', 'Hangman']
-
-  const [headerTitle, setHeaderTitle] = React.useState(gameTitles[0])
+export default function Navbar() {
 
   const [anchorEl, setAnchorEl] = React.useState(null)
 
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+
   const open = Boolean(anchorEl)
 
-  const handleClick = (e) => {
+  function handleClick(e) {
     setAnchorEl(e.currentTarget)
   }
 
-  const handleClose = () => {
+  function handleMenuItemClick(e, index) {
+    setSelectedIndex(index)
     setAnchorEl(null)
   }
 
-  const updateTitle = (e) => {
-    const currTitle = e.currentTarget.innerText
-    setHeaderTitle(currTitle)
+  function handleClose() {
+    setAnchorEl(null)
   }
 
   return (
@@ -69,7 +72,7 @@ export default function App() {
           <Toolbar>
             <IconButton
               id='menu-button'
-              aria-controls={open ? 'game-menu' : undefined}
+              aria-controls={open ? 'games-menu' : undefined}
               aria-haspopup='true'
               aria-expanded={open ? 'true' : undefined}
               onClick={handleClick}
@@ -77,14 +80,11 @@ export default function App() {
               edge='start'
               color='inherit'
               aria-label='menu'
-              sx={{
-                mr: 2
-              }}
             >
               <MenuIcon />
             </IconButton>
             <Menu
-              id='game-menu'
+              id='games-menu'
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
@@ -93,52 +93,41 @@ export default function App() {
               }}
             >
               <MenuItem
-                onClick={(e) => {handleClose(), updateTitle(e)}}>
-                <Link
-                  href='/'
-                  underline='none'
-                  sx={{
-                  color: 'inherit'
-                  }}
-                >
+                component={Link}
+                href='/'
+                selected={selectedIndex === 0}
+                // onClick={(event) => handleMenuItemClick(event, 0)}
+                onClick={() => setSelectedIndex(0)}
+              >
                   Home
-                </Link>
               </MenuItem>
               <MenuItem
-                onClick={(e) => {handleClose(), updateTitle(e)}}>
-                <Link
-                  href='/tic-tac-toe'
-                  underline='none'
-                  sx={{
-                    color: 'inherit'
-                  }}
-                >
+                component={Link}
+                href='/tic-tac-toe'
+                selected={selectedIndex === 1}
+                // onClick={(event) => handleMenuItemClick(event, 1)}
+                onClick={() => setSelectedIndex(1)}
+              >
                   Tic-Tac-Toe
-                </Link>
               </MenuItem>
               <MenuItem
-                onClick={(e) => {handleClose(), updateTitle(e)}}>
-                <Link
-                  href='/hangman'
-                  underline='none'
-                  sx={{
-                    color: 'inherit'
-                  }}
-                >
+                component={Link}
+                href='/hangman'
+                selected={selectedIndex === 2}
+                // onClick={(event) => handleMenuItemClick(event, 2)}
+                onClick={() => setSelectedIndex(2)}
+              >
                   Hangman
-                </Link>
               </MenuItem>
             </Menu>
-            <Typography
-              variant='h2'
-              component="div"
+            <ListItemText
+              primary='Mini-Games'
+              secondary={menuInfo[selectedIndex]}
               sx={{
                 flexGrow: 1,
                 textAlign: 'center'
               }}
-            >
-              {headerTitle}
-            </Typography>
+            />
           </Toolbar>
         </AppBar>
         <Outlet />

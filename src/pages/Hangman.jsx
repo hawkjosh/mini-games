@@ -44,7 +44,14 @@ const alphaBtnSX = {
   color: 'blue',
   fontSize: '3rem',
   aspectRatio: '1/1',
-  width: '4rem'
+  width: '4rem',
+  opacity: '1',
+  '&.correct': {
+    opacity: '0.5'
+  },
+  '&.wrong': {
+    opacity: '0.25'
+  }
 }
 
 export default function Hangman() {
@@ -68,6 +75,7 @@ export default function Hangman() {
   const playArea = document.getElementById('playArea')
   const finishMessageText1 = document.querySelector('[data-finish-message-text1]')
   const finishMessageText2 = document.querySelector('[data-finish-message-text2]')
+  const alphaBtns = document.querySelectorAll('.alpha-btns')
 
   const [correctGuessesList, setCorrectGuessesList] = React.useState([])
 
@@ -77,12 +85,12 @@ export default function Hangman() {
 
   const maskedWord = word.split('').map(letter => correctGuessesList.includes(letter) ? letter : '_').join(' ')
   
-  const handleWrongClick = () => {
+  function handleWrongClick() {
     let currCount = wrongGuessesList.length
-    setHangmanImg([images[currCount += 1]])
+    setHangmanImg(images[currCount += 1])
   }
 
-  const checkWinner = () => {
+  function checkWinner() {
     if (!maskedWord.includes('_')) {
       finishMessageText1.innerText = 'Congrats, you win!'
       playArea.classList.add('hide')
@@ -95,7 +103,7 @@ export default function Hangman() {
     }
   }
 
-  const resetGame = () => {
+  function resetGame() {
     setHangmanImg(images[0])
     setCorrectGuessesList([])
     setWrongGuessesList([])
@@ -103,6 +111,7 @@ export default function Hangman() {
     finishMessageText2.innerText = ''
     finishMessageArea.classList.remove('win', 'lose')
     playArea.classList.remove('hide')
+    alphaBtns.classList.remove('correct', 'wrong')
   }
 
   return (
@@ -139,14 +148,16 @@ export default function Hangman() {
         </Box>
         <Box sx={{width: '70%'}}>
           {alphabet.map((alphabet, index) =>
-            <Box component='button' sx={alphaBtnSX} key={index} onClick={() => {
-              checkWinner()
-              if (word.includes(alphabet)) {
-                setCorrectGuessesList([...correctGuessesList, alphabet])
-              } else {
+            <Box className='alpha-btns' component='button' key={index} sx={alphaBtnSX} onClick={() => {
+              if (!word.includes(alphabet)) {
                 setWrongGuessesList([...wrongGuessesList, alphabet])
                 handleWrongClick()
+                // alphaBtns.classList.add('wrong')
+              } else {
+                setCorrectGuessesList([...correctGuessesList, alphabet])
+                // alphaBtns.classList.add('correct')
               }
+              checkWinner()
             }}>
               {alphabet}
             </Box>
