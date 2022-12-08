@@ -107,6 +107,7 @@ export default function TicTacToe() {
 
   return (
     <ThemeProvider theme={theme}>
+      
       <Box>
         <Scoreboard score={score} xPlaying={xPlaying} />
         <Gameboard board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
@@ -115,6 +116,7 @@ export default function TicTacToe() {
         <Box data-winning-message-text></Box>
         <Button onClick={resetBoard}>Play Again</Button>
       </Box>
+
     </ThemeProvider>
   )
 }

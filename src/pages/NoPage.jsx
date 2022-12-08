@@ -24,10 +24,11 @@ const theme = createTheme({
   }
 })
 
-export default function App() {
+export default function NoPage() {
 
   return (
     <ThemeProvider theme={theme}>
+
       <Box
         sx={{
           display: 'flex',
@@ -55,6 +56,7 @@ export default function App() {
           Something seems to have gone wrong, sorry about that! Please click <a href='/' style={{color: 'red'}}>HERE</a> to return to the Mini Games home page.
         </Alert>
       </Box>
+      
     </ThemeProvider>
   )
 }

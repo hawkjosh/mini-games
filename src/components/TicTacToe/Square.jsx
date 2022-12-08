@@ -30,9 +30,11 @@ export default function Square({ value, onClick }) {
 
   return (
     <ThemeProvider theme={theme}>
+
       <Box component='button' className={style} onClick={onClick}>
         {value}
       </Box>
+      
     </ThemeProvider>
   )
 }

@@ -3,10 +3,14 @@ import * as React from 'react'
 import {
   Box,
   createTheme,
-  ThemeProvider
+  ThemeProvider,
+  Typography
 } from '@mui/material'
 
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports'
+
+import tictactoe from '../assets/images/TicTacToe/tic-tac-toe.png'
+import hangman from '../assets/images/Hangman/hangman.png'
 
 const theme = createTheme({
   breakpoints: {
@@ -24,13 +28,62 @@ const theme = createTheme({
   }
 })
 
-export default function App() {
+export default function Home() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}>
-        <SportsEsportsIcon sx={{ color: '#1976d2', fontSize: '20rem', border: '10px solid', borderRadius: '25px' }} />
+
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          width: '100%',
+          marginTop: '10rem'
+        }}
+      >
+        <Box>
+          <Typography
+            variant='h4'
+            sx={{
+              fontWeight: 'bold',
+              color: '#1976d2',
+              textAlign: 'center',
+              marginBottom: '0.5rem'
+            }}
+          >
+              Tic-Tac-Toe
+          </Typography>
+          <Box
+            component='img'
+            src={tictactoe}
+            sx={{
+              width: '250px'
+            }}
+          />
+        </Box>
+        <Box>
+          <Typography
+            variant='h4'
+            sx={{
+              fontWeight: 'bold',
+              color: '#1976d2',
+              textAlign: 'center',
+              marginBottom: '0.5rem'
+            }}
+          >
+              Hangman
+          </Typography>
+          <Box
+            component='img'
+            src={hangman}
+            sx={{
+              width: '250px'
+            }}
+          />
+        </Box>
       </Box>
+
     </ThemeProvider>
   )
 }

@@ -1,16 +1,14 @@
 import * as React from 'react';
 
-import { Outlet } from 'react-router-dom'
+import {
+  Link,
+  Outlet
+} from 'react-router-dom'
 
 import {
   AppBar,
-  Box,
   createTheme,
   IconButton,
-  Link,
-  List,
-  ListItem,
-  ListItemText,
   Menu,
   MenuItem,
   ThemeProvider,
@@ -36,7 +34,17 @@ const theme = createTheme({
   }
 })
 
-const menuInfo = ['Home', 'Tic-Tac-Toe', 'Hangman']
+const linkSX = {
+  color: '#1976d2',
+  textDecoration: 'none'
+}
+
+const options = [
+  {name: 'Home', link: '/', title: 'Mini Games'},
+  {name: 'Tic-Tac-Toe', link: '/tic-tac-toe', title: 'Tic-Tac-Toe'},
+  {name: 'Hangman', link: '/hangman', title: 'Hangman'},
+  {name: 'More Coming Soon!', link: null, title: null}
+]
 
 export default function Navbar() {
 
@@ -46,92 +54,73 @@ export default function Navbar() {
 
   const open = Boolean(anchorEl)
 
-  function handleClick(e) {
-    setAnchorEl(e.currentTarget)
+  const handleOpen = (event) => {
+    setAnchorEl(event.currentTarget)
   }
 
-  function handleMenuItemClick(e, index) {
+  const handleSelect = (event, index) => {
     setSelectedIndex(index)
     setAnchorEl(null)
   }
 
-  function handleClose() {
+  const handleClose = () => {
     setAnchorEl(null)
   }
 
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          flexGrow: 1
-        }}
+
+      <AppBar
+        position='sticky'
       >
-        <AppBar
-          position='sticky'
-        >
-          <Toolbar>
-            <IconButton
-              id='menu-button'
-              aria-controls={open ? 'games-menu' : undefined}
-              aria-haspopup='true'
-              aria-expanded={open ? 'true' : undefined}
-              onClick={handleClick}
-              size='large'
-              edge='start'
-              color='inherit'
-              aria-label='menu'
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id='games-menu'
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                'aria-labelledby': 'menu-button',
-              }}
-            >
+        <Toolbar>
+          <IconButton
+            id='menu-button'
+            aria-controls={open ? 'games-menu' : undefined}
+            aria-haspopup='true'
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleOpen}
+            edge='start'
+            color='inherit'
+          >
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            id='games-menu'
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+          >
+            {options.map((option, index) => (
               <MenuItem
-                component={Link}
-                href='/'
-                selected={selectedIndex === 0}
-                // onClick={(event) => handleMenuItemClick(event, 0)}
-                onClick={() => setSelectedIndex(0)}
+                key={option.name}
+                disabled={index === 3}
+                selected={index === selectedIndex}
+                onClick={(event) => handleSelect(event, index)}
               >
-                  Home
+                <Link
+                  to={option.link}
+                  style={linkSX}
+                >
+                  {option.name}
+                </Link>
               </MenuItem>
-              <MenuItem
-                component={Link}
-                href='/tic-tac-toe'
-                selected={selectedIndex === 1}
-                // onClick={(event) => handleMenuItemClick(event, 1)}
-                onClick={() => setSelectedIndex(1)}
-              >
-                  Tic-Tac-Toe
-              </MenuItem>
-              <MenuItem
-                component={Link}
-                href='/hangman'
-                selected={selectedIndex === 2}
-                // onClick={(event) => handleMenuItemClick(event, 2)}
-                onClick={() => setSelectedIndex(2)}
-              >
-                  Hangman
-              </MenuItem>
-            </Menu>
-            <ListItemText
-              primary='Mini-Games'
-              secondary={menuInfo[selectedIndex]}
-              sx={{
-                flexGrow: 1,
-                textAlign: 'center'
-              }}
-            />
-          </Toolbar>
-        </AppBar>
-        <Outlet />
-      </Box>
+            ))}
+          </Menu>
+          <Typography
+            sx={{
+              flexGrow: 1,
+              textAlign: 'center',
+              fontSize: '3rem'
+            }}
+          >
+            {options[selectedIndex].title}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      <Outlet />
+
     </ThemeProvider>
   )
 }

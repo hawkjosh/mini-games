@@ -116,10 +116,8 @@ export default function Hangman() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Typography variant='h3' sx={{textAlign: 'center'}}>
-        Hangman
-      </Typography>
-      <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+      
+      <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}}>
         <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1.5rem'}} gap={15}>
           <Box component='img' src={hangmanImg} sx={{width: '20%'}} />
           <Box id='playArea' sx={{textAlign: 'center'}}>
@@ -165,6 +163,7 @@ export default function Hangman() {
         </Box>
         {/* {gameOver ? <Box sx={{fontSize: '3rem', marginTop: '2rem', color: 'red', fontWeight: 'bold'}}>Sorry, you lose! The correct word was {word}</Box> : !maskedWord.includes('_') && <Box sx={{fontSize: '3rem', marginTop: '2rem', color: 'green', fontWeight: 'bold'}}>Congrats, you win!</Box>} */}
       </Box>
+
     </ThemeProvider>
   )
 }

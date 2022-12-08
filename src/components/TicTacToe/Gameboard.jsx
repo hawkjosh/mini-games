@@ -30,6 +30,7 @@ export default function Gameboard({ board, onClick }) {
   
   return (
     <ThemeProvider theme={theme}>
+
       <Box className='board-background'>
         <Box className='board'>
           {board.map((value, index) => {
@@ -37,6 +38,7 @@ export default function Gameboard({ board, onClick }) {
           })}
         </Box>
       </Box>
+      
     </ThemeProvider>
   )
 }
