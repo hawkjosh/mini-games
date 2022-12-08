@@ -1,49 +1,72 @@
 .finish-message {
   display: none;
   position: relative;
-  padding: 3rem;
-  /* top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0; */
+  padding: 2rem;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  flex-grow: 0.75;
 }
 
 .finish-message-text1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
 }
 
 .finish-message-text2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  margin-top: 0.75rem;
 }
 
 .finish-message.win {
   display: flex;
-  color: green;
-  /* background-color: rgba(0, 50, 0, .9); */
+  color: white;
+  background-color: green;
+  border-radius: 50px;
 }
 
 .finish-message.lose {
   display: flex;
-  color: red;
-  /* background-color: rgba(50, 0, 0, .9); */
+  color: white;
+  background-color: red;
+  border-radius: 50px;
 }
 
 .finish-message button {
-  margin-top: 2rem;
-  border: 3px solid black;
+  margin-top: 1.5rem;
+  padding: 5px 10px;
+  border: 2px solid black;
   color: black;
   background-color: white;
 }
 
 .finish-message button:hover {
-  border: 3px solid white;
   color: white;
   background-color: black;
+  border-color: white;
 }
 
 .hide {
   display: none;
+}
+
+.alpha-btn {
+  margin: 0.5rem 1rem;
+  cursor: pointer;
+  border: 2px solid #1976d2;
+  border-radius: 5px;
+  color: blue;
+  font-size: 2.5rem;
+  aspect-ratio: 1/1;
+  width: 3rem;
+  opacity: 1;
+}
+
+.correct {
+  opacity: 0.5;
+  color: green;
+}
+
+.wrong {
+  opacity: 0.25;
+  color: red;
 }

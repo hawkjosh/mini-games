@@ -36,24 +36,6 @@ const theme = createTheme({
   }
 })
 
-const alphaBtnSX = {
-  margin: '0.5rem',
-  cursor: 'pointer',
-  border: '2px solid #1976d2',
-  borderRadius: '3px',
-  color: 'blue',
-  fontSize: '3rem',
-  aspectRatio: '1/1',
-  width: '4rem',
-  opacity: '1',
-  '&.correct': {
-    opacity: '0.5'
-  },
-  '&.wrong': {
-    opacity: '0.25'
-  }
-}
-
 export default function Hangman() {
   
   const word = 'hangman'.toUpperCase()
@@ -75,7 +57,6 @@ export default function Hangman() {
   const playArea = document.getElementById('playArea')
   const finishMessageText1 = document.querySelector('[data-finish-message-text1]')
   const finishMessageText2 = document.querySelector('[data-finish-message-text2]')
-  const alphaBtns = document.querySelectorAll('.alpha-btns')
 
   const [correctGuessesList, setCorrectGuessesList] = React.useState([])
 
@@ -85,25 +66,43 @@ export default function Hangman() {
 
   const maskedWord = word.split('').map(letter => correctGuessesList.includes(letter) ? letter : '_').join(' ')
   
-  function handleWrongClick() {
+  const handleClick = () => {
+    // check correct choice
+      // if correct choice → add choice to correct guesses list, check for win (correct list contains all letters in word)
+        // if win → game over
+        // if not win → CONTINUE
+
+      // if wrong choice → add choice to wrong guesses list, update hangman image, CONTINUE
+
     let currCount = wrongGuessesList.length
     setHangmanImg(images[currCount += 1])
   }
 
-  function checkWinner() {
-    if (!maskedWord.includes('_')) {
-      finishMessageText1.innerText = 'Congrats, you win!'
-      playArea.classList.add('hide')
-      finishMessageArea.classList.add('win')
-    } else if (maskedWord.includes('_') && wrongGuessesList.length >= 7) {
-      finishMessageText1.innerText = 'Sorry, you lose!'
-      finishMessageText2.innerText = `The correct word was ${word}`
-      playArea.classList.add('hide')
-      finishMessageArea.classList.add('lose')
-    }
+  const winMessage = () => {
+    finishMessageText1.innerText = 'Congrats, you win!'
+    playArea.classList.add('hide')
+    finishMessageArea.classList.add('win')
   }
 
-  function resetGame() {
+  const loseMessage = () => {
+    finishMessageText1.innerText = 'Sorry, you lose!'
+    finishMessageText2.innerText = `The correct word was ${word}`
+    playArea.classList.add('hide')
+    finishMessageArea.classList.add('lose')
+  }
+
+  const checkWin = () => {
+    let checker = (arr, target) => target.every(v => arr.includes(v))
+
+    console.log(checker())
+    // if (!maskedWord.includes('_')) {
+    //   winMessage()
+    // } else if (maskedWord.includes('_') && wrongGuessesList.length >= 7) {
+    //   loseMessage()
+    // }
+  }
+
+  const resetGame = () => {
     setHangmanImg(images[0])
     setCorrectGuessesList([])
     setWrongGuessesList([])
@@ -111,7 +110,72 @@ export default function Hangman() {
     finishMessageText2.innerText = ''
     finishMessageArea.classList.remove('win', 'lose')
     playArea.classList.remove('hide')
-    alphaBtns.classList.remove('correct', 'wrong')
+  }
+
+  const MaskedWord = () => {
+    return (
+      <Typography sx={{letterSpacing: '1.25rem', fontSize:'2.25rem', marginBottom: '2rem'}}>
+        {maskedWord}
+      </Typography>
+    )
+  }
+
+  const ChoicesTracker = () => {
+    return (
+      <Box sx={{display: 'flex', flexDirection: 'column'}}>
+        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: '1rem'}} gap={5}>
+          <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem', border: '2px solid green', aspectRatio: '2/1', width: '300px'}}>
+            <Typography sx={{fontWeight: 'bold', color: 'green'}}>Correct</Typography>
+            <Box sx={{alignSelf: 'flex-start', marginTop: '1rem', fontSize: '1.25rem'}}>{correctGuessesList.join(', ')}</Box>
+          </Box>
+          <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem', border: '2px solid red', aspectRatio: '2/1', width: '300px'}}>
+            <Typography sx={{fontWeight: 'bold', color: 'red'}}>Wrong</Typography>
+            <Box sx={{alignSelf: 'flex-start', marginTop: '1rem', fontSize: '1.25rem'}}>{wrongGuessesList.join(', ')}</Box>
+          </Box>
+        </Box>
+        <Typography sx={{textAlign: 'center', marginTop: '1.5rem'}}>{8 - wrongGuessesList.length} wrong guesses left</Typography>
+      </Box>
+    )
+  }
+
+  // Below works but needs additional click to get win message...
+  // const AlphaBtns = () => {
+
+  //   return (
+  //     <Box sx={{width: '70%'}}>
+  //       {alphabet.map((choice, index) =>
+  //         <Box component='button' className='alpha-btn' key={index} onClick={() => {
+  //           checkWin()
+  //           if (!word.includes(choice)) {
+  //             setWrongGuessesList([...wrongGuessesList, choice])
+  //             handleWrongClick()
+  //           } else {
+  //             setCorrectGuessesList([...correctGuessesList, choice])
+  //           }
+  //         }}>
+  //           {choice}
+  //         </Box>
+  //       )}
+  //     </Box>
+  //   )
+  // }
+
+  const AlphaBtns = () => {
+
+    return (
+      <Box sx={{width: '70%'}}>
+        {alphabet.map((choice, index) =>
+          <Box component='button' className='alpha-btn' key={index} onClick={() => {
+            word.includes(choice)
+            ? setCorrectGuessesList([...correctGuessesList, choice])
+            : setWrongGuessesList([...wrongGuessesList, choice])
+          }}
+      >
+            {choice}
+          </Box>
+        )}
+      </Box>
+    )
   }
 
   return (
@@ -119,22 +183,10 @@ export default function Hangman() {
       
       <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}}>
         <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1.5rem'}} gap={15}>
-          <Box component='img' src={hangmanImg} sx={{width: '20%'}} />
-          <Box id='playArea' sx={{textAlign: 'center'}}>
-            <Typography sx={{letterSpacing: '1.25rem', fontSize:'2.25rem', marginBottom: '2rem'}}>
-              {maskedWord}
-            </Typography>
-          <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: '1rem'}} gap={5}>
-            <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem', border: '2px solid green', aspectRatio: '2/1', width: '300px'}}>
-              <Typography sx={{fontWeight: 'bold', color: 'green'}}>Correct</Typography>
-              <Box sx={{alignSelf: 'flex-start', marginTop: '1rem', fontSize: '1.25rem'}}>{correctGuessesList.join(', ')}</Box>
-            </Box>
-            <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem', border: '2px solid red', aspectRatio: '2/1', width: '300px'}}>
-              <Typography sx={{fontWeight: 'bold', color: 'red'}}>Wrong</Typography>
-              <Box sx={{alignSelf: 'flex-start', marginTop: '1rem', fontSize: '1.25rem'}}>{wrongGuessesList.join(', ')}</Box>
-            </Box>
-          </Box>
-          <Typography sx={{textAlign: 'center', marginTop: '1.5rem'}}>{8 - wrongGuessesList.length} wrong guesses left</Typography>
+          <Box component='img' src={hangmanImg} sx={{width: '25%'}} />
+          <Box id='playArea' sx={{textAlign: 'center', flexGrow: '0.75'}}>
+            <MaskedWord />
+            <ChoicesTracker />
           </Box>
           <Box className='finish-message' id='finishMessageArea'>
             <Box className='finish-message-text1' data-finish-message-text1></Box>
@@ -144,24 +196,7 @@ export default function Hangman() {
             </Button>
           </Box>
         </Box>
-        <Box sx={{width: '70%'}}>
-          {alphabet.map((alphabet, index) =>
-            <Box className='alpha-btns' component='button' key={index} sx={alphaBtnSX} onClick={() => {
-              if (!word.includes(alphabet)) {
-                setWrongGuessesList([...wrongGuessesList, alphabet])
-                handleWrongClick()
-                // alphaBtns.classList.add('wrong')
-              } else {
-                setCorrectGuessesList([...correctGuessesList, alphabet])
-                // alphaBtns.classList.add('correct')
-              }
-              checkWinner()
-            }}>
-              {alphabet}
-            </Box>
-          )}
-        </Box>
-        {/* {gameOver ? <Box sx={{fontSize: '3rem', marginTop: '2rem', color: 'red', fontWeight: 'bold'}}>Sorry, you lose! The correct word was {word}</Box> : !maskedWord.includes('_') && <Box sx={{fontSize: '3rem', marginTop: '2rem', color: 'green', fontWeight: 'bold'}}>Congrats, you win!</Box>} */}
+        <AlphaBtns />
       </Box>
 
     </ThemeProvider>
