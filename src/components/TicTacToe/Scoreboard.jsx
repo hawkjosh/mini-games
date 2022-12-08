@@ -7,6 +7,14 @@ import {
   ThemeProvider
 } from '@mui/material'
 
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import FastRewindIcon from '@mui/icons-material/FastRewind';
+import FastForwardIcon from '@mui/icons-material/FastForward';
+
+
 import '../../assets/styles/TicTacToe/Scoreboard.css'
 
 const theme = createTheme({
@@ -26,11 +34,12 @@ const theme = createTheme({
 })
 
 const buttonSX = {
+  padding: '5px 10px',
   bgcolor: 'darkgray',
   '&:hover': {bgcolor: 'gray'}
 }
 
-export default function Scoreboard({ score, xPlaying, onClick }) {
+export default function Scoreboard({ score, xPlaying, resetGame }) {
 
   const {xScore, oScore} = score;
 
@@ -39,11 +48,15 @@ export default function Scoreboard({ score, xPlaying, onClick }) {
 
       <Box className='scoreboard-heading'>
         <Box className='scoreboard'>
-          <Box className={`score x-score ${!xPlaying && 'inactive'}`}>
+          <Box className={`score x-score ${!xPlaying && 'inactive'}`} sx={{letterSpacing: '0.25rem'}}>
             X's ▸ {xScore}
           </Box>
-          <Button variant='contained' size='large' sx={buttonSX} onClick={onClick}>Reset Score</Button>
-          <Box className={`score o-score ${xPlaying && 'inactive'}`}>
+          <Box className='scoreboard-middle'>
+            <ArrowCircleLeftIcon className={`x-arrow ${!xPlaying && 'hide'}`} sx={{fontSize: 50}} />
+            <Button variant='contained' sx={buttonSX} onClick={() => resetGame()}>Start Over</Button>
+            <ArrowCircleRightIcon className={`o-arrow ${xPlaying && 'hide'}`} sx={{fontSize: 50}} />
+          </Box>
+          <Box className={`score o-score ${xPlaying && 'inactive'}`} sx={{letterSpacing: '0.25rem'}}>
             O's ▸ {oScore}
           </Box>
         </Box>

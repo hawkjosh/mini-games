@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import {
   Link,
-  Outlet
+  Outlet,
+  useLocation
 } from 'react-router-dom'
 
 import {
@@ -67,6 +68,15 @@ export default function Navbar() {
     setAnchorEl(null)
   }
 
+  const RenderTitle = () => {
+    const pathname = useLocation()
+    if (pathname.pathname === '/') {
+      return (<Typography sx={{flexGrow: 1, textAlign: 'center', fontSize: '3rem'}}>MINI GAMES</Typography>)
+    } else {
+      return (<Typography sx={{flexGrow: 1, textAlign: 'center', fontSize: '3rem'}}>{pathname.pathname.toUpperCase().slice(1)}</Typography>)
+    }
+  }
+
   return (
     <ThemeProvider theme={theme}>
 
@@ -85,6 +95,9 @@ export default function Navbar() {
           >
             <MenuIcon />
           </IconButton>
+
+          <RenderTitle />
+
           <Menu
             id='games-menu'
             anchorEl={anchorEl}
@@ -107,15 +120,6 @@ export default function Navbar() {
               </MenuItem>
             ))}
           </Menu>
-          <Typography
-            sx={{
-              flexGrow: 1,
-              textAlign: 'center',
-              fontSize: '3rem'
-            }}
-          >
-            {options[selectedIndex].title}
-          </Typography>
         </Toolbar>
       </AppBar>
 

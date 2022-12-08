@@ -6,7 +6,7 @@
   right: 0;
   bottom: 0;
   font-family: 'Fredoka', sans-serif;
-  background-color: rgba(0, 0, 0, .9);
+  background-color: rgba(0, 0, 0, .75);
   justify-content: center;
   align-items: center;
   color: white;
@@ -17,9 +17,9 @@
 .winning-message button {
   font-size: 3rem;
   font-family: 'Fredoka', sans-serif;
-  color: black;
-  background-color: white;
-  border: 1px solid black;
+  color: white;
+  background-color: green;
+  border: 1px solid white;
   border-radius: 0.5rem;
   margin-top: 2rem;
   padding: 0.25rem 1rem;
@@ -27,19 +27,18 @@
 }
 
 .winning-message button:hover {
-  background-color: black;
-  color: white;
-  border-color: white;
+  background-color: white;
+  color: green;
 }
 
 .winning-message.x {
   display: flex;
-  background-color: rgba(50, 0, 0, .9);
+  /* background-color: rgba(50, 0, 0, .9); */
 }
 
 .winning-message.o {
   display: flex;
-  background-color: rgba(0, 0, 50, .9);
+  /* background-color: rgba(0, 0, 50, .9); */
 }
 
 .winning-message.draw {

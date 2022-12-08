@@ -1,8 +1,8 @@
 .board-background {
   width: fit-content;
-  padding: 15px;
+  padding: 10px;
   margin: auto;
-  border: solid black;
+  border: solid darkgray;
   border-radius: 1rem;
 }
 

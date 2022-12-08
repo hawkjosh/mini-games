@@ -78,7 +78,7 @@ export default function TicTacToe() {
         winningMessage.classList.add('o')
       }
     }
-    if (updatedBoard.every(notNull)) {
+    if (!winner && updatedBoard.every(notNull)) {
       winningMessageText.innerText = 'Draw!'
       winningMessage.classList.add('draw')
     }
@@ -105,15 +105,24 @@ export default function TicTacToe() {
     winningMessage.classList.remove('draw', 'x', 'o')
   }
 
+  function resetGame() {
+    setGameOver(false)
+    setBoard(Array(9).fill(null))
+    setScore({xScore: 0, oScore: 0})
+    setXPlaying(true)
+    winningMessageText.classList.remove('x-win', 'o-win')
+    winningMessage.classList.remove('draw', 'x', 'o')
+  }
+
   return (
     <ThemeProvider theme={theme}>
       
       <Box>
-        <Scoreboard score={score} xPlaying={xPlaying} />
+        <Scoreboard score={score} xPlaying={xPlaying} resetGame={resetGame} />
         <Gameboard board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
       </Box>
       <Box className='winning-message' id='winningMessage'>
-        <Box data-winning-message-text></Box>
+        <Box data-winning-message-text sx={{letterSpacing: '1rem'}}></Box>
         <Button onClick={resetBoard}>Play Again</Button>
       </Box>
 
