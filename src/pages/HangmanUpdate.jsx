@@ -8,6 +8,8 @@ import {
   Typography
 } from '@mui/material'
 
+import Alphabet from '../components/Hangman/Alphabet'
+
 import '../assets/styles/Hangman/Hangman.css'
 
 import Hangman1 from '../assets/images/Hangman/hangman1.png'
@@ -36,18 +38,6 @@ const theme = createTheme({
   }
 })
 
-const buttonSX = {
-  cursor: 'pointer',
-  fontSize: '2rem',
-  color: 'blue',
-  margin: '0.25rem 0.5rem',
-  border: '0.15rem solid #1976d2',
-  borderRadius: '0.5rem',
-  '&:hover': {
-    boxShadow: '0 0 0.5rem #888'
-  }
-}
-
 export default function Hangman() {
 
   // const getRandomWord = (arr) => {
@@ -64,8 +54,6 @@ export default function Hangman() {
 
   const letterCount = 5
 
-  const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-
   const images = [Hangman1, Hangman2, Hangman3, Hangman4, Hangman5, Hangman6, Hangman7, Hangman8, Hangman9]
 
   const finishMessageArea = document.getElementById('finishMessageArea')
@@ -78,8 +66,6 @@ export default function Hangman() {
   const [wrongGuessesList, setWrongGuessesList] = React.useState([])
   
   const [hangmanImg, setHangmanImg] = React.useState(images[0])
-
-  const [disabled, setDisabled] = React.useState(false)
 
   const maskedWord = word.split('').map(letter => correctGuessesList.includes(letter) ? letter : '_').join(' ')
 
@@ -114,55 +100,6 @@ export default function Hangman() {
     )
   }
 
-  const ChoicesTracker = () => {
-    return (
-      <Box sx={{display: 'flex', flexDirection: 'column'}}>
-        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: '0.5rem'}} gap={3}>
-          <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem', border: '2px solid green', aspectRatio: '2.5/1', width: '300px'}}>
-            <Typography sx={{fontWeight: 'bold', color: 'green'}}>Correct</Typography>
-            <Box sx={{alignSelf: 'flex-start', marginTop: '1rem', fontSize: '1.25rem'}}>{correctGuessesList.join(', ')}</Box>
-          </Box>
-          <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem', border: '2px solid red', aspectRatio: '2.5/1', width: '300px'}}>
-            <Typography sx={{fontWeight: 'bold', color: 'red'}}>Wrong</Typography>
-            <Box sx={{alignSelf: 'flex-start', marginTop: '1rem', fontSize: '1.25rem'}}>{wrongGuessesList.join(', ')}</Box>
-          </Box>
-        </Box>
-        <Typography sx={{textAlign: 'center', marginTop: '1.5rem'}}>{8 - wrongGuessesList.length} wrong guesses left</Typography>
-      </Box>
-    )
-  }
-
-  const AlphaBtns = () => {
-
-    return (
-      <Box sx={{width: '70%'}}>
-        {alphabet.map((choice, index) =>
-          <Button disabled={disabled} sx={buttonSX} key={index} onClick={() => {
-            let badCount = wrongGuessesList.length
-            let goodCount = correctGuessesList.length
-            let badChoice = !word.includes(choice)
-            let goodChoice = word.includes(choice)
-            if (badChoice && badCount <= 7) {
-              setWrongGuessesList([...wrongGuessesList, choice])
-              setHangmanImg(images[badCount += 1])
-            }
-            if (badChoice && badCount === 8) {
-              loseMessage()
-            }
-            if (goodChoice && goodCount < letterCount - 1) {
-              setCorrectGuessesList([...correctGuessesList, choice])
-            }
-            if (goodChoice && goodCount === letterCount - 1) {
-              winMessage()
-            }
-          }}>
-            {choice}
-          </Button>
-        )}
-      </Box>
-    )
-  }
-
   return (
     <ThemeProvider theme={theme}>
       
@@ -171,7 +108,6 @@ export default function Hangman() {
           <Box component='img' src={hangmanImg} sx={{width: '25%'}} />
           <Box id='playArea' sx={{textAlign: 'center', flexGrow: '0.75'}}>
             <MaskedWord />
-            {/* <ChoicesTracker /> */}
           </Box>
           <Box className='finish-message' id='finishMessageArea'>
             <Box className='finish-message-text1' data-finish-message-text1></Box>
@@ -181,7 +117,18 @@ export default function Hangman() {
             </Button>
           </Box>
         </Box>
-        <AlphaBtns />
+        <Alphabet
+          word={word}
+          images={images}
+          wrongGuessesList={wrongGuessesList}
+          correctGuessesList={correctGuessesList}
+          setWrongGuessesList={setWrongGuessesList}
+          setCorrectGuessesList={setCorrectGuessesList}
+          loseMessage={loseMessage}
+          winMessage={winMessage}
+          setHangmanImg={setHangmanImg}
+        />
+        {/* <Alphabet /> */}
       </Box>
 
     </ThemeProvider>

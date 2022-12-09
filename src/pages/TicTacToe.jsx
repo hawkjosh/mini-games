@@ -105,7 +105,7 @@ export default function TicTacToe() {
     winningMessage.classList.remove('draw', 'x', 'o')
   }
 
-  function resetGame() {
+  const resetGame = () => {
     setGameOver(false)
     setBoard(Array(9).fill(null))
     setScore({xScore: 0, oScore: 0})
@@ -116,11 +116,12 @@ export default function TicTacToe() {
 
   return (
     <ThemeProvider theme={theme}>
-      
-      <Box>
+
+      <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}} gap={'5rem'}>
         <Scoreboard score={score} xPlaying={xPlaying} resetGame={resetGame} />
         <Gameboard board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
       </Box>
+
       <Box className='winning-message' id='winningMessage'>
         <Box data-winning-message-text sx={{letterSpacing: '1rem'}}></Box>
         <Button onClick={resetBoard}>Play Again</Button>
