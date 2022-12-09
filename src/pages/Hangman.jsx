@@ -37,17 +37,20 @@ const theme = createTheme({
 })
 
 export default function Hangman() {
-  
-  const word = 'hangman'.toUpperCase()
+
   // const getRandomWord = (arr) => {
   //   const randomWord = Math.floor(Math.random() * arr.length)
   //   const selection = arr[randomWord]
   //   return selection
   // }
   
-  // const wordOptions = ['hangman'.toUpperCase(), 'javascript'.toUpperCase(), 'mini-games'.toUpperCase(), 'laptop'.toUpperCase(), 'programmer'.toUpperCase()]
+  // const wordOptions = ['hangman'.toUpperCase(), 'javascript'.toUpperCase(), 'computer'.toUpperCase(), 'laptop'.toUpperCase(), 'programmer'.toUpperCase()]
 
   // const word = getRandomWord(wordOptions)
+  
+  const word = 'hangman'.toUpperCase()
+
+  const letterCount = 5
 
   const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
@@ -66,18 +69,6 @@ export default function Hangman() {
 
   const maskedWord = word.split('').map(letter => correctGuessesList.includes(letter) ? letter : '_').join(' ')
   
-  const handleClick = () => {
-    // check correct choice
-      // if correct choice → add choice to correct guesses list, check for win (correct list contains all letters in word)
-        // if win → game over
-        // if not win → CONTINUE
-
-      // if wrong choice → add choice to wrong guesses list, update hangman image, CONTINUE
-
-    let currCount = wrongGuessesList.length
-    setHangmanImg(images[currCount += 1])
-  }
-
   const winMessage = () => {
     finishMessageText1.innerText = 'Congrats, you win!'
     playArea.classList.add('hide')
@@ -89,17 +80,6 @@ export default function Hangman() {
     finishMessageText2.innerText = `The correct word was ${word}`
     playArea.classList.add('hide')
     finishMessageArea.classList.add('lose')
-  }
-
-  const checkWin = () => {
-    let checker = (arr, target) => target.every(v => arr.includes(v))
-
-    console.log(checker())
-    // if (!maskedWord.includes('_')) {
-    //   winMessage()
-    // } else if (maskedWord.includes('_') && wrongGuessesList.length >= 7) {
-    //   loseMessage()
-    // }
   }
 
   const resetGame = () => {
@@ -123,12 +103,12 @@ export default function Hangman() {
   const ChoicesTracker = () => {
     return (
       <Box sx={{display: 'flex', flexDirection: 'column'}}>
-        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: '1rem'}} gap={5}>
-          <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem', border: '2px solid green', aspectRatio: '2/1', width: '300px'}}>
+        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: '0.5rem'}} gap={3}>
+          <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem', border: '2px solid green', aspectRatio: '2.5/1', width: '300px'}}>
             <Typography sx={{fontWeight: 'bold', color: 'green'}}>Correct</Typography>
             <Box sx={{alignSelf: 'flex-start', marginTop: '1rem', fontSize: '1.25rem'}}>{correctGuessesList.join(', ')}</Box>
           </Box>
-          <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem', border: '2px solid red', aspectRatio: '2/1', width: '300px'}}>
+          <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '1rem', border: '2px solid red', aspectRatio: '2.5/1', width: '300px'}}>
             <Typography sx={{fontWeight: 'bold', color: 'red'}}>Wrong</Typography>
             <Box sx={{alignSelf: 'flex-start', marginTop: '1rem', fontSize: '1.25rem'}}>{wrongGuessesList.join(', ')}</Box>
           </Box>
@@ -138,39 +118,30 @@ export default function Hangman() {
     )
   }
 
-  // Below works but needs additional click to get win message...
-  // const AlphaBtns = () => {
-
-  //   return (
-  //     <Box sx={{width: '70%'}}>
-  //       {alphabet.map((choice, index) =>
-  //         <Box component='button' className='alpha-btn' key={index} onClick={() => {
-  //           checkWin()
-  //           if (!word.includes(choice)) {
-  //             setWrongGuessesList([...wrongGuessesList, choice])
-  //             handleWrongClick()
-  //           } else {
-  //             setCorrectGuessesList([...correctGuessesList, choice])
-  //           }
-  //         }}>
-  //           {choice}
-  //         </Box>
-  //       )}
-  //     </Box>
-  //   )
-  // }
-
   const AlphaBtns = () => {
 
     return (
       <Box sx={{width: '70%'}}>
         {alphabet.map((choice, index) =>
           <Box component='button' className='alpha-btn' key={index} onClick={() => {
-            word.includes(choice)
-            ? setCorrectGuessesList([...correctGuessesList, choice])
-            : setWrongGuessesList([...wrongGuessesList, choice])
-          }}
-      >
+            let badCount = wrongGuessesList.length
+            let goodCount = correctGuessesList.length
+            let badChoice = !word.includes(choice)
+            let goodChoice = word.includes(choice)
+            if (badChoice && badCount <= 7) {
+              setWrongGuessesList([...wrongGuessesList, choice])
+              setHangmanImg(images[badCount += 1])
+            }
+            if (badChoice && badCount === 8) {
+              loseMessage()
+            }
+            if (goodChoice && goodCount < letterCount - 1) {
+              setCorrectGuessesList([...correctGuessesList, choice])
+            }
+            if (goodChoice && goodCount === letterCount - 1) {
+              winMessage()
+            }
+          }}>
             {choice}
           </Box>
         )}
