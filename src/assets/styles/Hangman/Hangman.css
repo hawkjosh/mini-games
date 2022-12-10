@@ -48,3 +48,8 @@
 .hide {
   display: none;
 }
+
+.locked {
+  opacity: 0.5;
+  pointer-events: none;
+}
