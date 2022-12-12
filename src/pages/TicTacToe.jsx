@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { useMediaQuery } from 'react-responsive'
+
 import {
   Box,
   Button,
@@ -16,19 +18,25 @@ const theme = createTheme({
   breakpoints: {
     values: {
       // Breakpoints below use vertical layout
-      xxs: 0,
-      xs: 375,
-      sm: 425,
-      md: 768,
+      mobile: 428,
+      tabletSmall: 768,
+      tabletLarge: 820,
       // Breakpoints below change to horizontal layout
-      lg: 1024,
-      xl: 1440,
-      xxl: 1620
+      laptopSmall: 1263,
+      laptopLarge: 1519,
     }
   }
 })
 
 export default function TicTacToe() {
+
+  const horizontalView = useMediaQuery({
+    query: '(min-width: 821px)'
+  })
+
+  const verticalView = useMediaQuery({
+    query: '(max-width: 820px)'
+  })
 
   const WIN_COMBOS = [
     [0, 1, 2],
@@ -117,15 +125,37 @@ export default function TicTacToe() {
   return (
     <ThemeProvider theme={theme}>
 
-      <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}} gap={'5rem'}>
-        <Scoreboard score={score} xPlaying={xPlaying} resetGame={resetGame} />
-        <Gameboard board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
-      </Box>
+      {/* for horizontal layouts */}
 
-      <Box className='winning-message' id='winningMessage'>
-        <Box data-winning-message-text sx={{letterSpacing: '1rem'}}></Box>
-        <Button onClick={resetBoard}>Play Again</Button>
-      </Box>
+      {horizontalView &&
+        <Box>
+          <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}} gap={'5rem'}>
+            <Scoreboard score={score} xPlaying={xPlaying} resetGame={resetGame} />
+            <Gameboard board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
+          </Box>
+  
+          <Box className='winning-message' id='winningMessage'>
+            <Box data-winning-message-text sx={{letterSpacing: '1rem'}}></Box>
+            <Button onClick={resetBoard}>Play Again</Button>
+          </Box>
+        </Box>
+      }
+
+      {/* for vertical layouts */}
+
+      {verticalView &&
+        <Box>
+          <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}} gap={'5rem'}>
+            <Scoreboard score={score} xPlaying={xPlaying} resetGame={resetGame} />
+            <Gameboard board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
+          </Box>
+  
+          <Box className='winning-message' id='winningMessage'>
+            <Box data-winning-message-text sx={{letterSpacing: '1rem'}}></Box>
+            <Button onClick={resetBoard}>Play Again</Button>
+          </Box>
+        </Box>
+      }
 
     </ThemeProvider>
   )

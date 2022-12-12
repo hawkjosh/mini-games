@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { useMediaQuery } from 'react-responsive'
+
 import {
   Alert,
   AlertTitle,
@@ -12,50 +14,92 @@ const theme = createTheme({
   breakpoints: {
     values: {
       // Breakpoints below use vertical layout
-      xxs: 0,
-      xs: 375,
-      sm: 425,
-      md: 768,
+      mobile: 428,
+      tabletSmall: 768,
+      tabletLarge: 820,
       // Breakpoints below change to horizontal layout
-      lg: 1024,
-      xl: 1440,
-      xxl: 1620
+      laptopSmall: 1263,
+      laptopLarge: 1519,
     }
   }
 })
 
 export default function NoPage() {
 
+  const horizontalView = useMediaQuery({
+    query: '(min-width: 821px)'
+  })
+
+  const verticalView = useMediaQuery({
+    query: '(max-width: 820px)'
+  })
+
   return (
     <ThemeProvider theme={theme}>
 
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '50vh'
-        }}
-      >
-        <Alert
-          variant='outlined'
-          severity='error'
+      {/* for horizontal layouts */}
+
+      {horizontalView &&
+        <Box
           sx={{
-            width: '50%',
-            fontSize: '1.5rem'
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50vh'
           }}
         >
-          <AlertTitle
+          <Alert
+            variant='outlined'
+            severity='error'
             sx={{
-              fontSize: '2.5rem',
-              textAlign: 'center'
+              width: '50%',
+              fontSize: '1.5rem'
             }}
           >
-            404 Error
-          </AlertTitle>
-          Something seems to have gone wrong, sorry about that! Please click <a href='/' style={{color: 'red'}}>HERE</a> to return to the Mini Games home page.
-        </Alert>
-      </Box>
+            <AlertTitle
+              sx={{
+                fontSize: '2.5rem',
+                textAlign: 'center'
+              }}
+            >
+              404 Error
+            </AlertTitle>
+            Something seems to have gone wrong, sorry about that! Please click <a href='/' style={{color: 'red'}}>HERE</a> to return to the Mini Games home page.
+          </Alert>
+        </Box>
+      }
+      
+      {/* for vertical layouts */}
+
+      {verticalView &&
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50vh'
+          }}
+        >
+          <Alert
+            variant='outlined'
+            severity='error'
+            sx={{
+              width: '50%',
+              fontSize: '1.5rem'
+            }}
+          >
+            <AlertTitle
+              sx={{
+                fontSize: '2.5rem',
+                textAlign: 'center'
+              }}
+            >
+              404 Error
+            </AlertTitle>
+            Something seems to have gone wrong, sorry about that! Please click <a href='/' style={{color: 'red'}}>HERE</a> to return to the Mini Games home page.
+          </Alert>
+        </Box>
+      }
       
     </ThemeProvider>
   )

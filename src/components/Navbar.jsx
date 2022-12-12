@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { useMediaQuery } from 'react-responsive'
+
 import {
   Link,
   Outlet,
@@ -23,14 +25,12 @@ const theme = createTheme({
   breakpoints: {
     values: {
       // Breakpoints below use vertical layout
-      xxs: 0,
-      xs: 375,
-      sm: 425,
-      md: 768,
+      mobile: 428,
+      tabletSmall: 768,
+      tabletLarge: 820,
       // Breakpoints below change to horizontal layout
-      lg: 1024,
-      xl: 1440,
-      xxl: 1620
+      laptopSmall: 1263,
+      laptopLarge: 1519,
     }
   }
 })
@@ -48,6 +48,14 @@ const options = [
 ]
 
 export default function Navbar() {
+
+  const horizontalView = useMediaQuery({
+    query: '(min-width: 821px)'
+  })
+
+  const verticalView = useMediaQuery({
+    query: '(max-width: 820px)'
+  })
 
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -80,48 +88,99 @@ export default function Navbar() {
   return (
     <ThemeProvider theme={theme}>
 
-      <AppBar
-        position='sticky'
-      >
-        <Toolbar>
-          <IconButton
-            id='menu-button'
-            aria-controls={open ? 'games-menu' : undefined}
-            aria-haspopup='true'
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleOpen}
-            edge='start'
-            color='inherit'
-          >
-            <MenuIcon />
-          </IconButton>
+      {/* for horizontal layouts */}
 
-          <RenderTitle />
+      {horizontalView &&
+        <AppBar
+          position='sticky'
+        >
+          <Toolbar>
+            <IconButton
+              id='menu-button'
+              aria-controls={open ? 'games-menu' : undefined}
+              aria-haspopup='true'
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleOpen}
+              edge='start'
+              color='inherit'
+            >
+              <MenuIcon />
+            </IconButton>
 
-          <Menu
-            id='games-menu'
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-          >
-            {options.map((option, index) => (
-              <MenuItem
-                key={option.name}
-                disabled={index === 3}
-                selected={index === selectedIndex}
-                onClick={(event) => handleSelect(event, index)}
-              >
-                <Link
-                  to={option.link}
-                  style={linkSX}
+            <RenderTitle />
+
+            <Menu
+              id='games-menu'
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
+              {options.map((option, index) => (
+                <MenuItem
+                  key={option.name}
+                  disabled={index === 3}
+                  selected={index === selectedIndex}
+                  onClick={(event) => handleSelect(event, index)}
                 >
-                  {option.name}
-                </Link>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Toolbar>
-      </AppBar>
+                  <Link
+                    to={option.link}
+                    style={linkSX}
+                  >
+                    {option.name}
+                  </Link>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Toolbar>
+        </AppBar>
+      }
+
+      {/* for vertical layouts */}
+
+      {verticalView &&
+        <AppBar
+          position='sticky'
+        >
+          <Toolbar>
+            <IconButton
+              id='menu-button'
+              aria-controls={open ? 'games-menu' : undefined}
+              aria-haspopup='true'
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleOpen}
+              edge='start'
+              color='inherit'
+            >
+              <MenuIcon />
+            </IconButton>
+
+            <RenderTitle />
+
+            <Menu
+              id='games-menu'
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
+              {options.map((option, index) => (
+                <MenuItem
+                  key={option.name}
+                  disabled={index === 3}
+                  selected={index === selectedIndex}
+                  onClick={(event) => handleSelect(event, index)}
+                >
+                  <Link
+                    to={option.link}
+                    style={linkSX}
+                  >
+                    {option.name}
+                  </Link>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Toolbar>
+        </AppBar>
+      }
 
       <Outlet />
 

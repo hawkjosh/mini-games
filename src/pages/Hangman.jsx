@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { useMediaQuery } from 'react-responsive'
+
 import {
   Box,
   Button,
@@ -7,8 +9,6 @@ import {
   ThemeProvider,
   Typography
 } from '@mui/material'
-
-import { useMediaQuery } from 'react-responsive'
 
 import '../assets/styles/Hangman/Hangman.css'
 
@@ -26,12 +26,12 @@ const theme = createTheme({
   breakpoints: {
     values: {
       // Breakpoints below use vertical layout
-      iphone: 428,
-      ipadMini: 768,
-      ipadAir: 820,
+      mobile: 428,
+      tabletSmall: 768,
+      tabletLarge: 820,
       // Breakpoints below change to horizontal layout
-      laptop: 1263,
-      xtraDisplay: 1519,
+      laptopSmall: 1263,
+      laptopLarge: 1519,
     }
   }
 })
@@ -44,19 +44,19 @@ const buttonSX = {
   fontWeight: 'bold',
   aspectRatio: '1/1',
   width: {
-    iphone: '20%',
-    ipadMini: '19.5%',
-    ipadAir: '19%',
-    laptop: '5.5%',
-    xtraDisplay: '6%'
+    mobile: '20%',
+    tabletSmall: '19.5%',
+    tabletLarge: '19%',
+    laptopSmall: '5.5%',
+    laptopLarge: '6%'
   },
   cursor: 'pointer',
   fontSize: {
-    iphone: '1rem',
-    ipadMini: '1.25rem',
-    ipadAir: '1.5rem',
-    laptop: '1.75rem',
-    xtraDisplay: '2rem'
+    mobile: '1rem',
+    tabletSmall: '1.25rem',
+    tabletLarge: '1.5rem',
+    laptopSmall: '1.75rem',
+    laptopLarge: '2rem'
   },
   color: '#1976d2',
   border: '0.15rem solid rgb(44, 135, 255)',
@@ -163,7 +163,7 @@ export default function Hangman() {
   const HiddenWord = () => {
 
     return (
-      <Typography sx={{fontSize: {iphone: '1.25rem', ipadMini: '1.75rem', ipadAir: '2rem', laptop: '2.25rem', xtraDisplay: '2.5rem'}, letterSpacing: {ipadMini: '0.35rem', laptop: '0.5rem'}, marginY: {iphone: '2rem', ipadMini: '2.5rem', ipadAir: '3rem', laptop: '5rem'}}}>
+      <Typography sx={{fontSize: {mobile: '1.25rem', tabletSmall: '1.75rem', tabletLarge: '2rem', laptopSmall: '2.25rem', laptopLarge: '2.5rem'}, letterSpacing: {tabletSmall: '0.35rem', laptopSmall: '0.5rem'}, marginY: {mobile: '2rem', tabletSmall: '2.5rem', tabletLarge: '3rem', laptopSmall: '5rem'}}}>
         {hiddenWord}
       </Typography>
     )
@@ -175,24 +175,63 @@ export default function Hangman() {
       {/* for horizontal layouts */}
 
       {horizontalView &&
+        <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}} gap={'1rem'}>
+          <Box component='img' src={image} sx={{width: '30%', marginLeft: '1rem'}} />
 
-      <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}} gap={'1rem'}>
-        <Box component='img' src={image} sx={{width: '30%', marginLeft: '1rem'}} />
-        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around'}}>
-          <Box id='playArea' sx={{width: '95%', textAlign: 'center', borderRadius: '0.5rem', padding: '1rem', boxShadow: '0 0 10px gray'}}>
-            <HiddenWord />
-          </Box>
-          <Box id='finishMessageArea' className='finish-message'>
-            <Box className='finish-message-text1' data-finish-message-text1></Box>
-            <Box className='finish-message-text2' data-finish-message-text2></Box>
-            <Button onClick={resetGame}>
-              Play Again
-            </Button>
-          </Box>
+          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around'}}>
+            <Box id='playArea' sx={{width: '95%', textAlign: 'center', borderRadius: '0.5rem', padding: '1rem', boxShadow: '0 0 10px gray'}}>
+              <HiddenWord />
+            </Box>
 
-          <Box id='alpha-btns-area' sx={{width: '95%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', padding: '0.5rem'}} gap={2}>
-            {alphabet.map((choice, index) => (
-              <Box
+            <Box id='finishMessageArea' className='finish-message'>
+              <Box className='finish-message-text1' data-finish-message-text1></Box>
+              <Box className='finish-message-text2' data-finish-message-text2></Box>
+              <Button onClick={resetGame}>
+                Play Again
+              </Button>
+            </Box>
+
+            <Box id='alpha-btns-area' sx={{width: '95%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', padding: '0.5rem'}} gap={2}>
+              {alphabet.map((choice, index) => (
+                <Box
+                  className='data-btn'
+                  sx={buttonSX}
+                  key={index}
+                  onClick={(e) => {
+                    e.target.classList.add('disabled')
+                    checkChoice(choice)
+                    let correctLetters = correctGuesses.length + 1
+                    let wrongLetters = wrongGuesses.length + 1
+                    let addImg = wrongGuesses.length
+                    if (checkChoice(choice) === 'Wrong' && wrongLetters <= 8) {
+                      setImage(images[addImg += 1])
+                    }
+                    if (checkChoice(choice) === 'Wrong' && wrongLetters === 8) {
+                      loseMessage()
+                    }
+                    if (checkChoice(choice) === 'Correct' && correctLetters === letterCount) {
+                      winMessage()
+                    }
+                  }}
+            >
+                  {choice}
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        </Box >
+      }
+
+      {/* for vertical layouts */}
+
+      {verticalView &&
+        <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', margin: '1rem 0.25rem'}} gap={'0.25rem'}>
+            <Box component='img' src={image} sx={{padding: '1rem', width: '100%'}} />
+    
+            <Box id='alpha-btns-area' sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '0.5rem'}} gap={'0.5rem'}>
+              {alphabet.map((choice, index) => (
+                <Box
                 className='data-btn'
                 sx={buttonSX}
                 key={index}
@@ -201,77 +240,36 @@ export default function Hangman() {
                   checkChoice(choice)
                   let correctLetters = correctGuesses.length + 1
                   let wrongLetters = wrongGuesses.length + 1
-                  let addImg = wrongGuesses.length
-                  if (checkChoice(choice) === 'Wrong' && wrongLetters <= 8) {
-                    setImage(images[addImg += 1])
-                  }
-                  if (checkChoice(choice) === 'Wrong' && wrongLetters === 8) {
-                    loseMessage()
-                  }
-                  if (checkChoice(choice) === 'Correct' && correctLetters === letterCount) {
-                    winMessage()
-                  }
-                }}
-          >
-                {choice}
-              </Box>
-            ))}
+                    let addImg = wrongGuesses.length
+                    if (checkChoice(choice) === 'Wrong' && wrongLetters <= 8) {
+                      setImage(images[addImg += 1])
+                    }
+                    if (checkChoice(choice) === 'Wrong' && wrongLetters === 8) {
+                      loseMessage()
+                    }
+                    if (checkChoice(choice) === 'Correct' && correctLetters === letterCount) {
+                      winMessage()
+                    }
+                  }}
+                  >
+                  {choice}
+                </Box>
+              ))}
+            </Box>
+          </Box>
+
+          <Box id='playArea' sx={{width: '90%', textAlign: 'center', marginY: {mobile: '1rem', tabletSmall: '3rem', tabletLarge: '4rem', laptopSmall: '1rem'}, borderRadius: '0.5rem', padding: '1rem', boxShadow: '0 0 10px gray'}}>
+            <HiddenWord />
+          </Box>
+
+          <Box id='finishMessageArea' className='finish-message' sx={{marginY: '2.5rem'}}>
+            <Box className='finish-message-text1' data-finish-message-text1></Box>
+            <Box className='finish-message-text2' data-finish-message-text2></Box>
+            <Button onClick={resetGame}>
+              Play Again
+            </Button>
           </Box>
         </Box>
-      </Box >
-      }
-
-      {/* for vertical layouts */}
-
-      {verticalView &&
-
-      <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-
-        <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', margin: '1rem 0.25rem'}} gap={'0.25rem'}>
-          <Box component='img' src={image} sx={{padding: '1rem', width: '100%'}} />
-  
-          <Box id='alpha-btns-area' sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '0.5rem'}} gap={'0.5rem'}>
-            {alphabet.map((choice, index) => (
-              <Box
-              className='data-btn'
-              sx={buttonSX}
-              key={index}
-              onClick={(e) => {
-                e.target.classList.add('disabled')
-                checkChoice(choice)
-                let correctLetters = correctGuesses.length + 1
-                let wrongLetters = wrongGuesses.length + 1
-                  let addImg = wrongGuesses.length
-                  if (checkChoice(choice) === 'Wrong' && wrongLetters <= 8) {
-                    setImage(images[addImg += 1])
-                  }
-                  if (checkChoice(choice) === 'Wrong' && wrongLetters === 8) {
-                    loseMessage()
-                  }
-                  if (checkChoice(choice) === 'Correct' && correctLetters === letterCount) {
-                    winMessage()
-                  }
-                }}
-                >
-                {choice}
-              </Box>
-            ))}
-          </Box>
-        </Box>
-
-        <Box id='playArea' sx={{width: '90%', textAlign: 'center', marginY: {iphone: '1rem', ipadMini: '3rem', ipadAir: '4rem', laptop: '1rem'}, borderRadius: '0.5rem', padding: '1rem', boxShadow: '0 0 10px gray'}}>
-          <HiddenWord />
-        </Box>
-
-        <Box id='finishMessageArea' className='finish-message' sx={{marginY: '2.5rem'}}>
-          <Box className='finish-message-text1' data-finish-message-text1></Box>
-          <Box className='finish-message-text2' data-finish-message-text2></Box>
-          <Button onClick={resetGame}>
-            Play Again
-          </Button>
-        </Box>
-      
-      </Box>
       }
 
     </ThemeProvider >
