@@ -10,8 +10,6 @@ import {
 
 import Square from '../TicTacToe/Square.jsx'
 
-import '../../assets/styles/TicTacToe/Gameboard.css'
-
 const theme = createTheme({
   breakpoints: {
     values: {
@@ -26,42 +24,73 @@ const theme = createTheme({
   }
 })
 
+const Laptop = ({ children }) => {
+  const isLaptop = useMediaQuery({ minWidth: 1000 })
+  return isLaptop ? children : null
+}
+
+const Tablet = ({ children }) => {
+  const isTablet = useMediaQuery({ minWidth: 551, maxWidth: 999 })
+  return isTablet ? children : null
+}
+
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 550 })
+  return isMobile ? children : null
+}
+
 export default function Gameboard({ board, onClick }) {
-
-  const horizontalView = useMediaQuery({
-    query: '(min-width: 821px)'
-  })
-
-  const verticalView = useMediaQuery({
-    query: '(max-width: 820px)'
-  })
 
   return (
     <ThemeProvider theme={theme}>
 
-      {/* for horizontal layouts */}
+      {/* for laptop displays (horizontal layout) */}
       
-      {horizontalView &&
-        <Box className='board-background'>
-          <Box className='board'>
+      <Laptop>
+        <Box
+          sx={{border: 'solid darkgray', borderRadius: '1rem', padding: '0.65rem'}}
+          >
+          <Box
+            sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 9rem)', placeItems: 'center', justifyContent: 'center'}}
+            >
             {board.map((value, index) => {
               return <Square key={index} value={value} onClick={() => value === null && onClick(index)} />
             })}
           </Box>
         </Box>
-      }
+      </Laptop>
       
-      {/* for vertical layouts */}
+      {/* for tablet displays (vertical layout) */}
       
-      {verticalView &&
-        <Box className='board-background'>
-          <Box className='board'>
+      <Tablet>
+        <Box
+          sx={{border: 'solid darkgray', borderRadius: '1rem', padding: '0.65rem'}}
+          >
+          <Box
+            sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 9rem)', placeItems: 'center', justifyContent: 'center'}}
+            >
             {board.map((value, index) => {
               return <Square key={index} value={value} onClick={() => value === null && onClick(index)} />
             })}
           </Box>
         </Box>
-      }
+      </Tablet>
+      
+      {/* for mobile displays (vertical layout) */}
+      
+      <Mobile>
+        <Box
+          sx={{border: 'solid darkgray', borderRadius: '1rem', padding: '0.65rem'}}
+          >
+          <Box
+            sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 9rem)', placeItems: 'center', justifyContent: 'center'}}
+            >
+            {board.map((value, index) => {
+              return <Square key={index} value={value} onClick={() => value === null && onClick(index)} />
+            })}
+          </Box>
+        </Box>
+      </Mobile>
       
     </ThemeProvider>
   )

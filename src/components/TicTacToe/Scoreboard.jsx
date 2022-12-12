@@ -30,6 +30,21 @@ const theme = createTheme({
   }
 })
 
+const Laptop = ({ children }) => {
+  const isLaptop = useMediaQuery({ minWidth: 1000 })
+  return isLaptop ? children : null
+}
+
+const Tablet = ({ children }) => {
+  const isTablet = useMediaQuery({ minWidth: 551, maxWidth: 999 })
+  return isTablet ? children : null
+}
+
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 550 })
+  return isMobile ? children : null
+}
+
 const buttonSX = {
   padding: '5px 10px',
   bgcolor: 'gray',
@@ -38,54 +53,136 @@ const buttonSX = {
 
 export default function Scoreboard({ score, xPlaying, resetGame }) {
 
-  const horizontalView = useMediaQuery({
-    query: '(min-width: 821px)'
-  })
-
-  const verticalView = useMediaQuery({
-    query: '(max-width: 820px)'
-  })
-
   const {xScore, oScore} = score;
 
   return (
     <ThemeProvider theme={theme}>
 
-      {/* for horizontal layouts */}
+      {/* for laptop displays (horizontal layout) */}
         
-      {horizontalView &&
-        <Box className='scoreboard' gap={'1rem'}>
-          <Box className={`score x-score ${!xPlaying && 'inactive'}`} sx={{letterSpacing: '0.25rem'}}>
+      <Laptop>
+        <Box
+          gap={'1rem'}
+          className='scoreboard-horizontal'
+          >
+          <Box
+            className={`score x-score ${!xPlaying && 'inactive'}`}
+            sx={{letterSpacing: '0.25rem'}}
+            >
             X's ▸ {xScore}
           </Box>
-          <Box className='scoreboard' gap={'3rem'}>
-            <ArrowCircleUpIcon className={`x-arrow ${!xPlaying && 'hide'}`} sx={{fontSize: '3rem'}} />
-            <Button variant='contained' sx={buttonSX} onClick={() => resetGame()}>Start Over</Button>
-            <ArrowCircleDownIcon className={`o-arrow ${xPlaying && 'hide'}`} sx={{fontSize: '3rem'}} />
+          <Box
+            gap={'3rem'}
+            className='scoreboard-horizontal'
+            >
+            <ArrowCircleUpIcon
+              className={`x-arrow ${!xPlaying && 'hide'}`}
+              sx={{fontSize: '3rem'}}
+            />
+            <Button
+              variant='contained'
+              onClick={() => resetGame()}
+              sx={buttonSX}
+              >
+              Start Over
+            </Button>
+            <ArrowCircleDownIcon
+              className={`o-arrow ${xPlaying && 'hide'}`}
+              sx={{fontSize: '3rem'}}
+            />
           </Box>
-          <Box className={`score o-score ${xPlaying && 'inactive'}`} sx={{letterSpacing: '0.25rem'}}>
+          <Box
+            className={`score o-score ${xPlaying && 'inactive'}`}
+            sx={{letterSpacing: '0.25rem'}}
+            >
             O's ▸ {oScore}
           </Box>
         </Box>
-      }
+      </Laptop>
 
-      {/* for vertical layouts */}
+      {/* for tablet displays (vertical layout) */}
         
-      {verticalView &&
-        <Box className='scoreboard' gap={'1rem'}>
-          <Box className={`score x-score ${!xPlaying && 'inactive'}`} sx={{letterSpacing: '0.25rem'}}>
+      <Tablet>
+        <Box
+          gap={'1rem'}
+          className='scoreboard-vertical'
+          >
+          <Box
+            className={`score x-score ${!xPlaying && 'inactive'}`}
+            sx={{letterSpacing: '0.15rem'}}
+            >
             X's ▸ {xScore}
           </Box>
-          <Box className='scoreboard' gap={'3rem'}>
-            <ArrowCircleLeftIcon className={`x-arrow ${!xPlaying && 'hide'}`} sx={{fontSize: '3rem'}} />
-            <Button variant='contained' sx={buttonSX} onClick={() => resetGame()}>Start Over</Button>
-            <ArrowCircleRightIcon className={`o-arrow ${xPlaying && 'hide'}`} sx={{fontSize: '3rem'}} />
+          <Box
+            gap={'3rem'}
+            className='scoreboard-vertical'
+            >
+            <ArrowCircleLeftIcon
+              className={`x-arrow ${!xPlaying && 'hide'}`}
+              sx={{fontSize: '2.5rem'}}
+            />
+            <Button
+              variant='contained'
+              onClick={() => resetGame()}
+              sx={buttonSX}
+              >
+              Start Over
+            </Button>
+            <ArrowCircleRightIcon
+              className={`o-arrow ${xPlaying && 'hide'}`}
+              sx={{fontSize: '2.5rem'}}
+            />
           </Box>
-          <Box className={`score o-score ${xPlaying && 'inactive'}`} sx={{letterSpacing: '0.25rem'}}>
+          <Box
+            className={`score o-score ${xPlaying && 'inactive'}`}
+            sx={{letterSpacing: '0.15rem'}}
+            >
             O's ▸ {oScore}
           </Box>
         </Box>
-      }
+      </Tablet>
+
+      {/* for mobile displays (vertical layout) */}
+        
+      <Mobile>
+        <Box
+          gap={'1rem'}
+          className='scoreboard-vertical'
+          >
+          <Box
+            className={`score x-score ${!xPlaying && 'inactive'}`}
+            sx={{letterSpacing: '0.15rem'}}
+            >
+            X's ▸ {xScore}
+          </Box>
+          <Box
+            gap={'3rem'}
+            className='scoreboard-vertical'
+            >
+            <ArrowCircleLeftIcon
+              className={`x-arrow ${!xPlaying && 'hide'}`}
+              sx={{fontSize: '2.5rem'}}
+            />
+            <Button
+              variant='contained'
+              onClick={() => resetGame()}
+              sx={buttonSX}
+              >
+              Start Over
+            </Button>
+            <ArrowCircleRightIcon
+              className={`o-arrow ${xPlaying && 'hide'}`}
+              sx={{fontSize: '2.5rem'}}
+            />
+          </Box>
+          <Box
+            className={`score o-score ${xPlaying && 'inactive'}`}
+            sx={{letterSpacing: '0.15rem'}}
+            >
+            O's ▸ {oScore}
+          </Box>
+        </Box>
+      </Mobile>
 
     </ThemeProvider>
   )

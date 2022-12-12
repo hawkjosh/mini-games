@@ -24,22 +24,29 @@ const theme = createTheme({
   }
 })
 
+const Laptop = ({ children }) => {
+  const isLaptop = useMediaQuery({ minWidth: 1000 })
+  return isLaptop ? children : null
+}
+
+const Tablet = ({ children }) => {
+  const isTablet = useMediaQuery({ minWidth: 551, maxWidth: 999 })
+  return isTablet ? children : null
+}
+
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 550 })
+  return isMobile ? children : null
+}
+
 export default function NoPage() {
-
-  const horizontalView = useMediaQuery({
-    query: '(min-width: 821px)'
-  })
-
-  const verticalView = useMediaQuery({
-    query: '(max-width: 820px)'
-  })
 
   return (
     <ThemeProvider theme={theme}>
 
-      {/* for horizontal layouts */}
+      {/* for laptop displays (horizontal layout) */}
 
-      {horizontalView &&
+      <Laptop>
         <Box
           sx={{
             display: 'flex',
@@ -67,11 +74,11 @@ export default function NoPage() {
             Something seems to have gone wrong, sorry about that! Please click <a href='/' style={{color: 'red'}}>HERE</a> to return to the Mini Games home page.
           </Alert>
         </Box>
-      }
+      </Laptop>
       
-      {/* for vertical layouts */}
+      {/* for tablet displays (vertical layout) */}
 
-      {verticalView &&
+      <Tablet>
         <Box
           sx={{
             display: 'flex',
@@ -99,7 +106,39 @@ export default function NoPage() {
             Something seems to have gone wrong, sorry about that! Please click <a href='/' style={{color: 'red'}}>HERE</a> to return to the Mini Games home page.
           </Alert>
         </Box>
-      }
+      </Tablet>
+      
+      {/* for mobile displays (vertical layout) */}
+
+      <Mobile>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50vh'
+          }}
+        >
+          <Alert
+            variant='outlined'
+            severity='error'
+            sx={{
+              width: '50%',
+              fontSize: '1.5rem'
+            }}
+          >
+            <AlertTitle
+              sx={{
+                fontSize: '2.5rem',
+                textAlign: 'center'
+              }}
+            >
+              404 Error
+            </AlertTitle>
+            Something seems to have gone wrong, sorry about that! Please click <a href='/' style={{color: 'red'}}>HERE</a> to return to the Mini Games home page.
+          </Alert>
+        </Box>
+      </Mobile>
       
     </ThemeProvider>
   )

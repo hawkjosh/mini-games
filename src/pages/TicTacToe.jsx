@@ -28,15 +28,22 @@ const theme = createTheme({
   }
 })
 
+const Laptop = ({ children }) => {
+  const isLaptop = useMediaQuery({ minWidth: 1000 })
+  return isLaptop ? children : null
+}
+
+const Tablet = ({ children }) => {
+  const isTablet = useMediaQuery({ minWidth: 551, maxWidth: 999 })
+  return isTablet ? children : null
+}
+
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 550 })
+  return isMobile ? children : null
+}
+
 export default function TicTacToe() {
-
-  const horizontalView = useMediaQuery({
-    query: '(min-width: 821px)'
-  })
-
-  const verticalView = useMediaQuery({
-    query: '(max-width: 820px)'
-  })
 
   const WIN_COMBOS = [
     [0, 1, 2],
@@ -125,37 +132,107 @@ export default function TicTacToe() {
   return (
     <ThemeProvider theme={theme}>
 
-      {/* for horizontal layouts */}
+      {/* for laptop/desktop displays (horizontal layout) */}
 
-      {horizontalView &&
-        <Box>
-          <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}} gap={'5rem'}>
-            <Scoreboard score={score} xPlaying={xPlaying} resetGame={resetGame} />
-            <Gameboard board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
-          </Box>
-  
-          <Box className='winning-message' id='winningMessage'>
-            <Box data-winning-message-text sx={{letterSpacing: '1rem'}}></Box>
-            <Button onClick={resetBoard}>Play Again</Button>
-          </Box>
+      <Laptop>
+        <Box
+          gap={'5rem'}
+          sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}}
+          >
+          <Scoreboard
+            score={score}
+            xPlaying={xPlaying}
+            resetGame={resetGame}
+          />
+          <Gameboard
+            board={board}
+            onClick={gameOver ? resetBoard : handleBoxClick}
+          />
         </Box>
-      }
 
-      {/* for vertical layouts */}
-
-      {verticalView &&
-        <Box>
-          <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}} gap={'5rem'}>
-            <Scoreboard score={score} xPlaying={xPlaying} resetGame={resetGame} />
-            <Gameboard board={board} onClick={gameOver ? resetBoard : handleBoxClick} />
-          </Box>
-  
-          <Box className='winning-message' id='winningMessage'>
-            <Box data-winning-message-text sx={{letterSpacing: '1rem'}}></Box>
-            <Button onClick={resetBoard}>Play Again</Button>
-          </Box>
+        <Box
+          id='winningMessage'
+          className='winning-message'
+          >
+          <Box
+            data-winning-message-text
+            sx={{letterSpacing: '1rem'}}
+          />
+          <Button
+            onClick={resetBoard}
+            >
+            Play Again
+          </Button>
         </Box>
-      }
+      </Laptop>
+      
+      {/* for tablet displays (vertical layout) */}
+
+      <Tablet>
+        <Box
+          gap={'5rem'}
+          sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}}
+          >
+          <Scoreboard
+            score={score}
+            xPlaying={xPlaying}
+            resetGame={resetGame}
+          />
+          <Gameboard
+            board={board}
+            onClick={gameOver ? resetBoard : handleBoxClick}
+          />
+        </Box>
+
+        <Box
+          id='winningMessage'
+          className='winning-message'
+          >
+          <Box
+            data-winning-message-text
+            sx={{letterSpacing: '1rem'}}
+          />
+          <Button
+            onClick={resetBoard}
+            >
+            Play Again
+          </Button>
+        </Box>
+      </Tablet>
+
+      {/* for mobile displays (vertical layout) */}
+
+      <Mobile>
+        <Box
+          gap={'5rem'}
+          sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}}
+          >
+          <Scoreboard
+            score={score}
+            xPlaying={xPlaying}
+            resetGame={resetGame}
+          />
+          <Gameboard
+            board={board}
+            onClick={gameOver ? resetBoard : handleBoxClick}
+          />
+        </Box>
+
+        <Box
+          id='winningMessage'
+          className='winning-message'
+          >
+          <Box
+            data-winning-message-text
+            sx={{letterSpacing: '1rem'}}
+          />
+          <Button
+            onClick={resetBoard}
+            >
+            Play Again
+          </Button>
+        </Box>
+      </Mobile>
 
     </ThemeProvider>
   )

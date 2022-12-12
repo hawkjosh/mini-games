@@ -35,6 +35,21 @@ const theme = createTheme({
   }
 })
 
+const Laptop = ({ children }) => {
+  const isLaptop = useMediaQuery({ minWidth: 1000 })
+  return isLaptop ? children : null
+}
+
+const Tablet = ({ children }) => {
+  const isTablet = useMediaQuery({ minWidth: 551, maxWidth: 999 })
+  return isTablet ? children : null
+}
+
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 550 })
+  return isMobile ? children : null
+}
+
 const linkSX = {
   color: '#1976d2',
   textDecoration: 'none'
@@ -48,14 +63,6 @@ const options = [
 ]
 
 export default function Navbar() {
-
-  const horizontalView = useMediaQuery({
-    query: '(min-width: 821px)'
-  })
-
-  const verticalView = useMediaQuery({
-    query: '(max-width: 820px)'
-  })
 
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -79,18 +86,18 @@ export default function Navbar() {
   const RenderTitle = () => {
     const pathname = useLocation()
     if (pathname.pathname === '/') {
-      return (<Typography sx={{flexGrow: 1, textAlign: 'center', fontSize: '3rem'}}>MINI GAMES</Typography>)
+      return (<Typography sx={{flexGrow: 1, textAlign: 'center', fontSize: {mobile: '2rem', tabletSmall: '3rem'}}}>MINI GAMES</Typography>)
     } else {
-      return (<Typography sx={{flexGrow: 1, textAlign: 'center', fontSize: '3rem'}}>{pathname.pathname.toUpperCase().slice(1)}</Typography>)
+      return (<Typography sx={{flexGrow: 1, textAlign: 'center', fontSize: {mobile: '2rem', tabletSmall: '3rem'}}}>{pathname.pathname.toUpperCase().slice(1)}</Typography>)
     }
   }
 
   return (
     <ThemeProvider theme={theme}>
 
-      {/* for horizontal layouts */}
+      {/* for laptop/desktop displays (horizontal layout) */}
 
-      {horizontalView &&
+      <Laptop>
         <AppBar
           position='sticky'
         >
@@ -106,9 +113,9 @@ export default function Navbar() {
             >
               <MenuIcon />
             </IconButton>
-
+  
             <RenderTitle />
-
+  
             <Menu
               id='games-menu'
               anchorEl={anchorEl}
@@ -133,11 +140,11 @@ export default function Navbar() {
             </Menu>
           </Toolbar>
         </AppBar>
-      }
+      </Laptop>
 
-      {/* for vertical layouts */}
+      {/* for tablet displays (vertical layout) */}
 
-      {verticalView &&
+      <Tablet>
         <AppBar
           position='sticky'
         >
@@ -153,9 +160,9 @@ export default function Navbar() {
             >
               <MenuIcon />
             </IconButton>
-
+  
             <RenderTitle />
-
+  
             <Menu
               id='games-menu'
               anchorEl={anchorEl}
@@ -180,7 +187,54 @@ export default function Navbar() {
             </Menu>
           </Toolbar>
         </AppBar>
-      }
+      </Tablet>
+
+      {/* for mobile displays (vertical layout) */}
+
+      <Mobile>
+        <AppBar
+          position='sticky'
+        >
+          <Toolbar>
+            <IconButton
+              id='menu-button'
+              aria-controls={open ? 'games-menu' : undefined}
+              aria-haspopup='true'
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleOpen}
+              edge='start'
+              color='inherit'
+            >
+              <MenuIcon />
+            </IconButton>
+  
+            <RenderTitle />
+  
+            <Menu
+              id='games-menu'
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
+              {options.map((option, index) => (
+                <MenuItem
+                  key={option.name}
+                  disabled={index === 3}
+                  selected={index === selectedIndex}
+                  onClick={(event) => handleSelect(event, index)}
+                >
+                  <Link
+                    to={option.link}
+                    style={linkSX}
+                  >
+                    {option.name}
+                  </Link>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Toolbar>
+        </AppBar>
+      </Mobile>
 
       <Outlet />
 

@@ -24,36 +24,63 @@ const theme = createTheme({
   }
 })
 
+const Laptop = ({ children }) => {
+  const isLaptop = useMediaQuery({ minWidth: 1000 })
+  return isLaptop ? children : null
+}
+
+const Tablet = ({ children }) => {
+  const isTablet = useMediaQuery({ minWidth: 551, maxWidth: 999 })
+  return isTablet ? children : null
+}
+
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 550 })
+  return isMobile ? children : null
+}
+
 export default function Square({ value, onClick }) {
-
-  const horizontalView = useMediaQuery({
-    query: '(min-width: 821px)'
-  })
-
-  const verticalView = useMediaQuery({
-    query: '(max-width: 820px)'
-  })
 
   const style = value === 'X' ? 'square x' : 'square o'
 
   return (
     <ThemeProvider theme={theme}>
 
-      {/* for horizontal layouts */}
+      {/* for laptop displays (horizontal layout) */}
 
-      {horizontalView &&
-        <Box component='button' className={style} onClick={onClick}>
+      <Laptop>
+        <Box
+          component='button'
+          className={style}
+          onClick={onClick}
+          >
           {value}
         </Box>
-      }
+      </Laptop>
       
-      {/* for vertical layouts */}
+      {/* for tablet displays (vertical layout) */}
 
-      {verticalView &&
-        <Box component='button' className={style} onClick={onClick}>
+      <Tablet>
+        <Box
+          component='button'
+          className={style}
+          onClick={onClick}
+          >
           {value}
         </Box>
-      }
+      </Tablet>
+      
+      {/* for mobile displays (vertical layout) */}
+
+      <Mobile>
+        <Box
+          component='button'
+          className={style}
+          onClick={onClick}
+          >
+          {value}
+        </Box>
+      </Mobile>
       
     </ThemeProvider>
   )
