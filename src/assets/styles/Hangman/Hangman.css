@@ -1,19 +1,21 @@
 .finish-message {
+  width: 95%;
   display: none;
   position: relative;
-  padding: 2rem;
+  padding: 0.5rem 0rem;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
 .finish-message-text1 {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
 }
 
 .finish-message-text2 {
   font-size: 1.5rem;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
+  font-style: italic;
 }
 
 .finish-message.win {
