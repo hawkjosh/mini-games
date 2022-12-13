@@ -14,7 +14,9 @@
 }
 
 .square-mobile {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
   font-size: 2.5rem;
   font-family: 'Fredoka', sans-serif;
   font-weight: bold;
