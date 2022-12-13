@@ -54,12 +54,13 @@ export default function Home() {
         <Box
           sx={{
             display: 'flex',
-            justifyContent: 'center',
+            flexWrap: 'wrap',
+            justifyContent: 'space-evenly',
             alignItems: 'center',
-            marginTop: '5rem'
+            marginY: '5rem'
           }}
-          gap={'5rem'}
-        >
+          gap={'4rem'}
+          >
           <Link to='/tic-tac-toe' style={{textDecoration: 'none'}}>
             <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', "&:hover": {boxShadow: '0px 0px 15px #1976d2'}}}>
               <Typography
@@ -104,6 +105,39 @@ export default function Home() {
               />
             </Box>
           </Link>
+          {/* Temporary placeholder below... */}
+          <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', opacity: '0.5'}}>
+            <Typography
+              variant='h4'
+              sx={{
+                fontWeight: 'bold',
+                color: '#1976d2',
+                textAlign: 'center',
+                marginBottom: '0.5rem'
+              }}
+            >
+                Coming Soon...
+            </Typography>
+            <Box
+              component='div'
+              src={hangman}
+              sx={{
+                aspectRatio: '1/1',
+                width: '250px',
+                bgcolor: '#1976d2',
+                borderRadius: '10%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontWeight: 'bold',
+                color: 'white',
+                fontSize: '3rem',
+                fontFamily: 'sans-serif'
+              }}
+              >
+              TBD
+            </Box>
+          </Box>
         </Box>
       </Laptop>
 
@@ -113,11 +147,12 @@ export default function Home() {
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
             alignItems: 'center',
-            marginTop: '2.5rem'
+            marginY: '2.5rem'
           }}
-          gap={'1.5rem'}
+          gap={'2rem'}
         >
           <Link to='/tic-tac-toe' style={{textDecoration: 'none'}}>
             <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2'}}>
@@ -142,7 +177,7 @@ export default function Home() {
             </Box>
           </Link>
           <Link to='/hangman' style={{textDecoration: 'none'}}>
-            <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', "&:hover": {boxShadow: '0px 0px 15px #1976d2'}}}>
+            <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2'}}>
               <Typography
                 variant='h4'
                 sx={{
@@ -163,6 +198,72 @@ export default function Home() {
               />
             </Box>
           </Link>
+          {/* Temporary placeholder below... */}
+          <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', opacity: '0.5'}}>
+            <Typography
+              variant='h4'
+              sx={{
+                fontWeight: 'bold',
+                color: '#1976d2',
+                textAlign: 'center',
+                marginBottom: '0.5rem'
+              }}
+            >
+                Coming Soon...
+            </Typography>
+            <Box
+              component='div'
+              src={hangman}
+              sx={{
+                aspectRatio: '1/1',
+                width: '250px',
+                bgcolor: '#1976d2',
+                borderRadius: '10%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontWeight: 'bold',
+                color: 'white',
+                fontSize: '3rem',
+                fontFamily: 'sans-serif'
+              }}
+              >
+              TBD
+            </Box>
+          </Box>
+          {/* Temporary placeholder... */}
+          <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', opacity: '0.5'}}>
+            <Typography
+              variant='h4'
+              sx={{
+                fontWeight: 'bold',
+                color: '#1976d2',
+                textAlign: 'center',
+                marginBottom: '0.5rem'
+              }}
+            >
+                Coming Soon...
+            </Typography>
+            <Box
+              component='div'
+              src={hangman}
+              sx={{
+                aspectRatio: '1/1',
+                width: '250px',
+                bgcolor: '#1976d2',
+                borderRadius: '10%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontWeight: 'bold',
+                color: 'white',
+                fontSize: '3rem',
+                fontFamily: 'sans-serif'
+              }}
+              >
+              TBD
+            </Box>
+          </Box>
         </Box>
       </Tablet>
 
@@ -174,14 +275,14 @@ export default function Home() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            marginTop: '2.5rem'
+            marginY: '2.5rem'
           }}
           gap={'1.5rem'}
         >
           <Link to='/tic-tac-toe' style={{textDecoration: 'none'}}>
-            <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2'}}>
+            <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
               <Typography
-                variant='h4'
+                variant='h5'
                 sx={{
                   fontWeight: 'bold',
                   color: '#1976d2',
@@ -195,15 +296,15 @@ export default function Home() {
                 component='img'
                 src={tictactoe}
                 sx={{
-                  width: '250px'
+                  width: '150px'
                 }}
               />
             </Box>
           </Link>
           <Link to='/hangman' style={{textDecoration: 'none'}}>
-            <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', "&:hover": {boxShadow: '0px 0px 15px #1976d2'}}}>
+            <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
               <Typography
-                variant='h4'
+                variant='h5'
                 sx={{
                   fontWeight: 'bold',
                   color: '#1976d2',
@@ -217,11 +318,44 @@ export default function Home() {
                 component='img'
                 src={hangman}
                 sx={{
-                  width: '250px'
+                  width: '150px'
                 }}
               />
             </Box>
           </Link>
+          {/* Temporary placeholder below... */}
+          <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', opacity: '0.5', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <Typography
+              variant='h5'
+              sx={{
+                fontWeight: 'bold',
+                color: '#1976d2',
+                textAlign: 'center',
+                marginBottom: '0.5rem'
+              }}
+            >
+                Coming Soon...
+            </Typography>
+            <Box
+              component='div'
+              src={hangman}
+              sx={{
+                aspectRatio: '1/1',
+                width: '150px',
+                bgcolor: '#1976d2',
+                borderRadius: '10%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontWeight: 'bold',
+                color: 'white',
+                fontSize: '3rem',
+                fontFamily: 'sans-serif'
+              }}
+              >
+              TBD
+            </Box>
+          </Box>
         </Box>
       </Mobile>
 

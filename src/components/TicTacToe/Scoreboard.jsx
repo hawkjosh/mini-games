@@ -146,11 +146,11 @@ export default function Scoreboard({ score, xPlaying, resetGame }) {
         
       <Mobile>
         <Box
-          gap={'1rem'}
+          gap={'2rem'}
           className='scoreboard-vertical'
           >
           <Box
-            className={`score x-score ${!xPlaying && 'inactive'}`}
+            className={`score-mobile x-score ${!xPlaying && 'inactive'}`}
             sx={{letterSpacing: '0.15rem'}}
             >
             X's ▸ {xScore}
@@ -159,10 +159,10 @@ export default function Scoreboard({ score, xPlaying, resetGame }) {
             gap={'3rem'}
             className='scoreboard-vertical'
             >
-            <ArrowCircleLeftIcon
+            {/* <ArrowCircleLeftIcon
               className={`x-arrow ${!xPlaying && 'hide'}`}
               sx={{fontSize: '2.5rem'}}
-            />
+            /> */}
             <Button
               variant='contained'
               onClick={() => resetGame()}
@@ -170,13 +170,13 @@ export default function Scoreboard({ score, xPlaying, resetGame }) {
               >
               Start Over
             </Button>
-            <ArrowCircleRightIcon
+            {/* <ArrowCircleRightIcon
               className={`o-arrow ${xPlaying && 'hide'}`}
               sx={{fontSize: '2.5rem'}}
-            />
+            /> */}
           </Box>
           <Box
-            className={`score o-score ${xPlaying && 'inactive'}`}
+            className={`score-mobile o-score ${xPlaying && 'inactive'}`}
             sx={{letterSpacing: '0.15rem'}}
             >
             O's ▸ {oScore}

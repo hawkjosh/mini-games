@@ -204,7 +204,7 @@ export default function TicTacToe() {
 
       <Mobile>
         <Box
-          gap={'5rem'}
+          gap={'3rem'}
           sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}}
           >
           <Scoreboard
