@@ -15,16 +15,16 @@
 
 .square-mobile {
   text-align: center;
-  font-size: 4rem;
+  font-size: 3rem;
   font-family: 'Fredoka', sans-serif;
   font-weight: bold;
-  line-height: 4rem;
+  line-height: 3rem;
   background-color: white;
   border: none;
   border-radius: 1rem;
   box-shadow: 0 0 0.5rem #888;
   aspect-ratio: 1/1;
-  width: 4rem;
+  width: 3rem;
   margin: 1rem;
 }
 
