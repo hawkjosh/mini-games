@@ -42,6 +42,7 @@ const Mobile = ({ children }) => {
 export default function Square({ value, onClick }) {
 
   const style = value === 'X' ? 'square x' : 'square o'
+  const styleMobile = value === 'X' ? 'square-mobile x' : 'square-mobile o'
 
   return (
     <ThemeProvider theme={theme}>
@@ -75,7 +76,7 @@ export default function Square({ value, onClick }) {
       <Mobile>
         <Box
           component='button'
-          className={style}
+          className={styleMobile}
           onClick={onClick}
           >
           {value}
