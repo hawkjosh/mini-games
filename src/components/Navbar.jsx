@@ -70,8 +70,8 @@ export default function Navbar() {
 
   const open = Boolean(anchorEl)
 
-  const handleOpen = (event) => {
-    setAnchorEl(event.currentTarget)
+  const handleOpen = (e) => {
+    setAnchorEl(e.currentTarget)
   }
 
   const handleSelect = (event, index) => {
