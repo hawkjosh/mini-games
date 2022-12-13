@@ -1,15 +1,15 @@
 .square {
   text-align: center;
-  font-size: 6.5rem;
+  font-size: 4rem;
   font-family: 'Fredoka', sans-serif;
   font-weight: bold;
-  line-height: 6.5rem;
+  line-height: 4rem;
   background-color: white;
   border: none;
   border-radius: 1rem;
   box-shadow: 0 0 0.5rem #888;
   aspect-ratio: 1/1;
-  width: 6.5rem;
+  width: 4rem;
   margin: 1rem;
 }
 
