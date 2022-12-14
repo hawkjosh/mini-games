@@ -61,18 +61,14 @@
 }
 
 .x-score {
-  /* color: rgb(255, 70, 37); */
-  color: purple;
-  /* border: 0.25rem solid rgb(255, 70, 37); */
-  border: 0.25rem solid purple;
+  color: rgb(255, 70, 37);
+  border: 0.25rem solid rgb(255, 70, 37);
   border-radius: 0.5rem;
 }
 
 .o-score {
-  /* color: rgb(44, 135, 255); */
-  color: orange;
-  /* border: 0.25rem solid rgb(44, 135, 255); */
-  border: 0.25rem solid orange;
+  color: rgb(44, 135, 255);
+  border: 0.25rem solid rgb(44, 135, 255);
   border-radius: 0.5rem;
 }
 
@@ -130,13 +126,11 @@
 .x,
 .x-win,
 .x-arrow {
-  /* color: rgb(255, 70, 37); */
-  color: purple;
+  color: rgb(255, 70, 37);
 }
 
 .o,
 .o-win,
 .o-arrow {
-  /* color: rgb(44, 135, 255); */
-  color: orange;
+  color: rgb(44, 135, 255);
 }
