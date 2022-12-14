@@ -12,7 +12,7 @@ import {
 import Gameboard from '../components/TicTacToe/Gameboard.jsx'
 import Scoreboard from '../components/TicTacToe/Scoreboard.jsx'
 
-import '../assets/styles/TicTacToe/TicTacToe.css'
+import '../assets/styles/TicTacToe.css'
 
 const theme = createTheme({
   breakpoints: {
@@ -170,7 +170,7 @@ export default function TicTacToe() {
 
       <Tablet>
         <Box
-          gap={'5rem'}
+          gap={'4rem'}
           sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}}
           >
           <Scoreboard

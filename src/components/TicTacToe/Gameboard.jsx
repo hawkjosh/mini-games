@@ -48,10 +48,10 @@ export default function Gameboard({ board, onClick }) {
       
       <Laptop>
         <Box
-          sx={{border: 'solid darkgray', borderRadius: '1rem', padding: '0.65rem'}}
+          sx={{border: 'solid darkgray', borderRadius: '1rem', padding: '0.75rem'}}
           >
           <Box
-            sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 9rem)', placeItems: 'center', justifyContent: 'center'}}
+            sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', placeItems: 'center'}}
             >
             {board.map((value, index) => {
               return <Square key={index} value={value} onClick={() => value === null && onClick(index)} />
@@ -64,10 +64,10 @@ export default function Gameboard({ board, onClick }) {
       
       <Tablet>
         <Box
-          sx={{border: 'solid darkgray', borderRadius: '1rem', padding: '0.65rem'}}
+          sx={{border: 'solid darkgray', borderRadius: '1rem', padding: '0.5rem'}}
           >
           <Box
-            sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 9rem)', placeItems: 'center', justifyContent: 'center'}}
+            sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', placeItems: 'center'}}
             >
             {board.map((value, index) => {
               return <Square key={index} value={value} onClick={() => value === null && onClick(index)} />
@@ -83,7 +83,7 @@ export default function Gameboard({ board, onClick }) {
           sx={{border: 'solid darkgray', borderRadius: '1rem', padding: '0.25rem'}}
           >
           <Box
-            sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 7.5rem)', placeItems: 'center', justifyContent: 'center'}}
+            sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', placeItems: 'center'}}
             >
             {board.map((value, index) => {
               return <Square key={index} value={value} onClick={() => value === null && onClick(index)} />

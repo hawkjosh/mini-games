@@ -8,7 +8,7 @@ import {
   ThemeProvider
 } from '@mui/material'
 
-import '../../assets/styles/TicTacToe/Square.css'
+import '../../assets/styles/TicTacToe.css'
 
 const theme = createTheme({
   breakpoints: {
@@ -41,9 +41,9 @@ const Mobile = ({ children }) => {
 
 export default function Square({ value, onClick }) {
 
-  const style = value === 'X' ? 'square x' : 'square o'
-  const styleTablet = value === 'X' ? 'square-tablet x' : 'square-tablet o'
-  const styleMobile = value === 'X' ? 'square-mobile x' : 'square-mobile o'
+  const styleLaptop = value === 'X' ? 'square square-laptop x' : 'square square-laptop o'
+  const styleTablet = value === 'X' ? 'square square-tablet x' : 'square square-tablet o'
+  const styleMobile = value === 'X' ? 'square square-mobile x' : 'square square-mobile o'
 
   return (
     <ThemeProvider theme={theme}>
@@ -53,7 +53,7 @@ export default function Square({ value, onClick }) {
       <Laptop>
         <Box
           component='button'
-          className={style}
+          className={styleLaptop}
           onClick={onClick}
           >
           {value}

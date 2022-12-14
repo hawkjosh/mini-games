@@ -14,7 +14,7 @@ import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 
-import '../../assets/styles/TicTacToe/Scoreboard.css'
+import '../../assets/styles/TicTacToe.css'
 
 const theme = createTheme({
   breakpoints: {
@@ -63,17 +63,17 @@ export default function Scoreboard({ score, xPlaying, resetGame }) {
       <Laptop>
         <Box
           gap={'1rem'}
-          className='scoreboard-horizontal'
+          sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}
           >
           <Box
-            className={`score x-score ${!xPlaying && 'inactive'}`}
+            className={`score score-laptop x-score ${!xPlaying && 'inactive'}`}
             sx={{letterSpacing: '0.25rem'}}
             >
             X's ▸ {xScore}
           </Box>
           <Box
             gap={'3rem'}
-            className='scoreboard-horizontal'
+            sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}
             >
             <ArrowCircleUpIcon
               className={`x-arrow ${!xPlaying && 'hide'}`}
@@ -92,7 +92,7 @@ export default function Scoreboard({ score, xPlaying, resetGame }) {
             />
           </Box>
           <Box
-            className={`score o-score ${xPlaying && 'inactive'}`}
+            className={`score score-laptop o-score ${xPlaying && 'inactive'}`}
             sx={{letterSpacing: '0.25rem'}}
             >
             O's ▸ {oScore}
@@ -105,17 +105,17 @@ export default function Scoreboard({ score, xPlaying, resetGame }) {
       <Tablet>
         <Box
           gap={'1rem'}
-          className='scoreboard-vertical'
+          sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
           >
           <Box
-            className={`score x-score ${!xPlaying && 'inactive'}`}
+            className={`score score-tablet x-score ${!xPlaying && 'inactive'}`}
             sx={{letterSpacing: '0.15rem'}}
             >
             X's ▸ {xScore}
           </Box>
           <Box
             gap={'3rem'}
-            className='scoreboard-vertical'
+            sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
             >
             <ArrowCircleLeftIcon
               className={`x-arrow ${!xPlaying && 'hide'}`}
@@ -134,7 +134,7 @@ export default function Scoreboard({ score, xPlaying, resetGame }) {
             />
           </Box>
           <Box
-            className={`score o-score ${xPlaying && 'inactive'}`}
+            className={`score score-tablet o-score ${xPlaying && 'inactive'}`}
             sx={{letterSpacing: '0.15rem'}}
             >
             O's ▸ {oScore}
@@ -147,22 +147,18 @@ export default function Scoreboard({ score, xPlaying, resetGame }) {
       <Mobile>
         <Box
           gap={'2rem'}
-          className='scoreboard-vertical'
+          sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
           >
           <Box
-            className={`score-mobile x-score ${!xPlaying && 'inactive'}`}
+            className={`score score-mobile x-score ${!xPlaying && 'inactive'}`}
             sx={{letterSpacing: '0.15rem'}}
             >
             X's ▸ {xScore}
           </Box>
           <Box
             gap={'3rem'}
-            className='scoreboard-vertical'
+            sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
             >
-            {/* <ArrowCircleLeftIcon
-              className={`x-arrow ${!xPlaying && 'hide'}`}
-              sx={{fontSize: '2.5rem'}}
-            /> */}
             <Button
               variant='contained'
               onClick={() => resetGame()}
@@ -170,13 +166,9 @@ export default function Scoreboard({ score, xPlaying, resetGame }) {
               >
               Start Over
             </Button>
-            {/* <ArrowCircleRightIcon
-              className={`o-arrow ${xPlaying && 'hide'}`}
-              sx={{fontSize: '2.5rem'}}
-            /> */}
           </Box>
           <Box
-            className={`score-mobile o-score ${xPlaying && 'inactive'}`}
+            className={`score score-mobile o-score ${xPlaying && 'inactive'}`}
             sx={{letterSpacing: '0.15rem'}}
             >
             O's ▸ {oScore}
