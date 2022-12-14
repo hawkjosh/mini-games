@@ -1,0 +1,148 @@
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: bold;
+  background-color: white;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem #888;
+  aspect-ratio: 1/1;
+}
+
+.square-laptop {
+  font-size: 6.5rem;
+  line-height: 6.5rem;
+  width: 6.5rem;
+  margin: 1rem;
+}
+
+.square-tablet {
+  /* font-size: 4.75rem; */
+  /* line-height: 4.75rem; */
+  font-size: 6.5rem;
+  line-height: 6.5rem;
+  width: 1fr;
+  /* margin: 0.75rem; */
+  margin: 1rem;
+}
+
+.square-mobile {
+  /* font-size: 3rem; */
+  /* line-height: 3rem; */
+  font-size: 6.5rem;
+  line-height: 6.5rem;
+  width: 1fr;
+  margin: 1rem;
+  /* margin: 0.5rem; */
+}
+
+.square:hover {
+  cursor: pointer;
+  box-shadow: 0 0 1rem rgb(47, 46, 46);
+}
+
+.score {
+  text-align: center;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem #888;
+  padding: 0.5rem;
+}
+
+.score-laptop {
+  font-size: 2rem;
+}
+
+.score-tablet {
+  font-size: 1.75rem;
+}
+
+.score-mobile {
+  font-size: 1.25rem;
+}
+
+.x-score {
+  /* color: rgb(255, 70, 37); */
+  color: hotpink;
+  /* border: 0.25rem solid rgb(255, 70, 37); */
+  border: 0.25rem solid hotpink;
+  border-radius: 0.5rem;
+}
+
+.o-score {
+  /* color: rgb(44, 135, 255); */
+  color: greenyellow;
+  /* border: 0.25rem solid rgb(44, 135, 255); */
+  border: 0.25rem solid greenyellow;
+  border-radius: 0.5rem;
+}
+
+.inactive {
+  color: #888;
+  opacity: 0.75;
+  border: 0.25rem solid transparent;
+}
+
+.hide {
+  color: #888;
+  opacity: 0.5;
+}
+
+.winning-message {
+  display: none;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-family: 'Fredoka', sans-serif;
+  background-color: rgba(0, 0, 0, .75);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-size: 10rem;
+}
+
+.winning-message button {
+  font-size: 3rem;
+  font-family: 'Fredoka', sans-serif;
+  color: white;
+  background-color: green;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+}
+
+.winning-message button:hover {
+  background-color: white;
+  color: green;
+}
+
+.winning-message.x,
+.winning-message.o,
+.winning-message.draw {
+  display: flex;
+}
+
+.x,
+.x-win,
+.x-arrow {
+  /* color: rgb(255, 70, 37); */
+  color: hotpink;
+}
+
+.o,
+.o-win,
+.o-arrow {
+  /* color: rgb(44, 135, 255); */
+  color: greenyellow;
+}
