@@ -92,7 +92,7 @@ export default function Hangman() {
 
   const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-  const wordOptions = ['hangman', 'agile', 'algorithm', 'api', 'application', 'bootstrap', 'backend', 'browser', 'bug', 'cache', 'code', 'css', 'data', 'debugging', 'deployment', 'documentation', 'domain', 'frameworks', 'frontend', 'git', 'github', 'html', 'http', 'java', 'javascript', 'jquery', 'languages', 'libraries', 'minification', 'mvp', 'mysql', 'nodejs', 'npm', 'php', 'plugin', 'python', 'resolution', 'responsive', 'sitemap', 'software', 'ssl', 'wireframe']
+  const wordOptions = ['maintenance', 'emotion', 'childhood', 'dirt', 'garbage', 'basket', 'player', 'solution', 'politics', 'orange', 'virus', 'driver', 'fishing', 'pizza', 'bread', 'drawer', 'moment', 'paper', 'resolution', 'tea', 'control', 'potato', 'hearing', 'television', 'assumption', 'sir', 'leadership', 'midnight', 'feedback', 'technology', 'temperature', 'economics', 'setting', 'message', 'penalty', 'university', 'army', 'teacher', 'way', 'insect', 'database', 'software', 'opinion', 'connection', 'historian', 'strategy', 'bird', 'safety', 'responsibility', 'photo']
 
   const getRandomWord = (arr) => {
     const randomWord = Math.floor(Math.random() * arr.length)
