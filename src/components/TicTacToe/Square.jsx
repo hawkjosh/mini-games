@@ -42,6 +42,7 @@ const Mobile = ({ children }) => {
 export default function Square({ value, onClick }) {
 
   const style = value === 'X' ? 'square x' : 'square o'
+  const styleTablet = value === 'X' ? 'square-tablet x' : 'square-tablet o'
   const styleMobile = value === 'X' ? 'square-mobile x' : 'square-mobile o'
 
   return (
@@ -64,7 +65,7 @@ export default function Square({ value, onClick }) {
       <Tablet>
         <Box
           component='button'
-          className={style}
+          className={styleTablet}
           onClick={onClick}
           >
           {value}
