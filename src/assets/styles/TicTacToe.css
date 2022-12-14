@@ -20,23 +20,17 @@
 }
 
 .square-tablet {
-  /* font-size: 4.75rem; */
-  /* line-height: 4.75rem; */
-  font-size: 6.5rem;
-  line-height: 6.5rem;
+  font-size: 4.75rem;
+  line-height: 4.75rem;
   width: 1fr;
-  /* margin: 0.75rem; */
-  margin: 1rem;
+  margin: 0.75rem;
 }
 
 .square-mobile {
-  /* font-size: 3rem; */
-  /* line-height: 3rem; */
-  font-size: 6.5rem;
-  line-height: 6.5rem;
+  font-size: 3rem;
+  line-height: 3rem;
   width: 1fr;
-  margin: 1rem;
-  /* margin: 0.5rem; */
+  margin: 0.5rem;
 }
 
 .square:hover {
