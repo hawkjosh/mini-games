@@ -14,21 +14,21 @@
 
 .square-laptop {
   font-size: 6.5rem;
-  line-height: 6.5rem;
+  /* line-height: 6.5rem; */
   width: 6.5rem;
   margin: 1rem;
 }
 
 .square-tablet {
   font-size: 4.75rem;
-  line-height: 4.75rem;
+  /* line-height: 4.75rem; */
   width: 1fr;
   margin: 0.75rem;
 }
 
 .square-mobile {
   font-size: 3rem;
-  line-height: 3rem;
+  /* line-height: 3rem; */
   width: 1fr;
   margin: 0.5rem;
 }
@@ -101,7 +101,7 @@
   align-items: center;
   flex-direction: column;
   color: white;
-  font-size: 10rem;
+  font-size: 7.5rem;
 }
 
 .winning-message button {
