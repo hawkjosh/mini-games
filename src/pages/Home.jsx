@@ -13,6 +13,8 @@ import {
 
 import tictactoe from '../assets/images/tic-tac-toe.png'
 import hangman from '../assets/images/hangman.png'
+import memorymatch from '../assets/images/memory-match.svg'
+
 
 const theme = createTheme({
   breakpoints: {

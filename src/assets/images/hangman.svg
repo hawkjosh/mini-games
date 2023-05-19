@@ -1,0 +1,9 @@
+<svg viewBox="0 0 290 330" style="outline: 4px solid blue; border-radius: 10%">
+  <text font-size='32px' font-weight='bold' fill='blue' text-anchor='middle' x='50%' y='11%'>
+    Hangman
+  </text>
+
+  <rect x="15" y="55" width="260" height="260" fill="yellow" />
+
+
+</svg>
