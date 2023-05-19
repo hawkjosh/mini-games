@@ -2,8 +2,11 @@
   <text font-size='32px' font-weight='bold' fill='blue' text-anchor='middle' x='50%' y='11%'>
     Hangman
   </text>
-
-  <rect x="15" y="55" width="260" height="260" fill="yellow" />
-
-
+  <path fill="none" stroke="blue" stroke-width="4" d="M35 295h80" />
+  <path fill="none" stroke="blue" stroke-width="4" d="M75 295v-220h125v50" />
+  <path fill="none" stroke="blue" stroke-width="4" d="M75 105l30 -30" />
+  <circle cx="200" cy="145" r="20" fill="none" stroke="blue" stroke-width="4" />
+  <path fill="none" stroke="blue" stroke-width="4" d="M200 165v75" />
+  <path fill="none" stroke="blue" stroke-width="4" d="M170 270l30 -30l30 30" />
+  <path fill="none" stroke="blue" stroke-width="4" d="M170 215l30 -30l30 30" />
 </svg>

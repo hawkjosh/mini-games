@@ -17,5 +17,5 @@
     <text x='40%' y='91%'>O</text>
     <text x='73%' y='91%'>X</text>
   </g>
-  <path stroke="blue" stroke-width="3" d="M15 315L275 55" />
+  <path stroke="blue" stroke-width="3.5" d="M25 305l240 -240" />
 </svg>
