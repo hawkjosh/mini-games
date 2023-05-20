@@ -11,8 +11,8 @@ import {
   Typography
 } from '@mui/material'
 
-import tictactoe from '../assets/images/tic-tac-toe.png'
-import hangman from '../assets/images/hangman.png'
+import tictactoe from '../assets/images/tic-tac-toe.svg'
+import hangman from '../assets/images/hangman.svg'
 import memorymatch from '../assets/images/memory-match.svg'
 
 
@@ -65,44 +65,36 @@ export default function Home() {
           >
           <Link to='/tic-tac-toe' style={{textDecoration: 'none'}}>
             <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', "&:hover": {boxShadow: '0px 0px 15px #1976d2'}}}>
-              <Typography
-                variant='h4'
-                sx={{
-                  fontWeight: 'bold',
-                  color: '#1976d2',
-                  textAlign: 'center',
-                  marginBottom: '0.5rem'
-                }}
-              >
-                  Tic-Tac-Toe
-              </Typography>
               <Box
                 component='img'
                 src={tictactoe}
                 sx={{
-                  width: '250px'
+                  width: '250px',
+                  "&:hover": {transform: 'scale(1.1)'}
                 }}
               />
             </Box>
           </Link>
           <Link to='/hangman' style={{textDecoration: 'none'}}>
             <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', "&:hover": {boxShadow: '0px 0px 15px #1976d2'}}}>
-              <Typography
-                variant='h4'
-                sx={{
-                  fontWeight: 'bold',
-                  color: '#1976d2',
-                  textAlign: 'center',
-                  marginBottom: '0.5rem'
-                }}
-              >
-                  Hangman
-              </Typography>
               <Box
                 component='img'
                 src={hangman}
                 sx={{
-                  width: '250px'
+                  width: '250px',
+                  "&:hover": {transform: 'scale(1.1)'}
+                }}
+              />
+            </Box>
+          </Link>
+          <Link to='/memory-match' style={{textDecoration: 'none'}}>
+            <Box sx={{border: '3px solid #1976d2', borderRadius: '10px', padding: '2rem', boxShadow: '0px 0px 8px #1976d2', "&:hover": {boxShadow: '0px 0px 15px #1976d2'}}}>
+              <Box
+                component='img'
+                src={memorymatch}
+                sx={{
+                  width: '250px',
+                  "&:hover": {transform: 'scale(1.1)'}
                 }}
               />
             </Box>
