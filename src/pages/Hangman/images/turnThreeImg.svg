@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox='0 0 205 230'>
+  <path fill='none' stroke='black' stroke-width='2' d='M5 225h80M45 225v-220h125v50M45 35l30 -30' />
+  <circle fill='none' stroke='black' cx='170' cy='75' r='20' />
+  <circle fill='black' r='1.25' cx='162.5' cy='70' />
+  <circle fill='black' r='1.25' cx='177.5' cy='70' />
+  <path stroke='black' stroke-width='0.75' d='M160 82.5h20' />
+  <path fill='none' stroke='black' d='M170 95v75' />
+</svg>

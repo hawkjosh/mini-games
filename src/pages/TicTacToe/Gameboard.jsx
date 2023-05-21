@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive'
 
 import { Box, createTheme, ThemeProvider } from '@mui/material'
 
-import Square from '../TicTacToe/Square.jsx'
+import Square from './Square.jsx'
 
 const theme = createTheme({
 	breakpoints: {

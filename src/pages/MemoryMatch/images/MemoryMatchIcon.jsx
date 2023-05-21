@@ -129,7 +129,7 @@ export const MemoryMatchIcon = ({ ...props }) => {
 				stroke='hsl(210, 79%, 46%)'
 				strokeWidth='2.5'
 				strokeLinejoin='round'
-				strokeJinecap='round'
+				strokeLinecap='round'
 				d='M40 135L50 165L25 147.5L55 147.5L30 165L40 135Z'
 			/>
 			<rect
@@ -374,7 +374,7 @@ export const MemoryMatchIcon = ({ ...props }) => {
 				stroke='hsl(210, 79%, 46%)'
 				strokeWidth='2.5'
 				strokeLinejoin='round'
-				strokeJinecap='round'
+				strokeLinecap='round'
 				d='M250 275L260 305L235 287.5L265 287.5L240 305L250 275Z'
 			/>
 		</svg>

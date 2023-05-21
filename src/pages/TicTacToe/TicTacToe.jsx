@@ -4,10 +4,10 @@ import { useMediaQuery } from 'react-responsive'
 
 import { Box, Button, createTheme, ThemeProvider } from '@mui/material'
 
-import Gameboard from '../components/TicTacToe/Gameboard.jsx'
-import Scoreboard from '../components/TicTacToe/Scoreboard.jsx'
+import Gameboard from './Gameboard.jsx'
+import Scoreboard from './Scoreboard.jsx'
 
-import '../components/TicTacToe/styles/TicTacToe.css'
+import './styles/TicTacToe.css'
 
 const theme = createTheme({
 	breakpoints: {

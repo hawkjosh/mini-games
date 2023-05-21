@@ -6,9 +6,9 @@ import { useMediaQuery } from 'react-responsive'
 
 import { Box, createTheme, ThemeProvider } from '@mui/material'
 
-import { TicTacToeIcon } from '../components/TicTacToe/images/TicTacToeIcon.jsx'
-import { HangmanIcon } from '../components/Hangman/images/HangmanIcon.jsx'
-import { MemoryMatchIcon } from '../components/MemoryMatch/images/MemoryMatchIcon.jsx'
+import { TicTacToeIcon } from '../pages/TicTacToe/images/TicTacToeIcon.jsx'
+import { HangmanIcon } from '../pages/Hangman/images/HangmanIcon.jsx'
+import { MemoryMatchIcon } from '../pages/MemoryMatch/images/MemoryMatchIcon.jsx'
 
 const theme = createTheme({
 	breakpoints: {
