@@ -28,7 +28,7 @@ const gameContainerSX = {
 	gridTemplateColumns: {
 		mobile: '100%',
 		tablet: '45% 55%',
-		laptop: '45% 55%',
+		laptop: '40% 60%',
 	},
 }
 
