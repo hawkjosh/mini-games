@@ -1,136 +1,112 @@
-.square {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: 'Fredoka', sans-serif;
-  font-weight: bold;
-  background-color: white;
-  border: none;
-  border-radius: 1rem;
-  box-shadow: 0 0 0.5rem #888;
-  aspect-ratio: 1/1;
+.tictactoe-container {
+	max-width: 90rem;
+	display: grid;
+	place-items: center;
+	place-content: center;
+	margin: 1rem auto;
 }
 
-.square-laptop {
-  font-size: 6.5rem;
-  line-height: 6.5rem;
-  width: 6.5rem;
-  margin: 1rem;
+.score-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.square-tablet {
-  font-size: 4.75rem;
-  line-height: 4.75rem;
-  width: 4.75rem;
-  margin: 0.75rem;
-}
-
-.square-mobile {
-  font-size: 3rem;
-  line-height: 3rem;
-  width: 3rem;
-  margin: 0.5rem;
-}
-
-.square:hover {
-  cursor: pointer;
-  box-shadow: 0 0 1rem rgb(47, 46, 46);
+.score-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .score {
-  text-align: center;
-  font-family: 'Fredoka', sans-serif;
-  font-weight: bold;
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 0.5rem #888;
-  padding: 0.5rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	border-radius: 0.5rem;
+	box-shadow: 0 0 0.5rem #888;
 }
 
-.score-laptop {
-  font-size: 2rem;
-}
-
-.score-tablet {
-  font-size: 1.75rem;
-}
-
-.score-mobile {
-  font-size: 1.25rem;
+.score-txt {
+	font-family: 'Fredoka', sans-serif;
+	font-weight: bold;
 }
 
 .x-score {
-  color: rgb(255, 70, 37);
-  border: 0.25rem solid rgb(255, 70, 37);
-  border-radius: 0.5rem;
+	color: rgb(255, 70, 37);
+	border: 0.25rem solid rgb(255, 70, 37);
+	border-radius: 0.5rem;
+}
+
+.red {
+	color: rgb(255, 70, 37);
 }
 
 .o-score {
-  color: rgb(44, 135, 255);
-  border: 0.25rem solid rgb(44, 135, 255);
-  border-radius: 0.5rem;
+	color: rgb(44, 135, 255);
+	border: 0.25rem solid rgb(44, 135, 255);
+	border-radius: 0.5rem;
+}
+
+.blue {
+	color: rgb(44, 135, 255);
 }
 
 .inactive {
-  color: #888;
-  opacity: 0.75;
-  border: 0.25rem solid transparent;
+	color: #888;
+	opacity: 0.75;
+	border: 0.25rem solid transparent;
 }
 
 .hide {
-  color: #888;
-  opacity: 0.5;
+	color: #888;
+	opacity: 0.5;
+}
+
+.gameboard-container {
+	aspect-ratio: 1/1;
+	border: solid darkgray;
+	border-radius: 1rem;
+}
+
+.gameboard-wrapper {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	place-content: center;
+}
+
+.square {
+	display: flex;
+	place-items: center;
+	place-content: center;
+	background-color: white;
+	border: none;
+	border-radius: 1rem;
+	box-shadow: 0 0 0.5rem #888;
+	aspect-ratio: 1/1;
+}
+
+.square:hover {
+	cursor: pointer;
+	box-shadow: 0 0 1rem rgb(47, 46, 46);
 }
 
 .winning-message {
-  display: none;
-  position: fixed;
-  text-align: center;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  font-family: 'Fredoka', sans-serif;
-  background-color: rgba(0, 0, 0, .75);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: white;
-  font-size: 7.5rem;
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.75);
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
-.winning-message button {
-  font-size: 3rem;
-  font-family: 'Fredoka', sans-serif;
-  color: white;
-  background-color: green;
-  border: 1px solid white;
-  border-radius: 0.5rem;
-  margin-top: 2rem;
-  padding: 0.25rem 1rem;
-  cursor: pointer;
-}
-
-.winning-message button:hover {
-  background-color: white;
-  color: green;
-}
-
-.winning-message.x,
-.winning-message.o,
-.winning-message.draw {
-  display: flex;
-}
-
-.x,
-.x-win,
-.x-arrow {
-  color: rgb(255, 70, 37);
-}
-
-.o,
-.o-win,
-.o-arrow {
-  color: rgb(44, 135, 255);
+.winning-message-txt {
+	letter-spacing: 1rem;
+	font-family: 'Fredoka', sans-serif;
+	font-weight: 600;
 }

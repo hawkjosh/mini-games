@@ -1,218 +1,28 @@
 import * as React from 'react'
 
-import { Box, createTheme, ThemeProvider, Typography } from '@mui/material'
+import { Box, ThemeProvider, Typography } from '@mui/material'
 
-import turnZeroImg from './images/turnZeroImg.svg'
-import turnOneImg from './images/turnOneImg.svg'
-import turnTwoImg from './images/turnTwoImg.svg'
-import turnThreeImg from './images/turnThreeImg.svg'
-import turnFourImg from './images/turnFourImg.svg'
-import turnFiveImg from './images/turnFiveImg.svg'
-import turnSixImg from './images/turnSixImg.svg'
-import turnSevenImg from './images/turnSevenImg.svg'
-import turnEightImg from './images/turnEightImg.svg'
+import { theme } from '../theme.js'
+
+import {
+	hangmanContainerSX,
+	hangmanImgSX,
+	alphaBtnsAreaSX,
+	alphaBtnSX,
+	playAreaSX,
+	hiddenWordSX,
+	finishMessageSX,
+	finishMessageTxt1SX,
+	finishMessageTxt2SX,
+	resetBtnSX,
+	alphabet,
+	wordOptions,
+	images,
+} from './hangmanSX.js'
 
 import './styles/Hangman.css'
 
-const theme = createTheme({
-	breakpoints: {
-		values: {
-			mobile: 390,
-			tablet: 768,
-			laptop: 1280,
-		},
-	},
-})
-
-const gameContainerSX = {
-	gridTemplateColumns: {
-		mobile: '100%',
-		tablet: '45% 55%',
-		laptop: '40% 60%',
-	},
-}
-
-const hangmanImgSX = {
-	gridColumn: {
-		mobile: '1 / 1',
-		tablet: '1 / 2',
-		laptop: '1 / 2',
-	},
-	gridRow: {
-		mobile: '1 / 2',
-		tablet: '1 / 2',
-		laptop: '1 / 3',
-	},
-	width: {
-		mobile: '70%',
-		tablet: '100%',
-		laptop: '100%',
-	},
-}
-
-const alphaBtnsAreaSX = {
-	gridColumn: {
-		mobile: '1 / 1',
-		tablet: '2 / 3',
-		laptop: '2 / 3',
-	},
-	gridRow: {
-		mobile: '2 / 3',
-		tablet: '1 / 2',
-		laptop: '2 / 3',
-	},
-	gridTemplateColumns: {
-		mobile: 'repeat(auto-fit, minmax(2.5rem, 1fr))',
-		tablet: 'repeat(auto-fit, minmax(3.5rem, 1fr))',
-		laptop: 'repeat(auto-fit, minmax(4.5rem, 1fr))',
-	},
-}
-
-const alphaBtnSX = {
-	fontSize: {
-		mobile: '1rem',
-		tablet: '1.25rem',
-		laptop: '1.75rem',
-	},
-}
-
-const playAreaSX = {
-	gridColumn: {
-		mobile: '1 / 1',
-		tablet: '1 / 3',
-		laptop: '2 / 3',
-	},
-	gridRow: {
-		mobile: '3 / 4',
-		tablet: '2 / 3',
-		laptop: '1 / 2',
-	},
-}
-
-const finishMessageTxt1SX = {
-	fontSize: {
-		mobile: '2.375rem',
-		tablet: '4rem',
-		laptop: '5.5rem',
-	},
-}
-
-const finishMessageTxt2SX = {
-	fontSize: {
-		mobile: '1.5rem',
-		tablet: '2.5rem',
-		laptop: '3rem',
-	},
-}
-
-const resetBtnSX = {
-	width: {
-		mobile: '50%',
-		tablet: '37.5%',
-		laptop: '25%',
-	},
-	fontSize: {
-		mobile: '1.5rem',
-		tablet: '2rem',
-		laptop: '2.5rem',
-	},
-}
-
 export const Hangman = () => {
-	const alphabet = [
-		'A',
-		'B',
-		'C',
-		'D',
-		'E',
-		'F',
-		'G',
-		'H',
-		'I',
-		'J',
-		'K',
-		'L',
-		'M',
-		'N',
-		'O',
-		'P',
-		'Q',
-		'R',
-		'S',
-		'T',
-		'U',
-		'V',
-		'W',
-		'X',
-		'Y',
-		'Z',
-	]
-
-	const wordOptions = [
-		'maintenance',
-		'emotion',
-		'childhood',
-		'dirt',
-		'garbage',
-		'basket',
-		'player',
-		'solution',
-		'politics',
-		'orange',
-		'virus',
-		'driver',
-		'fishing',
-		'pizza',
-		'bread',
-		'drawer',
-		'moment',
-		'paper',
-		'resolution',
-		'tea',
-		'control',
-		'potato',
-		'hearing',
-		'television',
-		'assumption',
-		'sir',
-		'leadership',
-		'midnight',
-		'feedback',
-		'technology',
-		'temperature',
-		'economics',
-		'setting',
-		'message',
-		'penalty',
-		'university',
-		'army',
-		'teacher',
-		'way',
-		'insect',
-		'database',
-		'software',
-		'opinion',
-		'connection',
-		'historian',
-		'strategy',
-		'bird',
-		'safety',
-		'responsibility',
-		'photo',
-	]
-
-	const images = [
-		turnZeroImg,
-		turnOneImg,
-		turnTwoImg,
-		turnThreeImg,
-		turnFourImg,
-		turnFiveImg,
-		turnSixImg,
-		turnSevenImg,
-		turnEightImg,
-	]
-
 	const getRandomWord = (arr) => {
 		const randomWord = Math.floor(Math.random() * arr.length)
 		const selection = arr[randomWord]
@@ -243,7 +53,7 @@ export const Hangman = () => {
 
 	const hiddenWord = word
 		.split('')
-		.map((letter) => (correctGuesses.includes(letter) ? letter : '—'))
+		.map((letter) => (correctGuesses.includes(letter) ? letter : '●'))
 		.join(' ')
 
 	const winMessage = () => {
@@ -321,32 +131,14 @@ export const Hangman = () => {
 	}
 
 	const HiddenWord = () => {
-		return (
-			<Typography
-				sx={{
-					textAlign: 'center',
-					marginY: '2.5rem',
-					fontSize: {
-						mobile: '1.375rem',
-						tablet: '2.375rem',
-						laptop: '1.875rem',
-					},
-					letterSpacing: {
-						mobile: '0.05rem',
-						tablet: '0.35rem',
-						laptop: '0.5rem',
-					},
-				}}>
-				{hiddenWord}
-			</Typography>
-		)
+		return <Typography sx={hiddenWordSX}>{hiddenWord}</Typography>
 	}
 
 	return (
 		<ThemeProvider theme={theme}>
 			<Box
-				className='game-container'
-				sx={gameContainerSX}>
+				className='hangman-container'
+				sx={hangmanContainerSX}>
 				<Box
 					className='hangman-img'
 					sx={hangmanImgSX}
@@ -378,6 +170,7 @@ export const Hangman = () => {
 
 				<Box
 					className='finish-message'
+					sx={finishMessageSX}
 					data-finish-message>
 					<Box
 						className='finish-message-txt-1'

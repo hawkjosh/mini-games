@@ -1,12 +1,9 @@
 import * as React from 'react'
 
-import { useMediaQuery } from 'react-responsive'
-
 import { Link, Outlet, useLocation } from 'react-router-dom'
 
 import {
 	AppBar,
-	createTheme,
 	IconButton,
 	Menu,
 	MenuItem,
@@ -17,48 +14,18 @@ import {
 
 import MenuIcon from '@mui/icons-material/Menu'
 
-const theme = createTheme({
-	breakpoints: {
-		values: {
-			// Breakpoints below use vertical layout
-			mobile: 428,
-			tabletSmall: 768,
-			tabletLarge: 820,
-			// Breakpoints below change to horizontal layout
-			laptopSmall: 1263,
-			laptopLarge: 1519,
-		},
-	},
-})
+import { theme } from '../pages/theme.js'
 
-const Laptop = ({ children }) => {
-	const isLaptop = useMediaQuery({ minWidth: 1000 })
-	return isLaptop ? children : null
-}
+import {
+	menuIconSX,
+	titleSX,
+	menuSX,
+	menuItemSX,
+	linkSX,
+	options,
+} from './navbarSX.js'
 
-const Tablet = ({ children }) => {
-	const isTablet = useMediaQuery({ minWidth: 551, maxWidth: 999 })
-	return isTablet ? children : null
-}
-
-const Mobile = ({ children }) => {
-	const isMobile = useMediaQuery({ maxWidth: 550 })
-	return isMobile ? children : null
-}
-
-const linkSX = {
-	color: '#1976d2',
-	textDecoration: 'none',
-}
-
-const options = [
-	{ name: 'Home', link: '/', title: 'Mini Games' },
-	{ name: 'Tic-Tac-Toe', link: '/tic-tac-toe', title: 'Tic-Tac-Toe' },
-	{ name: 'Hangman', link: '/hangman', title: 'Hangman' },
-	{ name: 'Memory Match', link: '/memory-match', title: 'Memory Match' },
-]
-
-export default function Navbar() {
+export const Navbar = () => {
 	const [anchorEl, setAnchorEl] = React.useState(null)
 
 	const [selectedIndex, setSelectedIndex] = React.useState(0)
@@ -81,24 +48,10 @@ export default function Navbar() {
 	const RenderTitle = () => {
 		const pathname = useLocation()
 		if (pathname.pathname === '/') {
-			return (
-				<Typography
-					sx={{
-						flexGrow: 1,
-						textAlign: 'center',
-						fontSize: { mobile: '2rem', tabletSmall: '3rem' },
-					}}>
-					MINI GAMES
-				</Typography>
-			)
+			return <Typography sx={titleSX}>MINI GAMES</Typography>
 		} else {
 			return (
-				<Typography
-					sx={{
-						flexGrow: 1,
-						textAlign: 'center',
-						fontSize: { mobile: '2rem', tabletSmall: '3rem' },
-					}}>
+				<Typography sx={titleSX}>
 					{pathname.pathname.toUpperCase().slice(1)}
 				</Typography>
 			)
@@ -107,129 +60,42 @@ export default function Navbar() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			{/* for laptop/desktop displays (horizontal layout) */}
-
-			<Laptop>
-				<AppBar position='sticky'>
-					<Toolbar>
-						<IconButton
-							id='menu-button'
-							aria-controls={open ? 'games-menu' : undefined}
-							aria-haspopup='true'
-							aria-expanded={open ? 'true' : undefined}
-							onClick={handleOpen}
-							edge='start'
-							color='inherit'>
-							<MenuIcon />
-						</IconButton>
-
-						<RenderTitle />
-
-						<Menu
-							id='games-menu'
-							anchorEl={anchorEl}
-							open={open}
-							onClose={handleClose}>
-							{options.map((option, index) => (
-								<MenuItem
-									key={option.name}
-									disabled={index === 3}
-									selected={index === selectedIndex}
-									onClick={(event) => handleSelect(event, index)}>
-									<Link
-										to={option.link}
-										style={linkSX}>
-										{option.name}
-									</Link>
-								</MenuItem>
-							))}
-						</Menu>
-					</Toolbar>
-				</AppBar>
-			</Laptop>
-
-			{/* for tablet displays (vertical layout) */}
-
-			<Tablet>
-				<AppBar position='sticky'>
-					<Toolbar>
-						<IconButton
-							id='menu-button'
-							aria-controls={open ? 'games-menu' : undefined}
-							aria-haspopup='true'
-							aria-expanded={open ? 'true' : undefined}
-							onClick={handleOpen}
-							edge='start'
-							color='inherit'>
-							<MenuIcon />
-						</IconButton>
-
-						<RenderTitle />
-
-						<Menu
-							id='games-menu'
-							anchorEl={anchorEl}
-							open={open}
-							onClose={handleClose}>
-							{options.map((option, index) => (
-								<MenuItem
-									key={option.name}
-									disabled={index === 3}
-									selected={index === selectedIndex}
-									onClick={(event) => handleSelect(event, index)}>
-									<Link
-										to={option.link}
-										style={linkSX}>
-										{option.name}
-									</Link>
-								</MenuItem>
-							))}
-						</Menu>
-					</Toolbar>
-				</AppBar>
-			</Tablet>
-
-			{/* for mobile displays (vertical layout) */}
-
-			<Mobile>
-				<AppBar position='sticky'>
-					<Toolbar>
-						<IconButton
-							id='menu-button'
-							aria-controls={open ? 'games-menu' : undefined}
-							aria-haspopup='true'
-							aria-expanded={open ? 'true' : undefined}
-							onClick={handleOpen}
-							edge='start'
-							color='inherit'>
-							<MenuIcon />
-						</IconButton>
-
-						<RenderTitle />
-
-						<Menu
-							id='games-menu'
-							anchorEl={anchorEl}
-							open={open}
-							onClose={handleClose}>
-							{options.map((option, index) => (
-								<MenuItem
-									key={option.name}
-									disabled={index === 3}
-									selected={index === selectedIndex}
-									onClick={(event) => handleSelect(event, index)}>
-									<Link
-										to={option.link}
-										style={linkSX}>
-										{option.name}
-									</Link>
-								</MenuItem>
-							))}
-						</Menu>
-					</Toolbar>
-				</AppBar>
-			</Mobile>
-
+			<AppBar position='sticky'>
+				<Toolbar>
+					<IconButton
+						id='menu-button'
+						aria-controls={open ? 'games-menu' : undefined}
+						aria-haspopup='true'
+						aria-expanded={open ? 'true' : undefined}
+						onClick={handleOpen}
+						edge='start'
+						color='inherit'>
+						<MenuIcon sx={menuIconSX} />
+					</IconButton>
+					<RenderTitle />
+					<Menu
+						sx={menuSX}
+						id='games-menu'
+						anchorEl={anchorEl}
+						open={open}
+						onClose={handleClose}>
+						{options.map((option, index) => (
+							<MenuItem
+								sx={menuItemSX}
+								key={option.name}
+								disabled={index === 3}
+								selected={index === selectedIndex}
+								onClick={(event) => handleSelect(event, index)}>
+								<Link
+									to={option.link}
+									style={linkSX}>
+									{option.name}
+								</Link>
+							</MenuItem>
+						))}
+					</Menu>
+				</Toolbar>
+			</AppBar>
 			<Outlet />
 		</ThemeProvider>
 	)

@@ -4,13 +4,12 @@ export const MemoryMatchIcon = ({ ...props }) => {
 			viewBox='0 0 290 330'
 			{...props}>
 			<text
-				fontSize='30pt'
-				fontFamily="'Fredoka', sans-serif"
-				fontWeight='bold'
+				fontSize='2.375rem'
+				fontWeight='700'
 				fill='hsl(210, 79%, 46%)'
 				textAnchor='middle'
 				x='50%'
-				y='9%'>
+				y='10%'>
 				Memory Match
 			</text>
 			<rect

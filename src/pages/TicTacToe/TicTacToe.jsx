@@ -1,44 +1,21 @@
 import * as React from 'react'
 
-import { useMediaQuery } from 'react-responsive'
+import { Box, Button, ThemeProvider } from '@mui/material'
 
-import { Box, Button, createTheme, ThemeProvider } from '@mui/material'
+import { Gameboard } from './components/Gameboard.jsx'
+import { Scoreboard } from './components/Scoreboard.jsx'
 
-import Gameboard from './Gameboard.jsx'
-import Scoreboard from './Scoreboard.jsx'
+import { theme } from '../theme.js'
+
+import {
+	tictactoeContainerSX,
+	winningMessageTxtSX,
+	playAgainBtnSX,
+} from './tictactoeSX.js'
 
 import './styles/TicTacToe.css'
 
-const theme = createTheme({
-	breakpoints: {
-		values: {
-			// Breakpoints below use vertical layout
-			mobile: 428,
-			tabletSmall: 768,
-			tabletLarge: 820,
-			// Breakpoints below change to horizontal layout
-			laptopSmall: 1263,
-			laptopLarge: 1519,
-		},
-	},
-})
-
-const Laptop = ({ children }) => {
-	const isLaptop = useMediaQuery({ minWidth: 1000 })
-	return isLaptop ? children : null
-}
-
-const Tablet = ({ children }) => {
-	const isTablet = useMediaQuery({ minWidth: 551, maxWidth: 999 })
-	return isTablet ? children : null
-}
-
-const Mobile = ({ children }) => {
-	const isMobile = useMediaQuery({ maxWidth: 550 })
-	return isMobile ? children : null
-}
-
-export default function TicTacToe() {
+export const TicTacToe = () => {
 	const WIN_COMBOS = [
 		[0, 1, 2],
 		[3, 4, 5],
@@ -50,10 +27,8 @@ export default function TicTacToe() {
 		[2, 4, 6],
 	]
 
-	const winningMessage = document.getElementById('winningMessage')
-	const winningMessageText = document.querySelector(
-		'[data-winning-message-text]'
-	)
+	const winningMessage = document.querySelector('[data-winning-message]')
+	const winningMessageTxt = document.querySelector('[data-winning-message-txt]')
 
 	const [board, setBoard] = React.useState(Array(9).fill(null))
 	const [xPlaying, setXPlaying] = React.useState(true)
@@ -77,21 +52,21 @@ export default function TicTacToe() {
 				let { xScore } = score
 				xScore += 1
 				setScore({ ...score, xScore })
-				winningMessageText.innerText = `X's Win!`
-				winningMessageText.classList.add('x-win')
-				winningMessage.classList.add('x')
+				winningMessageTxt.innerText = `X's Win!`
+				winningMessageTxt.style.setProperty('color', 'rgb(255, 70, 37)')
+				winningMessage.style.setProperty('display', 'flex')
 			} else if (winner === 'O') {
 				let { oScore } = score
 				oScore += 1
 				setScore({ ...score, oScore })
-				winningMessageText.innerText = `O's Win!`
-				winningMessageText.classList.add('o-win')
-				winningMessage.classList.add('o')
+				winningMessageTxt.innerText = `O's Win!`
+				winningMessageTxt.style.setProperty('color', 'rgb(44, 135, 255)')
+				winningMessage.style.setProperty('display', 'flex')
 			}
 		}
 		if (!winner && updatedBoard.every(notNull)) {
-			winningMessageText.innerText = 'Draw!'
-			winningMessage.classList.add('draw')
+			winningMessageTxt.innerText = 'Draw!'
+			winningMessage.style.setProperty('display', 'flex')
 		}
 
 		setBoard(updatedBoard)
@@ -112,8 +87,8 @@ export default function TicTacToe() {
 	const resetBoard = () => {
 		setGameOver(false)
 		setBoard(Array(9).fill(null))
-		winningMessageText.classList.remove('x-win', 'o-win')
-		winningMessage.classList.remove('draw', 'x', 'o')
+		winningMessageTxt.style.setProperty('color', 'white')
+		winningMessage.style.setProperty('display', 'none')
 	}
 
 	const resetGame = () => {
@@ -121,112 +96,40 @@ export default function TicTacToe() {
 		setBoard(Array(9).fill(null))
 		setScore({ xScore: 0, oScore: 0 })
 		setXPlaying(true)
-		winningMessageText.classList.remove('x-win', 'o-win')
-		winningMessage.classList.remove('draw', 'x', 'o')
+		winningMessageTxt.style.setProperty('color', 'white')
+		winningMessage.style.setProperty('display', 'none')
 	}
 
 	return (
 		<ThemeProvider theme={theme}>
-			{/* for laptop/desktop displays (horizontal layout) */}
+			<Box
+				className='tictactoe-container'
+				sx={tictactoeContainerSX}>
+				<Scoreboard
+					score={score}
+					xPlaying={xPlaying}
+					resetGame={resetGame}
+				/>
+				<Gameboard
+					board={board}
+					onClick={gameOver ? resetBoard : handleBoxClick}
+				/>
+			</Box>
 
-			<Laptop>
+			<Box
+				className='winning-message'
+				data-winning-message>
 				<Box
-					gap={'5rem'}
-					sx={{
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-						marginTop: '2rem',
-					}}>
-					<Scoreboard
-						score={score}
-						xPlaying={xPlaying}
-						resetGame={resetGame}
-					/>
-					<Gameboard
-						board={board}
-						onClick={gameOver ? resetBoard : handleBoxClick}
-					/>
-				</Box>
-
-				<Box
-					id='winningMessage'
-					className='winning-message'>
-					<Box
-						data-winning-message-text
-						sx={{ letterSpacing: '1rem' }}
-					/>
-					<Button onClick={resetBoard}>Play Again</Button>
-				</Box>
-			</Laptop>
-
-			{/* for tablet displays (vertical layout) */}
-
-			<Tablet>
-				<Box
-					gap={'4rem'}
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'center',
-						alignItems: 'center',
-						marginTop: '2rem',
-					}}>
-					<Scoreboard
-						score={score}
-						xPlaying={xPlaying}
-						resetGame={resetGame}
-					/>
-					<Gameboard
-						board={board}
-						onClick={gameOver ? resetBoard : handleBoxClick}
-					/>
-				</Box>
-
-				<Box
-					id='winningMessage'
-					className='winning-message'>
-					<Box
-						data-winning-message-text
-						sx={{ letterSpacing: '1rem' }}
-					/>
-					<Button onClick={resetBoard}>Play Again</Button>
-				</Box>
-			</Tablet>
-
-			{/* for mobile displays (vertical layout) */}
-
-			<Mobile>
-				<Box
-					gap={'3rem'}
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'center',
-						alignItems: 'center',
-						marginTop: '2rem',
-					}}>
-					<Scoreboard
-						score={score}
-						xPlaying={xPlaying}
-						resetGame={resetGame}
-					/>
-					<Gameboard
-						board={board}
-						onClick={gameOver ? resetBoard : handleBoxClick}
-					/>
-				</Box>
-
-				<Box
-					id='winningMessage'
-					className='winning-message'>
-					<Box
-						data-winning-message-text
-						sx={{ letterSpacing: '1rem' }}
-					/>
-					<Button onClick={resetBoard}>Play Again</Button>
-				</Box>
-			</Mobile>
+					className='winning-message-txt'
+					sx={winningMessageTxtSX}
+					data-winning-message-txt
+				/>
+				<Button
+					sx={playAgainBtnSX}
+					onClick={resetBoard}>
+					Play Again
+				</Button>
+			</Box>
 		</ThemeProvider>
 	)
 }
