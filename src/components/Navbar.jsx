@@ -22,7 +22,7 @@ import {
 	menuSX,
 	menuItemSX,
 	linkSX,
-	options,
+	gameOptions,
 } from './navbarSX.js'
 
 export const Navbar = () => {
@@ -79,11 +79,10 @@ export const Navbar = () => {
 						anchorEl={anchorEl}
 						open={open}
 						onClose={handleClose}>
-						{options.map((option, index) => (
+						{gameOptions.map((option, index) => (
 							<MenuItem
 								sx={menuItemSX}
 								key={option.name}
-								disabled={index === 3}
 								selected={index === selectedIndex}
 								onClick={(event) => handleSelect(event, index)}>
 								<Link

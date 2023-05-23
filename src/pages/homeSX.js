@@ -34,13 +34,4 @@ const gameIconSX = {
 	},
 }
 
-const gameIconDisabledSX = {
-	width: {
-		mobile: '12.5rem',
-		tablet: '14rem',
-		laptop: '15.5rem',
-	},
-	opacity: '0.5',
-}
-
-export { homeContainerSX, gameIconWrapperSX, gameIconSX, gameIconDisabledSX }
+export { homeContainerSX, gameIconWrapperSX, gameIconSX }

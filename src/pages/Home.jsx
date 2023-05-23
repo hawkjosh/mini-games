@@ -10,12 +10,7 @@ import { MemoryMatchIcon } from '../pages/MemoryMatch/images/MemoryMatchIcon.jsx
 
 import { theme } from './theme.js'
 
-import {
-	homeContainerSX,
-	gameIconWrapperSX,
-	gameIconSX,
-	gameIconDisabledSX,
-} from './homeSX.js'
+import { homeContainerSX, gameIconWrapperSX, gameIconSX } from './homeSX.js'
 
 export const Home = () => {
 	return (
@@ -37,14 +32,13 @@ export const Home = () => {
 					</Box>
 				</Link>
 
-				{/* <Link
-						to='/memory-match'> */}
-				<Box sx={gameIconWrapperSX}>
-					<Box sx={gameIconDisabledSX}>
-						<MemoryMatchIcon />
+				<Link to='/memory-match'>
+					<Box sx={gameIconWrapperSX}>
+						<Box sx={gameIconSX}>
+							<MemoryMatchIcon />
+						</Box>
 					</Box>
-				</Box>
-				{/* </Link> */}
+				</Link>
 			</Box>
 		</ThemeProvider>
 	)
