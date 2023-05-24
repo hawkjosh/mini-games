@@ -8,6 +8,7 @@ const cardWrapperSX = {
 const cardFrontSX = {
 	width: '100%',
 	aspectRatio: '1/1',
+	backgroundSize: '90%',
 	backgroundPosition: 'center',
 	backgroundRepeat: 'no-repeat',
 	bgcolor: 'white',
@@ -25,12 +26,11 @@ const cardBackSX = {
 	width: '100%',
 	aspectRatio: '1/1',
 	backgroundImage:
-		'url(https://www.mlbstatic.com/team-logos/league-on-dark/1.svg)',
+		'url(https://static.www.nfl.com/image/upload/v1554321393/league/nvfr7ogywskqrfaiu38m.svg)',
 	backgroundSize: '85%',
 	backgroundPosition: 'center',
 	backgroundRepeat: 'no-repeat',
-	bgcolor: 'hsl(215, 89%, 14%)',
-	border: '0.125rem solid red',
+	bgcolor: 'lightgray',
 	borderRadius: '1rem',
 	transition: 'all ease-in 0.25s',
 	transitionDelay: '0.25s',

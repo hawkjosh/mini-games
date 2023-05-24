@@ -20,10 +20,7 @@ export const SingleCard = ({ card, handleChoice, flipped, disabled }) => {
 					raised
 					className={flipped ? 'flipped' : ''}
 					sx={cardFrontSX}
-					style={{
-						backgroundImage: `url(${card.bgImg})`,
-						backgroundSize: card.bgSize,
-					}}
+					style={{ backgroundImage: `url(${card.img})` }}
 				/>
 				<Card
 					raised

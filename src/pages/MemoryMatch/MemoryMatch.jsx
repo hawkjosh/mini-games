@@ -8,9 +8,7 @@ import { SingleCard } from './components/SingleCard.jsx'
 import { theme } from '../theme.js'
 
 import {
-	easy,
-	medium,
-	hard,
+	images,
 	memorymatchContainerSX,
 	gameControlsSX,
 	newGameBtnSX,
@@ -33,30 +31,42 @@ export const MemoryMatch = () => {
 		const cardsContainer = document.querySelector('#cards-container')
 
 		if (difficulty === 'Easy') {
-			cardsContainer.style.cssText =
-				'grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); gap: 1rem'
+			cardsContainer.dataset.grid = 'Easy'
 
-			const shuffledCards = [...easy, ...easy]
+			const trimDeck = [...images].sort(() => Math.random() - 0.5).slice(24)
+
+			const shuffledCards = [...trimDeck, ...trimDeck]
 				.sort(() => Math.random() - 0.5)
 				.map((card) => ({ ...card, id: Math.random() }))
 
 			setCards(shuffledCards)
 		}
 		if (difficulty === 'Medium') {
-			cardsContainer.style.cssText =
-				'grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr)); gap: 0.75rem'
+			cardsContainer.dataset.grid = 'Medium'
 
-			const shuffledCards = [...medium, ...medium]
+			const trimDeck = [...images].sort(() => Math.random() - 0.5).slice(20)
+
+			const shuffledCards = [...trimDeck, ...trimDeck]
 				.sort(() => Math.random() - 0.5)
 				.map((card) => ({ ...card, id: Math.random() }))
 
 			setCards(shuffledCards)
 		}
 		if (difficulty === 'Hard') {
-			cardsContainer.style.cssText =
-				'grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr)); gap: 0.5rem'
+			cardsContainer.dataset.grid = 'Hard'
 
-			const shuffledCards = [...hard, ...hard]
+			const trimDeck = [...images].sort(() => Math.random() - 0.5).slice(16)
+
+			const shuffledCards = [...trimDeck, ...trimDeck]
+				.sort(() => Math.random() - 0.5)
+				.map((card) => ({ ...card, id: Math.random() }))
+
+			setCards(shuffledCards)
+		}
+		if (difficulty === 'Extreme') {
+			cardsContainer.dataset.grid = 'Extreme'
+
+			const shuffledCards = [...images, ...images]
 				.sort(() => Math.random() - 0.5)
 				.map((card) => ({ ...card, id: Math.random() }))
 
@@ -105,8 +115,7 @@ export const MemoryMatch = () => {
 		setChoiceOne(null)
 		setChoiceTwo(null)
 		setTurns(0)
-		cardsContainer.style.removeProperty('grid-template-columns')
-		cardsContainer.style.removeProperty('gap')
+		cardsContainer.dataset.grid = ''
 	}
 
 	return (
@@ -130,7 +139,8 @@ export const MemoryMatch = () => {
 				</Box>
 				<Box
 					sx={cardsContainerSX}
-					id='cards-container'>
+					id='cards-container'
+					data-grid=''>
 					{cards.map((card, index) => (
 						<SingleCard
 							key={index}

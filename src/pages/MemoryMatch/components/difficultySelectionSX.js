@@ -5,10 +5,14 @@ const difficultyOptions = [
 	},
 	{
 		value: 'Medium',
-		color: 'warning',
+		color: 'info',
 	},
 	{
 		value: 'Hard',
+		color: 'warning',
+	},
+	{
+		value: 'Extreme',
 		color: 'error',
 	},
 ]

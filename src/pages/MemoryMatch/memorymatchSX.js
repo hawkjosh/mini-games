@@ -1,21 +1,12 @@
-import nlEast from './data/national-east-teams.json'
-import nationalLeague from './data/all-national-teams.json'
-import allTeams from './data/all-mlb-teams.json'
+import cardImages from './data/cardImages.json'
 
-const easy = nlEast.teams
-const medium = nationalLeague.teams
-const hard = allTeams.teams
+const images = cardImages.images
 
 const memorymatchContainerSX = {
-	property: {
-		mobile: '',
-		tablet: '',
-		laptop: '',
-	},
 	width: {
-		mobile: '95%',
-		tablet: '85%',
-		laptop: '75%',
+		mobile: '97.5%',
+		tablet: '95%',
+		laptop: '92.5%',
 	},
 	maxWidth: '90rem',
 	display: 'flex',
@@ -68,12 +59,58 @@ const turnsTrackerSX = {
 const cardsContainerSX = {
 	display: 'grid',
 	placeContent: 'center',
+	'&[data-grid="Easy"]': {
+		gridTemplateColumns: {
+			mobile: 'repeat(4, 1fr)',
+			tablet: 'repeat(4, 1fr)',
+			laptop: 'repeat(8, 1fr)',
+		},
+		gap: {
+			mobile: '1rem',
+			tablet: '1rem',
+			laptop: '0.75rem',
+		},
+	},
+	'&[data-grid="Medium"]': {
+		gridTemplateColumns: {
+			mobile: 'repeat(3, 1fr)',
+			tablet: 'repeat(6, 1fr)',
+			laptop: 'repeat(6, 1fr)',
+		},
+		gap: {
+			mobile: '1rem',
+			tablet: '1rem',
+			laptop: '1.25rem',
+		},
+	},
+	'&[data-grid="Hard"]': {
+		gridTemplateColumns: {
+			mobile: 'repeat(4, 1fr)',
+			tablet: 'repeat(8, 1fr)',
+			laptop: 'repeat(8, 1fr)',
+		},
+		gap: {
+			mobile: '0.75rem',
+			tablet: '0.75rem',
+			laptop: '1rem',
+		},
+	},
+	'&[data-grid="Extreme"]': {
+		gridTemplateColumns: {
+			mobile: 'repeat(4, 1fr)',
+			tablet: 'repeat(8, 1fr)',
+			laptop: 'repeat(8, 1fr)',
+		},
+		gap: {
+			mobile: '0.75rem',
+			tablet: '0.75rem',
+			laptop: '0.75rem',
+		},
+	},
 }
 
 export {
-	easy,
-	medium,
-	hard,
+	images,
 	memorymatchContainerSX,
 	gameControlsSX,
 	newGameBtnSX,
