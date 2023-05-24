@@ -1,24 +1,33 @@
-import turnZeroImg from './images/turnZeroImg.svg'
-import turnOneImg from './images/turnOneImg.svg'
-import turnTwoImg from './images/turnTwoImg.svg'
-import turnThreeImg from './images/turnThreeImg.svg'
-import turnFourImg from './images/turnFourImg.svg'
-import turnFiveImg from './images/turnFiveImg.svg'
-import turnSixImg from './images/turnSixImg.svg'
-import turnSevenImg from './images/turnSevenImg.svg'
-import turnEightImg from './images/turnEightImg.svg'
+import { createTheme } from '@mui/material'
+
+const theme = createTheme({
+	breakpoints: {
+		values: {
+			mobile: 320,
+			tablet: 768,
+			laptop: 1280,
+		},
+	},
+})
 
 const hangmanContainerSX = {
+	maxWidth: '90rem',
+	position: 'relative',
+	display: 'grid',
 	gridTemplateColumns: {
 		mobile: '100%',
 		tablet: '50% 50%',
 		laptop: '40% 60%',
 	},
+	placeItems: 'center',
+	placeContent: 'center',
+	columnGap: '1rem',
 	rowGap: {
 		mobile: '1rem',
 		tablet: '1.5rem',
 		laptop: '1rem',
 	},
+	margin: '1rem auto',
 	paddingX: {
 		mobile: '1rem',
 		tablet: '1.5rem',
@@ -60,18 +69,34 @@ const alphaBtnsAreaSX = {
 		tablet: '1 / 2',
 		laptop: '2 / 3',
 	},
+	width: '100%',
+	display: 'grid',
 	gridTemplateColumns: {
 		mobile: 'repeat(auto-fit, minmax(2.5rem, 1fr))',
 		tablet: 'repeat(auto-fit, minmax(3.5rem, 1fr))',
 		laptop: 'repeat(auto-fit, minmax(4.5rem, 1fr))',
 	},
+	gap: '1rem',
 }
 
 const alphaBtnSX = {
+	width: '100%',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
 	fontSize: {
 		mobile: '1rem',
 		tablet: '1.25rem',
 		laptop: '1.75rem',
+	},
+	fontWeight: 'bold',
+	color: '#1976d2',
+	aspectRatio: '1/1',
+	cursor: 'pointer',
+	border: '0.15rem solid rgb(44, 135, 255)',
+	borderRadius: '0.5rem',
+	'&:hover': {
+		boxShadow: '-0.25rem 0.25rem 0.5rem #888',
 	},
 }
 
@@ -86,11 +111,25 @@ const playAreaSX = {
 		tablet: '2 / 3',
 		laptop: '1 / 2',
 	},
+	width: '100%',
+	bgcolor: 'lightgray',
+	borderRadius: '0.5rem',
+	boxShadow: '0 0 0.75rem slategray',
 }
 
 const hiddenWordSX = {
 	fontFamily: '"Open Sans", sans-serif',
+	fontSize: {
+		mobile: '1.5rem',
+		tablet: '2.5rem',
+		laptop: '2.625rem',
+	},
 	fontWeight: '500',
+	letterSpacing: {
+		mobile: '0.125',
+		tablet: '0.25rem',
+		laptop: '0.375rem',
+	},
 	textAlign: 'center',
 	verticalAlign: 'middle',
 	marginY: {
@@ -98,166 +137,67 @@ const hiddenWordSX = {
 		tablet: '2.25rem',
 		laptop: '2.5rem',
 	},
-	fontSize: {
-		mobile: '1.5rem',
-		tablet: '2.5rem',
-		laptop: '2.625rem',
-	},
-	letterSpacing: {
-		mobile: '0.125',
-		tablet: '0.25rem',
-		laptop: '0.375rem',
-	},
 }
 
-const finishMessageSX = {
-	width: {
-		mobile: '95%',
-		tablet: '90%',
-		laptop: '90%',
-	},
-	height: {
-		mobile: '95%',
-		tablet: '90%',
-		laptop: '90%',
-	},
+const endMsgContainerSX = {
+	position: 'fixed',
+	top: '0',
+	left: '0',
+	right: '0',
+	bottom: '0',
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'center',
+	alignItems: 'center',
+	bgcolor: 'rgba(0, 0, 0, 0.75)',
 }
 
-const finishMessageTxt1SX = {
+const endMsgTxt1SX = {
 	fontSize: {
 		mobile: '2.125rem',
 		tablet: '4rem',
 		laptop: '5.5rem',
 	},
+	fontWeight: 'bold',
 }
 
-const finishMessageTxt2SX = {
+const endMsgTxt2SX = {
 	fontSize: {
 		mobile: '1.5rem',
 		tablet: '2.5rem',
 		laptop: '3rem',
 	},
+	color: 'white',
+	marginTop: '1rem',
 }
 
 const resetBtnSX = {
-	width: {
-		mobile: '50%',
-		tablet: '37.5%',
-		laptop: '25%',
-	},
 	fontSize: {
 		mobile: '1.5rem',
 		tablet: '2rem',
 		laptop: '2.5rem',
 	},
+	fontFamily: '"Open Sans", sans-serif',
+	border: '0.25rem solid',
+	borderRadius: '0.75rem',
+	marginTop: '2.5rem',
+	padding: '0.25rem 1rem',
+	'&:hover': {
+		color: 'white',
+		borderColor: 'white',
+	},
 }
 
-const alphabet = [
-	'A',
-	'B',
-	'C',
-	'D',
-	'E',
-	'F',
-	'G',
-	'H',
-	'I',
-	'J',
-	'K',
-	'L',
-	'M',
-	'N',
-	'O',
-	'P',
-	'Q',
-	'R',
-	'S',
-	'T',
-	'U',
-	'V',
-	'W',
-	'X',
-	'Y',
-	'Z',
-]
-
-const wordOptions = [
-	'maintenance',
-	'emotion',
-	'childhood',
-	'dirt',
-	'garbage',
-	'basket',
-	'player',
-	'solution',
-	'politics',
-	'orange',
-	'virus',
-	'driver',
-	'fishing',
-	'pizza',
-	'bread',
-	'drawer',
-	'moment',
-	'paper',
-	'resolution',
-	'tea',
-	'control',
-	'potato',
-	'hearing',
-	'television',
-	'assumption',
-	'sir',
-	'leadership',
-	'midnight',
-	'feedback',
-	'technology',
-	'temperature',
-	'economics',
-	'setting',
-	'message',
-	'penalty',
-	'university',
-	'army',
-	'teacher',
-	'way',
-	'insect',
-	'database',
-	'software',
-	'opinion',
-	'connection',
-	'historian',
-	'strategy',
-	'bird',
-	'safety',
-	'responsibility',
-	'photo',
-]
-
-const images = [
-	turnZeroImg,
-	turnOneImg,
-	turnTwoImg,
-	turnThreeImg,
-	turnFourImg,
-	turnFiveImg,
-	turnSixImg,
-	turnSevenImg,
-	turnEightImg,
-]
-
 export {
+	theme,
 	hangmanContainerSX,
 	hangmanImgSX,
 	alphaBtnsAreaSX,
 	alphaBtnSX,
 	playAreaSX,
 	hiddenWordSX,
-	finishMessageSX,
-	finishMessageTxt1SX,
-	finishMessageTxt2SX,
+	endMsgContainerSX,
+	endMsgTxt1SX,
+	endMsgTxt2SX,
 	resetBtnSX,
-	alphabet,
-	wordOptions,
-	images,
 }

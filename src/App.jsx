@@ -2,12 +2,12 @@ import * as React from 'react'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import { Navbar } from './components/Navbar.jsx'
-import { Home } from './pages/Home.jsx'
+import { Navbar } from './pages/Navigation/components/Navbar.jsx'
+import { Home } from './pages/Navigation/Home.jsx'
 import { TicTacToe } from './pages/TicTacToe/TicTacToe.jsx'
 import { Hangman } from './pages/Hangman/Hangman.jsx'
 import { MemoryMatch } from './pages/MemoryMatch/MemoryMatch.jsx'
-import { NoPage } from './pages/NoPage.jsx'
+import { NoPage } from './pages/Navigation/NoPage.jsx'
 
 import './App.css'
 

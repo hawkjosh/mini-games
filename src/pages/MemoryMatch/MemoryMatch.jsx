@@ -5,10 +5,8 @@ import { Box, Button, ThemeProvider } from '@mui/material'
 import { DifficultySelection } from './components/DifficultySelection.jsx'
 import { SingleCard } from './components/SingleCard.jsx'
 
-import { theme } from '../theme.js'
-
 import {
-	images,
+	theme,
 	memorymatchContainerSX,
 	gameControlsSX,
 	newGameBtnSX,
@@ -16,12 +14,20 @@ import {
 	cardsContainerSX,
 } from './memorymatchSX.js'
 
+import { cardImages } from './memorymatchUtils.js'
+
 export const MemoryMatch = () => {
 	const [cards, setCards] = React.useState([])
 	const [turns, setTurns] = React.useState(0)
 	const [choiceOne, setChoiceOne] = React.useState(null)
 	const [choiceTwo, setChoiceTwo] = React.useState(null)
 	const [disabled, setDisabled] = React.useState(false)
+	const [gameOver, setGameOver] = React.useState(false)
+	const [, setShowEndMsg] = React.useState(false)
+	const [endMsgTxt1, setEndMsgTxt1] = React.useState('')
+	const [endMsgTxt2, setEndMsgTxt2] = React.useState('')
+	const [endMsgColor, setEndMsgColor] = React.useState('')
+	const [cardCount, setCardCount] = React.useState(0)
 
 	const handleOptionSelect = (option) => {
 		shuffleCards(option)
@@ -33,7 +39,7 @@ export const MemoryMatch = () => {
 		if (difficulty === 'Easy') {
 			cardsContainer.dataset.grid = 'Easy'
 
-			const trimDeck = [...images].sort(() => Math.random() - 0.5).slice(24)
+			const trimDeck = [...cardImages].sort(() => Math.random() - 0.5).slice(24)
 
 			const shuffledCards = [...trimDeck, ...trimDeck]
 				.sort(() => Math.random() - 0.5)
@@ -44,7 +50,7 @@ export const MemoryMatch = () => {
 		if (difficulty === 'Medium') {
 			cardsContainer.dataset.grid = 'Medium'
 
-			const trimDeck = [...images].sort(() => Math.random() - 0.5).slice(20)
+			const trimDeck = [...cardImages].sort(() => Math.random() - 0.5).slice(20)
 
 			const shuffledCards = [...trimDeck, ...trimDeck]
 				.sort(() => Math.random() - 0.5)
@@ -55,7 +61,7 @@ export const MemoryMatch = () => {
 		if (difficulty === 'Hard') {
 			cardsContainer.dataset.grid = 'Hard'
 
-			const trimDeck = [...images].sort(() => Math.random() - 0.5).slice(16)
+			const trimDeck = [...cardImages].sort(() => Math.random() - 0.5).slice(16)
 
 			const shuffledCards = [...trimDeck, ...trimDeck]
 				.sort(() => Math.random() - 0.5)
@@ -66,7 +72,7 @@ export const MemoryMatch = () => {
 		if (difficulty === 'Extreme') {
 			cardsContainer.dataset.grid = 'Extreme'
 
-			const shuffledCards = [...images, ...images]
+			const shuffledCards = [...cardImages, ...cardImages]
 				.sort(() => Math.random() - 0.5)
 				.map((card) => ({ ...card, id: Math.random() }))
 
@@ -111,6 +117,7 @@ export const MemoryMatch = () => {
 	const newGame = () => {
 		const cardsContainer = document.querySelector('#cards-container')
 
+		setGameOver(false)
 		setCards([])
 		setChoiceOne(null)
 		setChoiceTwo(null)
@@ -138,8 +145,8 @@ export const MemoryMatch = () => {
 					)}
 				</Box>
 				<Box
-					sx={cardsContainerSX}
 					id='cards-container'
+					sx={cardsContainerSX}
 					data-grid=''>
 					{cards.map((card, index) => (
 						<SingleCard

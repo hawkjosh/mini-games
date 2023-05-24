@@ -14,16 +14,16 @@ import {
 
 import MenuIcon from '@mui/icons-material/Menu'
 
-import { theme } from '../pages/theme.js'
-
 import {
+	theme,
 	menuIconSX,
 	titleSX,
 	menuSX,
 	menuItemSX,
 	linkSX,
-	gameOptions,
 } from './navbarSX.js'
+
+import { navbarOptions } from './navbarUtils.js'
 
 export const Navbar = () => {
 	const [anchorEl, setAnchorEl] = React.useState(null)
@@ -64,9 +64,6 @@ export const Navbar = () => {
 				<Toolbar>
 					<IconButton
 						id='menu-button'
-						aria-controls={open ? 'games-menu' : undefined}
-						aria-haspopup='true'
-						aria-expanded={open ? 'true' : undefined}
 						onClick={handleOpen}
 						edge='start'
 						color='inherit'>
@@ -79,18 +76,18 @@ export const Navbar = () => {
 						anchorEl={anchorEl}
 						open={open}
 						onClose={handleClose}>
-						{gameOptions.map((option, index) => (
-							<MenuItem
-								sx={menuItemSX}
-								key={option.name}
-								selected={index === selectedIndex}
-								onClick={(event) => handleSelect(event, index)}>
-								<Link
-									to={option.link}
-									style={linkSX}>
+						{navbarOptions.map((option, index) => (
+							<Link
+								style={linkSX}
+								key={index}
+								to={option.link}>
+								<MenuItem
+									sx={menuItemSX}
+									selected={index === selectedIndex}
+									onClick={(event) => handleSelect(event, index)}>
 									{option.name}
-								</Link>
-							</MenuItem>
+								</MenuItem>
+							</Link>
 						))}
 					</Menu>
 				</Toolbar>

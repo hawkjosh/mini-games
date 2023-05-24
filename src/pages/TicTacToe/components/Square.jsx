@@ -1,21 +1,20 @@
 import * as React from 'react'
 
-import { Box, ThemeProvider, Typography } from '@mui/material'
+import { Box, ThemeProvider } from '@mui/material'
 
-import { theme } from '../../theme.js'
-
-import { squareSX } from './squareSX.js'
-
-import '../styles/TicTacToe.css'
+import { theme, squareSX } from './squareSX.js'
 
 export const Square = ({ value, onClick }) => {
 	return (
 		<ThemeProvider theme={theme}>
 			<Box
-				className={value === 'X' ? 'square red' : 'square blue'}
+				sx={{
+					...squareSX,
+					color: value === 'X' ? 'rgb(255, 70, 37)' : 'rgb(44, 135, 255)',
+				}}
 				component='button'
 				onClick={onClick}>
-				<Typography sx={squareSX}>{value}</Typography>
+				{value}
 			</Box>
 		</ThemeProvider>
 	)

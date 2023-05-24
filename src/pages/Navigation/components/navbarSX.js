@@ -1,3 +1,15 @@
+import { createTheme } from '@mui/material'
+
+const theme = createTheme({
+	breakpoints: {
+		values: {
+			mobile: 320,
+			tablet: 768,
+			laptop: 1280,
+		},
+	},
+})
+
 const menuIconSX = {
 	fontSize: {
 		mobile: '2rem',
@@ -34,11 +46,4 @@ const linkSX = {
 	textDecoration: 'none',
 }
 
-const gameOptions = [
-	{ name: 'Home', link: '/', title: 'Mini Games' },
-	{ name: 'Tic-Tac-Toe', link: '/tic-tac-toe', title: 'Tic-Tac-Toe' },
-	{ name: 'Hangman', link: '/hangman', title: 'Hangman' },
-	{ name: 'Memory Match', link: '/memory-match', title: 'Memory Match' },
-]
-
-export { menuIconSX, titleSX, menuSX, menuItemSX, linkSX, gameOptions }
+export { theme, menuIconSX, titleSX, menuSX, menuItemSX, linkSX }

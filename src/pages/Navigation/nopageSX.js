@@ -1,11 +1,24 @@
+import { createTheme } from '@mui/material'
+
+const theme = createTheme({
+	breakpoints: {
+		values: {
+			mobile: 320,
+			tablet: 768,
+			laptop: 1280,
+		},
+	},
+})
+
 const nopageContainerSX = {
 	display: 'flex',
+	flexDirection: 'column',
 	justifyContent: 'center',
 	alignItems: 'center',
 	height: '50vh',
 }
 
-const alertSX = {
+const alertMsgSX = {
 	width: {
 		mobile: '85%',
 		tablet: '75%',
@@ -27,8 +40,9 @@ const alertTitleSX = {
 	textAlign: 'center',
 }
 
-const nopageLinkSX = {
+const returnLinkSX = {
 	color: 'red',
+	fontWeight: 'bold',
 }
 
-export { nopageContainerSX, alertSX, alertTitleSX, nopageLinkSX }
+export { theme, nopageContainerSX, alertTitleSX, alertMsgSX, returnLinkSX }

@@ -8,14 +8,14 @@ import {
 	Typography,
 } from '@mui/material'
 
-import { theme } from '../../theme.js'
-
 import {
-	difficultyOptions,
+	theme,
 	difficultyMenuSX,
 	difficultyMenuTitleSX,
 	difficultyMenuItemSX,
 } from './difficultySelectionSX.js'
+
+import { difficultyOptions } from './difficultySelectionUtils.js'
 
 export const DifficultySelection = ({ onSelectOption }) => {
 	const handleDifficultySelect = (e) => {

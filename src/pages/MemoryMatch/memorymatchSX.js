@@ -1,6 +1,14 @@
-import cardImages from './data/cardImages.json'
+import { createTheme } from '@mui/material'
 
-const images = cardImages.images
+const theme = createTheme({
+	breakpoints: {
+		values: {
+			mobile: 320,
+			tablet: 768,
+			laptop: 1280,
+		},
+	},
+})
 
 const memorymatchContainerSX = {
 	width: {
@@ -31,16 +39,16 @@ const newGameBtnSX = {
 	textAlign: 'center',
 	textDecoration: 'none',
 	borderRadius: '0.5rem',
-	backgroundColor: '#007bff',
+	bgcolor: '#007bff',
 	color: '#fff',
 	border: 'none',
 	cursor: 'pointer',
 	transition: 'background-color 0.375s ease',
 	'&:hover': {
-		backgroundColor: '#0056b3',
+		bgcolor: '#0056b3',
 	},
 	'&:active': {
-		backgroundColor: '#003d80',
+		bgcolor: '#003d80',
 	},
 }
 
@@ -110,7 +118,7 @@ const cardsContainerSX = {
 }
 
 export {
-	images,
+	theme,
 	memorymatchContainerSX,
 	gameControlsSX,
 	newGameBtnSX,

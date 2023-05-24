@@ -1,3 +1,15 @@
+import { createTheme } from '@mui/material'
+
+const theme = createTheme({
+	breakpoints: {
+		values: {
+			mobile: 320,
+			tablet: 768,
+			laptop: 1280,
+		},
+	},
+})
+
 const cardWrapperSX = {
 	position: 'relative',
 	borderRadius: '1rem',
@@ -13,13 +25,8 @@ const cardFrontSX = {
 	backgroundRepeat: 'no-repeat',
 	bgcolor: 'white',
 	borderRadius: '1rem',
-	transform: 'rotateY(90deg)',
 	position: 'absolute',
-	transition: 'all ease-in 0.25s',
-	'&.flipped': {
-		transform: 'rotateY(0deg)',
-		transitionDelay: '0.25s',
-	},
+	transition: 'all 0.25s ease-out',
 }
 
 const cardBackSX = {
@@ -32,12 +39,7 @@ const cardBackSX = {
 	backgroundRepeat: 'no-repeat',
 	bgcolor: 'lightgray',
 	borderRadius: '1rem',
-	transition: 'all ease-in 0.25s',
-	transitionDelay: '0.25s',
-	'&.flipped': {
-		transform: 'rotateY(90deg)',
-		transitionDelay: '0s',
-	},
+	transition: 'all 0.25s ease-out',
 }
 
-export { cardWrapperSX, cardFrontSX, cardBackSX }
+export { theme, cardWrapperSX, cardFrontSX, cardBackSX }

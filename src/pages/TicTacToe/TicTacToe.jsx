@@ -5,35 +5,24 @@ import { Box, Button, ThemeProvider } from '@mui/material'
 import { Gameboard } from './components/Gameboard.jsx'
 import { Scoreboard } from './components/Scoreboard.jsx'
 
-import { theme } from '../theme.js'
-
 import {
+	theme,
 	tictactoeContainerSX,
-	winningMessageTxtSX,
-	playAgainBtnSX,
+	endMsgContainerSX,
+	endMsgTxtSX,
+	resetBtnSX,
 } from './tictactoeSX.js'
 
-import './styles/TicTacToe.css'
+import { winCombos } from './tictactoeUtils.js'
 
 export const TicTacToe = () => {
-	const WIN_COMBOS = [
-		[0, 1, 2],
-		[3, 4, 5],
-		[6, 7, 8],
-		[0, 3, 6],
-		[1, 4, 7],
-		[2, 5, 8],
-		[0, 4, 8],
-		[2, 4, 6],
-	]
-
-	const winningMessage = document.querySelector('[data-winning-message]')
-	const winningMessageTxt = document.querySelector('[data-winning-message-txt]')
-
 	const [board, setBoard] = React.useState(Array(9).fill(null))
 	const [xPlaying, setXPlaying] = React.useState(true)
 	const [score, setScore] = React.useState({ xScore: 0, oScore: 0 })
 	const [gameOver, setGameOver] = React.useState(false)
+	const [, setShowEndMsg] = React.useState(false)
+	const [endMsgTxt, setEndMsgTxt] = React.useState('')
+	const [endMsgColor, setEndMsgColor] = React.useState('')
 
 	const handleBoxClick = (squareIndex) => {
 		const updatedBoard = board.map((value, index) => {
@@ -44,29 +33,31 @@ export const TicTacToe = () => {
 			}
 		})
 
-		const notNull = (space) => space !== null
+		const empty = (space) => space !== null
 		const winner = checkWinner(updatedBoard)
 
 		if (winner) {
+			setShowEndMsg(true)
 			if (winner === 'X') {
 				let { xScore } = score
 				xScore += 1
 				setScore({ ...score, xScore })
-				winningMessageTxt.innerText = `X's Win!`
-				winningMessageTxt.style.setProperty('color', 'rgb(255, 70, 37)')
-				winningMessage.style.setProperty('display', 'flex')
+				setEndMsgTxt(`X's Win!`)
+				setEndMsgColor('rgb(255, 70, 37)')
 			} else if (winner === 'O') {
 				let { oScore } = score
 				oScore += 1
 				setScore({ ...score, oScore })
-				winningMessageTxt.innerText = `O's Win!`
-				winningMessageTxt.style.setProperty('color', 'rgb(44, 135, 255)')
-				winningMessage.style.setProperty('display', 'flex')
+				setEndMsgTxt(`O's Win!`)
+				setEndMsgColor('rgb(44, 135, 255)')
 			}
 		}
-		if (!winner && updatedBoard.every(notNull)) {
-			winningMessageTxt.innerText = 'Draw!'
-			winningMessage.style.setProperty('display', 'flex')
+		if (!winner && updatedBoard.every(empty)) {
+			console.log('no winner, its a draw!')
+			setGameOver(true)
+			setShowEndMsg(true)
+			setEndMsgTxt('Draw!')
+			setEndMsgColor('white')
 		}
 
 		setBoard(updatedBoard)
@@ -75,8 +66,8 @@ export const TicTacToe = () => {
 	}
 
 	const checkWinner = (board) => {
-		for (let i = 0; i < WIN_COMBOS.length; i++) {
-			const [x, y, z] = WIN_COMBOS[i]
+		for (let i = 0; i < winCombos.length; i++) {
+			const [x, y, z] = winCombos[i]
 			if (board[x] && board[x] === board[y] && board[y] === board[z]) {
 				setGameOver(true)
 				return board[x]
@@ -87,8 +78,9 @@ export const TicTacToe = () => {
 	const resetBoard = () => {
 		setGameOver(false)
 		setBoard(Array(9).fill(null))
-		winningMessageTxt.style.setProperty('color', 'white')
-		winningMessage.style.setProperty('display', 'none')
+		setShowEndMsg(false)
+		setEndMsgTxt('')
+		setEndMsgColor('')
 	}
 
 	const resetGame = () => {
@@ -96,15 +88,14 @@ export const TicTacToe = () => {
 		setBoard(Array(9).fill(null))
 		setScore({ xScore: 0, oScore: 0 })
 		setXPlaying(true)
-		winningMessageTxt.style.setProperty('color', 'white')
-		winningMessage.style.setProperty('display', 'none')
+		setShowEndMsg(false)
+		setEndMsgTxt('')
+		setEndMsgColor('')
 	}
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Box
-				className='tictactoe-container'
-				sx={tictactoeContainerSX}>
+			<Box sx={tictactoeContainerSX}>
 				<Scoreboard
 					score={score}
 					xPlaying={xPlaying}
@@ -116,20 +107,22 @@ export const TicTacToe = () => {
 				/>
 			</Box>
 
-			<Box
-				className='winning-message'
-				data-winning-message>
-				<Box
-					className='winning-message-txt'
-					sx={winningMessageTxtSX}
-					data-winning-message-txt
-				/>
-				<Button
-					sx={playAgainBtnSX}
-					onClick={resetBoard}>
-					Play Again
-				</Button>
-			</Box>
+			{gameOver && (
+				<Box sx={endMsgContainerSX}>
+					<Box
+						sx={{
+							...endMsgTxtSX,
+							color: endMsgColor,
+						}}>
+						{endMsgTxt}
+					</Box>
+					<Button
+						sx={resetBtnSX}
+						onClick={resetBoard}>
+						Play Again
+					</Button>
+				</Box>
+			)}
 		</ThemeProvider>
 	)
 }

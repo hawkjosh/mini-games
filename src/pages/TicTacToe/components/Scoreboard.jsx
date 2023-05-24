@@ -5,39 +5,54 @@ import { Box, Button, ThemeProvider } from '@mui/material'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown'
 
-import { theme } from '../../theme.js'
-
 import {
+	theme,
 	scoreContainerSX,
 	scoreWrapperSX,
-	scoreSX,
-	arrowIconSX,
+	scoreTxtSX,
+	xScoreSX,
+	oScoreSX,
+	xArrowIconSX,
+	oArrowIconSX,
 	resetBtnSX,
 } from './scoreboardSX.js'
 
-import '../styles/TicTacToe.css'
-
 export const Scoreboard = ({ score, xPlaying, resetGame }) => {
 	const { xScore, oScore } = score
+	const [xScoreInactive, setXScoreInactive] = React.useState(false)
+	const [oScoreInactive, setOScoreInactive] = React.useState(false)
+
+	React.useEffect(() => {
+		if (!xPlaying) {
+			setXScoreInactive(true)
+			setOScoreInactive(false)
+		} else {
+			setXScoreInactive(false)
+			setOScoreInactive(true)
+		}
+	})
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Box
-				className='score-container'
-				sx={scoreContainerSX}>
-				<Box
-					className='score-wrapper'
-					sx={scoreWrapperSX}>
+			<Box sx={scoreContainerSX}>
+				<Box sx={scoreWrapperSX}>
 					<Box
-						className={`score x-score ${!xPlaying && 'inactive'}`}
-						sx={scoreSX}>
-						<span className='score-txt'>X's</span>
-						<span className='score-txt'>‣</span>
-						<span className='score-txt'>{xScore}</span>
+						sx={{
+							...xScoreSX,
+							color: xScoreInactive ? '#888' : 'rgb(255, 70, 37)',
+							opacity: xScoreInactive ? 0.75 : 1,
+							borderColor: xScoreInactive ? 'transparent' : 'rgb(255, 70, 37)',
+						}}>
+						<Box sx={scoreTxtSX}>X's</Box>
+						<Box sx={scoreTxtSX}>‣</Box>
+						<Box sx={scoreTxtSX}>{xScore}</Box>
 					</Box>
 					<ArrowCircleUpIcon
-						className={`red ${!xPlaying && 'hide'}`}
-						sx={arrowIconSX}
+						sx={{
+							...xArrowIconSX,
+							color: xScoreInactive ? '#888' : 'rgb(255, 70, 37)',
+							opacity: xScoreInactive ? 0.5 : 1,
+						}}
 					/>
 				</Box>
 				<Button
@@ -46,19 +61,24 @@ export const Scoreboard = ({ score, xPlaying, resetGame }) => {
 					sx={resetBtnSX}>
 					Reset
 				</Button>
-				<Box
-					className='score-wrapper'
-					sx={scoreWrapperSX}>
+				<Box sx={scoreWrapperSX}>
 					<ArrowCircleDownIcon
-						className={`blue ${xPlaying && 'hide'}`}
-						sx={arrowIconSX}
+						sx={{
+							...oArrowIconSX,
+							color: oScoreInactive ? '#888' : 'rgb(44, 135, 255)',
+							opacity: oScoreInactive ? 0.5 : 1,
+						}}
 					/>
 					<Box
-						className={`score o-score ${xPlaying && 'inactive'}`}
-						sx={scoreSX}>
-						<span className='score-txt'>O's</span>
-						<span className='score-txt'>‣</span>
-						<span className='score-txt'>{oScore}</span>
+						sx={{
+							...oScoreSX,
+							color: oScoreInactive ? '#888' : 'rgb(44, 135, 255)',
+							opacity: oScoreInactive ? 0.75 : 1,
+							borderColor: oScoreInactive ? 'transparent' : 'rgb(44, 135, 255)',
+						}}>
+						<Box sx={scoreTxtSX}>O's</Box>
+						<Box sx={scoreTxtSX}>‣</Box>
+						<Box sx={scoreTxtSX}>{oScore}</Box>
 					</Box>
 				</Box>
 			</Box>

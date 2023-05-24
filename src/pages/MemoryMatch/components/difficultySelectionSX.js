@@ -1,21 +1,14 @@
-const difficultyOptions = [
-	{
-		value: 'Easy',
-		color: 'success',
+import { createTheme } from '@mui/material'
+
+const theme = createTheme({
+	breakpoints: {
+		values: {
+			mobile: 320,
+			tablet: 768,
+			laptop: 1280,
+		},
 	},
-	{
-		value: 'Medium',
-		color: 'info',
-	},
-	{
-		value: 'Hard',
-		color: 'warning',
-	},
-	{
-		value: 'Extreme',
-		color: 'error',
-	},
-]
+})
 
 const difficultyMenuSX = {
 	width: {
@@ -51,9 +44,4 @@ const difficultyMenuItemSX = {
 	fontSize: '2rem',
 }
 
-export {
-	difficultyOptions,
-	difficultyMenuSX,
-	difficultyMenuTitleSX,
-	difficultyMenuItemSX,
-}
+export { theme, difficultyMenuSX, difficultyMenuTitleSX, difficultyMenuItemSX }

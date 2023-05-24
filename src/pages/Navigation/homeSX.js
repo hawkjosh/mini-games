@@ -1,3 +1,15 @@
+import { createTheme } from '@mui/material'
+
+const theme = createTheme({
+	breakpoints: {
+		values: {
+			mobile: 320,
+			tablet: 768,
+			laptop: 1280,
+		},
+	},
+})
+
 const homeContainerSX = {
 	display: 'flex',
 	flexWrap: 'wrap',
@@ -26,12 +38,20 @@ const gameIconWrapperSX = {
 	},
 }
 
+const gameIconLinkSX = {
+	textDecoration: 'none',
+}
+
 const gameIconSX = {
 	width: {
 		mobile: '12.5rem',
 		tablet: '14rem',
 		laptop: '15.5rem',
+		transition: 'transform 0.5s ease',
+	},
+	'&:hover': {
+		transform: 'scale(1.125)',
 	},
 }
 
-export { homeContainerSX, gameIconWrapperSX, gameIconSX }
+export { theme, homeContainerSX, gameIconWrapperSX, gameIconLinkSX, gameIconSX }
