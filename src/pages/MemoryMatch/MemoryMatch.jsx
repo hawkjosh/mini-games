@@ -5,19 +5,7 @@ import { Box, Button, ThemeProvider } from '@mui/material'
 import { LevelSelect } from './components/LevelSelect.jsx'
 import { SingleCard } from './components/SingleCard.jsx'
 
-// import { theme, sx } from './memoryMatchSX.js'
-
-import {
-	theme,
-	memorymatchContainerSX,
-	gameControlsSX,
-	newGameBtnSX,
-	turnsTrackerSX,
-	cardsContainerSX,
-	endMsgContainerSX,
-	endMsgTxtSX,
-	resetBtnSX,
-} from './gameSX.js'
+import { theme, sx } from './gameSX.js'
 
 import { images } from './svgImages.js'
 
@@ -172,51 +160,9 @@ export const MemoryMatch = () => {
 	}, [choiceOne, choiceTwo])
 
 	return (
-		// <ThemeProvider theme={theme}>
-		// 	<Box sx={sx.container}>
-		// 		<Box sx={sx.container.header}>
-		// 			{cards.length === 0 ? (
-		// 				<React.Fragment>
-		// 					<LevelSelect onSelectOption={handleOptionSelect} />
-		// 				</React.Fragment>
-		// 			) : (
-		// 				<React.Fragment>
-		// 					<Button
-		// 						sx={sx.container.header.btn}
-		// 						onClick={newGame}>
-		// 						New Game
-		// 					</Button>
-		// 					<Box sx={sx.container.header.badge}>Turns: {turns}</Box>
-		// 				</React.Fragment>
-		// 			)}
-		// 		</Box>
-		// 		<Box sx={{ ...sx.container.body, ...gridStyle }}>
-		// 			{cards.map((card, index) => (
-		// 				<SingleCard
-		// 					key={index}
-		// 					card={card}
-		// 					handleChoice={handleChoice}
-		// 					flipped={card === choiceOne || card === choiceTwo || card.matched}
-		// 					disabled={disabled}
-		// 				/>
-		// 			))}
-		// 			{gameOver && (
-		// 				<Box sx={sx.container.body.endMsg}>
-		// 					<Box sx={sx.container.body.endMsg.txt}>{endMsgTxt}</Box>
-		// 					<Button
-		// 						sx={sx.container.body.endMsg.btn}
-		// 						onClick={resetGame}>
-		// 						Play Again
-		// 					</Button>
-		// 				</Box>
-		// 			)}
-		// 		</Box>
-		// 	</Box>
-		// </ThemeProvider>
-
 		<ThemeProvider theme={theme}>
-			<Box sx={memorymatchContainerSX}>
-				<Box sx={gameControlsSX}>
+			<Box sx={sx.container}>
+				<Box sx={sx.container.header}>
 					{cards.length === 0 ? (
 						<React.Fragment>
 							<LevelSelect onSelectOption={handleOptionSelect} />
@@ -224,15 +170,15 @@ export const MemoryMatch = () => {
 					) : (
 						<React.Fragment>
 							<Button
-								sx={newGameBtnSX}
+								sx={sx.container.header.btn}
 								onClick={newGame}>
 								New Game
 							</Button>
-							<Box sx={turnsTrackerSX}>Turns: {turns}</Box>
+							<Box sx={sx.container.header.badge}>Turns: {turns}</Box>
 						</React.Fragment>
 					)}
 				</Box>
-				<Box sx={{ ...cardsContainerSX, ...gridStyle }}>
+				<Box sx={{ ...sx.container.body, ...gridStyle }}>
 					{cards.map((card, index) => (
 						<SingleCard
 							key={index}
@@ -243,10 +189,10 @@ export const MemoryMatch = () => {
 						/>
 					))}
 					{gameOver && (
-						<Box sx={endMsgContainerSX}>
-							<Box sx={endMsgTxtSX}>{endMsgTxt}</Box>
+						<Box sx={sx.container.body.endMsg}>
+							<Box sx={sx.container.body.endMsg.txt}>{endMsgTxt}</Box>
 							<Button
-								sx={resetBtnSX}
+								sx={sx.container.body.endMsg.btn}
 								onClick={resetGame}>
 								Play Again
 							</Button>
