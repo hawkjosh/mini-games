@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { Link } from 'react-router-dom'
+
 import {
 	Box,
 	Button,
@@ -13,6 +15,8 @@ import {
 	difficultyMenuSX,
 	difficultyMenuTitleSX,
 	difficultyMenuItemSX,
+	difficultyMenuBonusSX,
+	difficultyMenuBonusLinkSX,
 } from './difficultySelectionSX.js'
 
 import { difficultyOptions } from './difficultySelectionUtils.js'
@@ -25,9 +29,7 @@ export const DifficultySelection = ({ onSelectOption }) => {
 	return (
 		<ThemeProvider theme={theme}>
 			<Box sx={difficultyMenuSX}>
-				<Typography sx={difficultyMenuTitleSX}>
-					Select Difficulty Level:
-				</Typography>
+				<Typography sx={difficultyMenuTitleSX}>⚾ MLB Version ⚾</Typography>
 				<ButtonGroup
 					variant='text'
 					orientation='vertical'>
@@ -42,6 +44,14 @@ export const DifficultySelection = ({ onSelectOption }) => {
 						</Button>
 					))}
 				</ButtonGroup>
+				<Box sx={difficultyMenuBonusSX}>
+					<Link to='/memory-match'>
+						<Button sx={difficultyMenuBonusLinkSX}>Normal Version</Button>
+					</Link>
+					<Link to='/memory-match-nfl'>
+						<Button sx={difficultyMenuBonusLinkSX}>🏈 NFL Version</Button>
+					</Link>
+				</Box>
 			</Box>
 		</ThemeProvider>
 	)

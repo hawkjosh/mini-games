@@ -7,7 +7,11 @@ import { Home } from './pages/Navigation/Home.jsx'
 import { TicTacToe } from './pages/TicTacToe/TicTacToe.jsx'
 import { Hangman } from './pages/Hangman/Hangman.jsx'
 import { MemoryMatch } from './pages/MemoryMatch/MemoryMatch.jsx'
+import { MemoryMatchMLB } from './pages/MemoryMatchMLB/MemoryMatchMLB.jsx'
+import { MemoryMatchNFL } from './pages/MemoryMatchNFL/MemoryMatchNFL.jsx'
 import { NoPage } from './pages/Navigation/NoPage.jsx'
+
+import { TestPage } from './pages/TestPage/TestPage.jsx'
 
 import './App.css'
 
@@ -34,10 +38,22 @@ export const App = () => {
 						path='/memory-match'
 						element={<MemoryMatch />}
 					/>
+					<Route
+						path='/memory-match-mlb'
+						element={<MemoryMatchMLB />}
+					/>
+					<Route
+						path='/memory-match-nfl'
+						element={<MemoryMatchNFL />}
+					/>
 				</Route>
 				<Route
 					path='*'
 					element={<NoPage />}
+				/>
+				<Route
+					path='/test'
+					element={<TestPage />}
 				/>
 			</Routes>
 		</Router>

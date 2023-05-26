@@ -2,7 +2,12 @@ import * as React from 'react'
 
 import { Box, Card, ThemeProvider } from '@mui/material'
 
-import { theme, sx } from './singleCardSX.js'
+import {
+	theme,
+	cardWrapperSX,
+	cardFrontSX,
+	cardBackSX,
+} from './singleCardSX.js'
 
 export const SingleCard = ({ card, handleChoice, flipped, disabled }) => {
 	const handleClick = () => {
@@ -11,37 +16,21 @@ export const SingleCard = ({ card, handleChoice, flipped, disabled }) => {
 		}
 	}
 
-	const SvgComponent = ({path}) => {
-		return (
-			<svg
-				viewBox='0 0 100 100'
-				width='75%'
-				stroke='hsla(211, 100%, 35%, 1)'
-				strokeWidth='4'
-				strokeLinecap='round'
-				strokeLinejoin='round'
-				fill='hsla(36, 100%, 50%, 1)'
-				style={{filter: 'drop-shadow(0.375rem 0.375rem 0.25rem hsla(0, 0%, 0%, 0.625))'}}>
-				<path d={path} />
-			</svg>
-		)
-	}
-
 	return (
 		<ThemeProvider theme={theme}>
-			<Box sx={sx.card}>
+			<Box sx={cardWrapperSX}>
 				<Card
 					sx={{
-						...sx.card.front,
+						...cardFrontSX,
+						backgroundImage: `url(${card.img})`,
 						transform: flipped ? 'rotateY(0deg)' : 'rotateY(90deg)',
 						transitionDelay: flipped ? '0.25s' : '0s',
 					}}
-					raised>
-						<SvgComponent path={card.svgPath} />
-					</Card>
+					raised
+				/>
 				<Card
 					sx={{
-						...sx.card.back,
+						...cardBackSX,
 						transform: flipped ? 'rotateY(90deg)' : 'rotateY(0deg)',
 						transitionDelay: flipped ? '0s' : '0.25s',
 					}}

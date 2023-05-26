@@ -20,7 +20,6 @@ export const TicTacToe = () => {
 	const [xPlaying, setXPlaying] = React.useState(true)
 	const [score, setScore] = React.useState({ xScore: 0, oScore: 0 })
 	const [gameOver, setGameOver] = React.useState(false)
-	const [, setShowEndMsg] = React.useState(false)
 	const [endMsgTxt, setEndMsgTxt] = React.useState('')
 	const [endMsgColor, setEndMsgColor] = React.useState('')
 
@@ -37,7 +36,6 @@ export const TicTacToe = () => {
 		const winner = checkWinner(updatedBoard)
 
 		if (winner) {
-			setShowEndMsg(true)
 			if (winner === 'X') {
 				let { xScore } = score
 				xScore += 1
@@ -55,7 +53,6 @@ export const TicTacToe = () => {
 		if (!winner && updatedBoard.every(empty)) {
 			console.log('no winner, its a draw!')
 			setGameOver(true)
-			setShowEndMsg(true)
 			setEndMsgTxt('Draw!')
 			setEndMsgColor('white')
 		}
@@ -78,7 +75,6 @@ export const TicTacToe = () => {
 	const resetBoard = () => {
 		setGameOver(false)
 		setBoard(Array(9).fill(null))
-		setShowEndMsg(false)
 		setEndMsgTxt('')
 		setEndMsgColor('')
 	}
@@ -88,7 +84,6 @@ export const TicTacToe = () => {
 		setBoard(Array(9).fill(null))
 		setScore({ xScore: 0, oScore: 0 })
 		setXPlaying(true)
-		setShowEndMsg(false)
 		setEndMsgTxt('')
 		setEndMsgColor('')
 	}

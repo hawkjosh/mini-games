@@ -44,4 +44,43 @@ const difficultyMenuItemSX = {
 	fontSize: '2rem',
 }
 
-export { theme, difficultyMenuSX, difficultyMenuTitleSX, difficultyMenuItemSX }
+const difficultyMenuBonusSX = {
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	gap: '1rem',
+}
+
+const difficultyMenuBonusLinkSX = {
+	display: 'inline-block',
+	padding: '0.75rem 1.25rem',
+	fontSize: {
+		mobile: '0.75rem',
+		tablet: '1rem',
+		laptop: '1.125rem',
+	},
+	fontWeight: 'bold',
+	textAlign: 'center',
+	textDecoration: 'none',
+	borderRadius: '0.5rem',
+	bgcolor: '#007bff',
+	color: '#fff',
+	border: 'none',
+	cursor: 'pointer',
+	transition: 'background-color 0.375s ease',
+	'&:hover': {
+		bgcolor: '#0056b3',
+	},
+	'&:active': {
+		bgcolor: '#003d80',
+	},
+}
+
+export {
+	theme,
+	difficultyMenuSX,
+	difficultyMenuTitleSX,
+	difficultyMenuItemSX,
+	difficultyMenuBonusSX,
+	difficultyMenuBonusLinkSX,
+}

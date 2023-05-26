@@ -32,7 +32,6 @@ export const Hangman = () => {
 	const [correctGuesses, setCorrectGuesses] = React.useState([])
 	const [wrongGuesses, setWrongGuesses] = React.useState([])
 	const [gameOver, setGameOver] = React.useState(false)
-	const [, setShowEndMsg] = React.useState(false)
 	const [endMsgTxt1, setEndMsgTxt1] = React.useState('')
 	const [endMsgTxt2, setEndMsgTxt2] = React.useState('')
 	const [endMsgColor, setEndMsgColor] = React.useState('')
@@ -88,7 +87,6 @@ export const Hangman = () => {
 		}
 		if (checkGuess(guess) === 'Wrong' && wrongLetters === 8) {
 			setGameOver(true)
-			setShowEndMsg(true)
 			setEndMsgTxt1('Sorry, you lost!')
 			setEndMsgColor('hsl(0, 75%, 50%)')
 			setEndMsgTxt2(`( answer: ${word} )`)
@@ -107,7 +105,6 @@ export const Hangman = () => {
 		}
 		if (checkGuess(guess) === 'Correct' && correctLetters === letterCount) {
 			setGameOver(true)
-			setShowEndMsg(true)
 			setEndMsgTxt1('Congrats, you won!')
 			setEndMsgColor('hsl(100, 75%, 40%)')
 			setEndMsgTxt2(
@@ -118,7 +115,6 @@ export const Hangman = () => {
 
 	const resetGame = () => {
 		setGameOver(false)
-		setShowEndMsg(false)
 		setEndMsgTxt1('')
 		setEndMsgTxt2('')
 		setImage(images[0])

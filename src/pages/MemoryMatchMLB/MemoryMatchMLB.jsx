@@ -2,14 +2,24 @@ import * as React from 'react'
 
 import { Box, Button, ThemeProvider } from '@mui/material'
 
-import { LevelSelect } from './components/LevelSelect.jsx'
+import { DifficultySelection } from './components/DifficultySelection.jsx'
 import { SingleCard } from './components/SingleCard.jsx'
 
-import { theme, sx } from './memoryMatchSX.js'
+import {
+	theme,
+	memorymatchContainerSX,
+	gameControlsSX,
+	newGameBtnSX,
+	turnsTrackerSX,
+	cardsContainerSX,
+	endMsgContainerSX,
+	endMsgTxtSX,
+	resetBtnSX,
+} from './memoryMatchMLBSX.js'
 
-import { images } from './svgImages.js'
+import { cardImages } from './memoryMatchMLBUtils.js'
 
-export const MemoryMatch = () => {
+export const MemoryMatchMLB = () => {
 	const [cards, setCards] = React.useState([])
 	const [turns, setTurns] = React.useState(0)
 	const [choiceOne, setChoiceOne] = React.useState(null)
@@ -30,7 +40,7 @@ export const MemoryMatch = () => {
 				gridTemplateColumns: {
 					mobile: 'repeat(4, 1fr)',
 					tablet: 'repeat(4, 1fr)',
-					laptop: 'repeat(8, 1fr)',
+					laptop: 'repeat(5, 1fr)',
 				},
 				gap: {
 					mobile: '1rem',
@@ -39,7 +49,7 @@ export const MemoryMatch = () => {
 				},
 			})
 
-			const trimDeck = [...images].sort(() => Math.random() - 0.5).slice(8)
+			const trimDeck = [...cardImages].sort(() => Math.random() - 0.5).slice(20)
 
 			const shuffledCards = [...trimDeck, ...trimDeck]
 				.sort(() => Math.random() - 0.5)
@@ -50,8 +60,8 @@ export const MemoryMatch = () => {
 		if (difficulty === 'Medium') {
 			setGridStyle({
 				gridTemplateColumns: {
-					mobile: 'repeat(4, 1fr)',
-					tablet: 'repeat(6, 1fr)',
+					mobile: 'repeat(5, 1fr)',
+					tablet: 'repeat(5, 1fr)',
 					laptop: 'repeat(6, 1fr)',
 				},
 				gap: {
@@ -61,7 +71,7 @@ export const MemoryMatch = () => {
 				},
 			})
 
-			const trimDeck = [...images].sort(() => Math.random() - 0.5).slice(4)
+			const trimDeck = [...cardImages].sort(() => Math.random() - 0.5).slice(15)
 
 			const shuffledCards = [...trimDeck, ...trimDeck]
 				.sort(() => Math.random() - 0.5)
@@ -72,9 +82,31 @@ export const MemoryMatch = () => {
 		if (difficulty === 'Hard') {
 			setGridStyle({
 				gridTemplateColumns: {
-					mobile: 'repeat(4, 1fr)',
+					mobile: 'repeat(5, 1fr)',
 					tablet: 'repeat(8, 1fr)',
 					laptop: 'repeat(8, 1fr)',
+				},
+				gap: {
+					mobile: '0.75rem',
+					tablet: '0.75rem',
+					laptop: '1rem',
+				},
+			})
+
+			const trimDeck = [...cardImages].sort(() => Math.random() - 0.5).slice(10)
+
+			const shuffledCards = [...trimDeck, ...trimDeck]
+				.sort(() => Math.random() - 0.5)
+				.map((card) => ({ ...card, id: Math.random() }))
+
+			setCards(shuffledCards)
+		}
+		if (difficulty === 'Extreme') {
+			setGridStyle({
+				gridTemplateColumns: {
+					mobile: 'repeat(5, 1fr)',
+					tablet: 'repeat(6, 1fr)',
+					laptop: 'repeat(10, 1fr)',
 				},
 				gap: {
 					mobile: '0.75rem',
@@ -83,7 +115,7 @@ export const MemoryMatch = () => {
 				},
 			})
 
-			const shuffledCards = [...images, ...images]
+			const shuffledCards = [...cardImages, ...cardImages]
 				.sort(() => Math.random() - 0.5)
 				.map((card) => ({ ...card, id: Math.random() }))
 
@@ -161,24 +193,24 @@ export const MemoryMatch = () => {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Box sx={sx.container}>
-				<Box sx={sx.container.header}>
+			<Box sx={memorymatchContainerSX}>
+				<Box sx={gameControlsSX}>
 					{cards.length === 0 ? (
 						<React.Fragment>
-							<LevelSelect onSelectOption={handleOptionSelect} />
+							<DifficultySelection onSelectOption={handleOptionSelect} />
 						</React.Fragment>
 					) : (
 						<React.Fragment>
 							<Button
-								sx={sx.container.header.btn}
+								sx={newGameBtnSX}
 								onClick={newGame}>
 								New Game
 							</Button>
-							<Box sx={sx.container.header.badge}>Turns: {turns}</Box>
+							<Box sx={turnsTrackerSX}>Turns: {turns}</Box>
 						</React.Fragment>
 					)}
 				</Box>
-				<Box sx={{ ...sx.container.body, ...gridStyle }}>
+				<Box sx={{ ...cardsContainerSX, ...gridStyle }}>
 					{cards.map((card, index) => (
 						<SingleCard
 							key={index}
@@ -189,10 +221,10 @@ export const MemoryMatch = () => {
 						/>
 					))}
 					{gameOver && (
-						<Box sx={sx.container.body.endMsg}>
-							<Box sx={sx.container.body.endMsg.txt}>{endMsgTxt}</Box>
+						<Box sx={endMsgContainerSX}>
+							<Box sx={endMsgTxtSX}>{endMsgTxt}</Box>
 							<Button
-								sx={sx.container.body.endMsg.btn}
+								sx={resetBtnSX}
 								onClick={resetGame}>
 								Play Again
 							</Button>
