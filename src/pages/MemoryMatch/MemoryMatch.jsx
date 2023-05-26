@@ -17,7 +17,7 @@ import {
 	endMsgContainerSX,
 	endMsgTxtSX,
 	resetBtnSX,
-} from './memoryMatchSX.js'
+} from './gameSX.js'
 
 import { images } from './svgImages.js'
 
