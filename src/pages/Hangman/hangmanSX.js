@@ -126,7 +126,7 @@ const hiddenWordSX = {
 	},
 	fontWeight: '500',
 	letterSpacing: {
-		mobile: '0.125',
+		mobile: '0.125rem',
 		tablet: '0.25rem',
 		laptop: '0.375rem',
 	},

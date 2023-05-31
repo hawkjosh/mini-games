@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { ArrowIconX } from './ArrowIconX.jsx'
-import { ArrowIconO } from './ArrowIconO.jsx'
+import { ArrowIconUp } from './ArrowIconUp.jsx'
+import { ArrowIconDown } from './ArrowIconDown.jsx'
 
 import {
 	StyledContainer,
@@ -31,34 +31,38 @@ export const Scoreboard = ({ score, xPlaying, resetGame }) => {
 			<StyledWrapper>
 				<StyledScore
 					style={{
-						color: xScoreInactive ? '#888' : 'rgb(255, 70, 37)',
-						opacity: xScoreInactive ? 0.75 : 1,
-						borderColor: xScoreInactive ? 'transparent' : 'rgb(255, 70, 37)',
+						color: xScoreInactive
+							? 'hsla(0, 0%, 53%, 0.75)'
+							: 'hsla(9, 100%, 57%, 1)',
+						borderColor: xScoreInactive ? 'transparent' : 'hsl(9, 100%, 57%)',
 					}}>
 					<StyledText>X's</StyledText>
 					<StyledText>‣</StyledText>
 					<StyledText>{xScore}</StyledText>
 				</StyledScore>
-				<ArrowIconX
+				<ArrowIconUp
 					style={{
-						fill: xScoreInactive ? '#888' : 'rgb(255, 70, 37)',
-						opacity: xScoreInactive ? 0.5 : 1,
+						fill: xScoreInactive
+							? 'hsla(0, 0%, 53%, 0.5)'
+							: 'hsla(9, 100%, 57%, 1)',
 					}}
 				/>
 			</StyledWrapper>
 			<StyledButton onClick={() => resetGame()}>Reset</StyledButton>
 			<StyledWrapper>
-				<ArrowIconO
+				<ArrowIconDown
 					style={{
-						fill: oScoreInactive ? '#888' : 'rgb(44, 135, 255)',
-						opacity: oScoreInactive ? 0.5 : 1,
+						fill: oScoreInactive
+							? 'hsla(0, 0%, 53%, 0.5)'
+							: 'hsla(214, 100%, 59%, 1)',
 					}}
 				/>
 				<StyledScore
 					style={{
-						color: oScoreInactive ? '#888' : 'rgb(44, 135, 255)',
-						opacity: oScoreInactive ? 0.75 : 1,
-						borderColor: oScoreInactive ? 'transparent' : 'rgb(44, 135, 255)',
+						color: oScoreInactive
+							? 'hsla(0, 0%, 53%, 0.75)'
+							: 'hsla(214, 100%, 59%, 1)',
+						borderColor: oScoreInactive ? 'transparent' : 'hsl(214, 100%, 59%)',
 					}}>
 					<StyledText>O's</StyledText>
 					<StyledText>‣</StyledText>

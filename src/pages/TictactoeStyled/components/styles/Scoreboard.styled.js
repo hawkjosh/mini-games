@@ -1,22 +1,24 @@
 import styled from 'styled-components'
-import { respondTo } from './_respondTo.js'
+
+import { responsive } from '../../../../GlobalStyle.js'
+
 
 const StyledContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
-	${respondTo.mobile`
+	${responsive.mobile`
     flex-direction: row;
     gap: 2rem;
   `}
 
-	${respondTo.tablet`
+	${responsive.tablet`
     flex-direction: row;
     gap: 3rem;
   `}
 
-  ${respondTo.laptop`
+  ${responsive.laptop`
     flex-direction: column;
     gap: 4rem;
   `}
@@ -27,12 +29,12 @@ const StyledWrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 
-	${respondTo.tablet`
+	${responsive.tablet`
     flex-direction: row;
     gap: 1.25rem;
   `}
 
-	${respondTo.laptop`
+	${responsive.laptop`
     flex-direction: column;
     gap: 1.75rem;
   `}
@@ -53,21 +55,21 @@ const StyledScore = styled.div`
 	border-radius: 0.5rem;
 	box-shadow: 0 0 0.5rem hsl(0, 0%, 53%);
 
-	${respondTo.mobile`
+	${responsive.mobile`
     gap: 0.5rem;
     font-size: 1.25rem;
     letter-spacing: 0.125rem;
     padding: 0.5rem;
   `}
 
-	${respondTo.tablet`
+	${responsive.tablet`
     gap: 0.75rem;
     font-size: 1.75rem;
     letter-spacing: 0.25rem;
     padding: 0.75rem;
   `}
 
-  ${respondTo.laptop`
+  ${responsive.laptop`
     gap: 1rem;
     font-size: 2.5rem;
     letter-spacing: 0.625rem;
@@ -88,17 +90,17 @@ const StyledButton = styled.div`
 	transition: all 0.25s ease;
 	cursor: pointer;
 
-	${respondTo.mobile`
+	${responsive.mobile`
     font-size: 1rem;
     padding: 0.125rem 0.25rem;
   `}
 
-	${respondTo.tablet`
+	${responsive.tablet`
     font-size: 1.125rem;
     padding: 0.25rem 0.375rem;
   `}
 
-  ${respondTo.laptop`
+  ${responsive.laptop`
     font-size: 1.25rem;
     padding: 0.375rem 0.5rem;
   `}

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { respondTo } from './_respondTo.js'
+
+import { responsive } from '../../../../GlobalStyle.js'
 
 const StyledSquare = styled.div`
 	display: flex;
@@ -14,15 +15,15 @@ const StyledSquare = styled.div`
 	box-shadow: 0 0 0.5rem hsl(0, 0%, 53%);
 	aspect-ratio: 1/1;
 
-	${respondTo.mobile`
+	${responsive.mobile`
     font-size: 5rem;
   `}
 
-	${respondTo.tablet`
+	${responsive.tablet`
 		font-size: 10rem;
   `}
 
-  ${respondTo.laptop`
+  ${responsive.laptop`
 		font-size: 11rem;
   `}
 

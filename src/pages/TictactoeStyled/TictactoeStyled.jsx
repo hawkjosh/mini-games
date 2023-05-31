@@ -21,7 +21,7 @@ const winCombos = [
 	[2, 4, 6],
 ]
 
-export const Tictactoe = () => {
+export const TictactoeStyled = () => {
 	const [board, setBoard] = useState(Array(9).fill(null))
 	const [xPlaying, setXPlaying] = useState(true)
 	const [score, setScore] = useState({ xScore: 0, oScore: 0 })
@@ -47,20 +47,20 @@ export const Tictactoe = () => {
 				xScore += 1
 				setScore({ ...score, xScore })
 				setEndMsgTxt(`X's Win!`)
-				setEndMsgColor('rgb(255, 70, 37)')
+				setEndMsgColor('hsl(9, 100%, 57%)')
 			} else if (winner === 'O') {
 				let { oScore } = score
 				oScore += 1
 				setScore({ ...score, oScore })
 				setEndMsgTxt(`O's Win!`)
-				setEndMsgColor('rgb(44, 135, 255)')
+				setEndMsgColor('hsl(214, 100%, 59%)')
 			}
 		}
 		if (!winner && updatedBoard.every(empty)) {
 			console.log('no winner, its a draw!')
 			setGameOver(true)
 			setEndMsgTxt('Draw!')
-			setEndMsgColor('white')
+			setEndMsgColor('hsl(0, 0%, 100%)')
 		}
 
 		setBoard(updatedBoard)

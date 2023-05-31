@@ -1,6 +1,6 @@
 import { StyledArrowIcon } from './styles/Arrowicon.styled.js'
 
-export const ArrowIconX = ({ ...props }) => {
+export const ArrowIconUp = ({ ...props }) => {
 	return (
 		<StyledArrowIcon
 			viewBox='0 0 22 22'

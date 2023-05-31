@@ -5,16 +5,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Navbar } from './pages/Navigation/components/Navbar.jsx'
 import { Home } from './pages/Navigation/Home.jsx'
 import { TicTacToe } from './pages/TicTacToe/TicTacToe.jsx'
-import { Tictactoe } from './pages/TictactoeStyled/Tictactoe.jsx'
+import { TictactoeStyled } from './pages/TictactoeStyled/TictactoeStyled.jsx'
 import { Hangman } from './pages/Hangman/Hangman.jsx'
+import { HangmanStyled } from './pages/HangmanStyled/HangmanStyled.jsx'
 import { MemoryMatch } from './pages/MemoryMatch/MemoryMatch.jsx'
 import { MemoryMatchMLB } from './pages/MemoryMatchMLB/MemoryMatchMLB.jsx'
 import { MemoryMatchNFL } from './pages/MemoryMatchNFL/MemoryMatchNFL.jsx'
 import { NoPage } from './pages/Navigation/NoPage.jsx'
 
 import { TestPage } from './pages/TestPage/TestPage.jsx'
-
-import './App.css'
 
 export const App = () => {
 	return (
@@ -33,11 +32,15 @@ export const App = () => {
 					/>
 					<Route
 						path='/tic-tac-toe-styled'
-						element={<Tictactoe />}
+						element={<TictactoeStyled />}
 					/>
 					<Route
 						path='/hangman'
 						element={<Hangman />}
+					/>
+					<Route
+						path='/hangman-styled'
+						element={<HangmanStyled />}
 					/>
 					<Route
 						path='/memory-match'

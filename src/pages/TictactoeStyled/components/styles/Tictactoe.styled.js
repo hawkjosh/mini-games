@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { respondTo } from './_respondTo.js'
+
+import { responsive } from '../../../../GlobalStyle.js'
 
 const StyledContainer = styled.div`
 	max-width: 90rem;
@@ -8,19 +9,19 @@ const StyledContainer = styled.div`
 	place-content: center;
 	margin: 1rem auto;
 
-	${respondTo.mobile`
+	${responsive.mobile`
     grid-template-columns: 1fr;
     gap: 2.5rem;
     padding: 1rem auto;
   `}
 
-	${respondTo.tablet`
+	${responsive.tablet`
     grid-template-columns: 1fr;
     gap: 1.5rem;
     padding: 1.5rem auto;
   `}
 
-  ${respondTo.laptop`
+  ${responsive.laptop`
     grid-template-columns: 40% 60%;
     gap: 0.75rem;
     padding: 2rem auto;
@@ -37,7 +38,7 @@ const StyledEndMessage = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(0, 0, 0, 0.75);
+	background-color: hsla(0, 0%, 0%, 0.75);
 `
 
 const StyledText = styled.div`
@@ -45,15 +46,15 @@ const StyledText = styled.div`
 	font-weight: 600;
 	letter-spacing: 1rem;
 
-	${respondTo.mobile`
+	${responsive.mobile`
     font-size: 4rem;
   `}
 
-	${respondTo.tablet`
+	${responsive.tablet`
     font-size: 6rem;
   `}
 
-  ${respondTo.laptop`
+  ${responsive.laptop`
     font-size: 8rem;
   `}
 `
@@ -74,15 +75,15 @@ const StyledButton = styled.div`
 	transition: all 0.25s ease;
 	cursor: pointer;
 
-	${respondTo.mobile`
+	${responsive.mobile`
     font-size: 1.5rem;
   `}
 
-	${respondTo.tablet`
+	${responsive.tablet`
     font-size: 2rem;
   `}
 
-  ${respondTo.laptop`
+  ${responsive.laptop`
     font-size: 2.5rem;
   `}
 
