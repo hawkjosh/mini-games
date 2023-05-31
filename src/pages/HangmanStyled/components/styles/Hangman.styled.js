@@ -14,42 +14,19 @@ const StyledContainer = styled.div`
 	${responsive.mobile`
     grid-template-columns: 100%;
     row-gap: 1rem;
-    padding: 1rem auto;
+    padding: 0 1rem;
   `}
 
 	${responsive.tablet`
     grid-template-columns: 50% 50%;
     row-gap: 1.5rem;
-    padding: 1.5rem auto;
+    padding: 0 1.5rem;
   `}
 
   ${responsive.laptop`
     grid-template-columns: 40% 60%;
     row-gap: 1rem;
-    padding: 2rem auto;
-  `}
-`
-
-const StyledImage = styled.img`
-	${responsive.mobile`
-    grid-column: 1 / 1;
-    grid-row: 1 / 2;
-    width: 70%;
-    max-width: 25rem;
-  `}
-
-	${responsive.tablet`
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    width: 100%;
-    max-width: 30rem;
-  `}
-
-  ${responsive.laptop`
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
-    width: 100%;
-    max-width: 35rem;
+    padding: 0 2rem;
   `}
 `
 
@@ -235,7 +212,6 @@ const StyledButton = styled.div`
 
 export {
 	StyledContainer,
-	StyledImage,
 	StyledAreaOne,
 	StyledAreaOneContent,
 	StyledAreaTwo,

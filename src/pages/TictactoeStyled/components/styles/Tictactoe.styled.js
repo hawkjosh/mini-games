@@ -12,19 +12,19 @@ const StyledContainer = styled.div`
 	${responsive.mobile`
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    padding: 1rem auto;
+    padding: 0 1rem;
   `}
 
 	${responsive.tablet`
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    padding: 1.5rem auto;
+    padding: 0 1.5rem;
   `}
 
   ${responsive.laptop`
     grid-template-columns: 40% 60%;
     gap: 0.75rem;
-    padding: 2rem auto;
+    padding: 0 2rem;
   `}
 `
 

@@ -27,19 +27,19 @@ export const App = () => {
 						element={<Home />}
 					/>
 					<Route
-						path='/tic-tac-toe'
+						path='/tic-tac-toe-original'
 						element={<TicTacToe />}
 					/>
 					<Route
-						path='/tic-tac-toe-styled'
+						path='/tic-tac-toe'
 						element={<TictactoeStyled />}
 					/>
 					<Route
-						path='/hangman'
+						path='/hangman-original'
 						element={<Hangman />}
 					/>
 					<Route
-						path='/hangman-styled'
+						path='/hangman'
 						element={<HangmanStyled />}
 					/>
 					<Route

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 
 import {
 	StyledContainer,
-	StyledImage,
 	StyledAreaOne,
 	StyledAreaOneContent,
 	StyledAreaTwo,
@@ -13,7 +12,7 @@ import {
 	StyledButton,
 } from './components/styles/Hangman.styled.js'
 
-import { images } from './hangmanUtils.js'
+import { HangmanImage } from './components/HangmanImage.jsx'
 
 const alphabet = [
 	'A',
@@ -105,7 +104,7 @@ export const HangmanStyled = () => {
 	}
 
 	const [word, setWord] = useState(getRandomWord(wordOptions).toUpperCase())
-	const [image, setImage] = useState(images[0])
+	const [count, setCount] = useState(0)
 	const [correctGuesses, setCorrectGuesses] = useState([])
 	const [wrongGuesses, setWrongGuesses] = useState([])
 	const [gameOver, setGameOver] = useState(false)
@@ -147,10 +146,9 @@ export const HangmanStyled = () => {
 		const index = Array.from(button.parentNode.children).indexOf(button)
 		let correctLetters = correctGuesses.length + 1
 		let wrongLetters = wrongGuesses.length + 1
-		let addImg = wrongGuesses.length
 		checkGuess(guess)
 		if (checkGuess(guess) === 'Wrong' && wrongLetters <= 8) {
-			setImage(images[(addImg += 1)])
+			setCount((prev) => (prev += 1))
 			setButtonStyles((prevStyles) => {
 				const newStyles = [...prevStyles]
 				newStyles[index] = {
@@ -163,6 +161,7 @@ export const HangmanStyled = () => {
 			})
 		}
 		if (checkGuess(guess) === 'Wrong' && wrongLetters === 8) {
+			setCount((prev) => (prev += 1))
 			setGameOver(true)
 			setEndMsgTxt1('Sorry, you lost!')
 			setEndMsgColor('hsl(0, 75%, 50%)')
@@ -192,9 +191,9 @@ export const HangmanStyled = () => {
 
 	const resetGame = () => {
 		setGameOver(false)
+		setCount(0)
 		setEndMsgTxt1('')
 		setEndMsgTxt2('')
-		setImage(images[0])
 		setCorrectGuesses([])
 		setWrongGuesses([])
 		setWord(getRandomWord(wordOptions).toUpperCase())
@@ -214,7 +213,7 @@ export const HangmanStyled = () => {
 
 	return (
 		<StyledContainer>
-			<StyledImage src={image} />
+			<HangmanImage count={count} />
 			<StyledAreaOne>
 				{alphabet.map((guess, index) => (
 					<StyledAreaOneContent
