@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Navbar } from './pages/Navigation/components/Navbar.jsx'
 import { Home } from './pages/Navigation/Home.jsx'
 import { TicTacToe } from './pages/TicTacToe/TicTacToe.jsx'
+import { Tictactoe } from './pages/TictactoeStyled/Tictactoe.jsx'
 import { Hangman } from './pages/Hangman/Hangman.jsx'
 import { MemoryMatch } from './pages/MemoryMatch/MemoryMatch.jsx'
 import { MemoryMatchMLB } from './pages/MemoryMatchMLB/MemoryMatchMLB.jsx'
@@ -29,6 +30,10 @@ export const App = () => {
 					<Route
 						path='/tic-tac-toe'
 						element={<TicTacToe />}
+					/>
+					<Route
+						path='/tic-tac-toe-styled'
+						element={<Tictactoe />}
 					/>
 					<Route
 						path='/hangman'
