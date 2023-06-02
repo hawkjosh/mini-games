@@ -2,6 +2,9 @@ import * as React from 'react'
 
 import { Link } from 'react-router-dom'
 
+import { MLBLogo } from './MLBLogo.jsx'
+import { NFLLogo } from './NFLLogo.jsx'
+
 import {
 	Box,
 	Button,
@@ -39,11 +42,15 @@ export const LevelSelect = ({ onSelectOption }) => {
 					))}
 				</ButtonGroup>
 				<Box sx={sx.menu.bonus}>
-					<Link to='/memory-match-mlb'>
-						<Button sx={sx.menu.bonus.link}>⚾ MLB Version</Button>
+					<Link
+						to='/memory-match-mlb'
+						style={sx.menu.bonus.link}>
+						<MLBLogo style={sx.menu.bonus.link.linkImg} />
 					</Link>
-					<Link to='/memory-match-nfl'>
-						<Button sx={sx.menu.bonus.link}>🏈 NFL Version</Button>
+					<Link
+						to='/memory-match-nfl'
+						style={sx.menu.bonus.link}>
+						<NFLLogo style={sx.menu.bonus.link.linkImg} />
 					</Link>
 				</Box>
 			</Box>

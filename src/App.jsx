@@ -9,6 +9,7 @@ import { TictactoeStyled } from './pages/TictactoeStyled/TictactoeStyled.jsx'
 import { Hangman } from './pages/Hangman/Hangman.jsx'
 import { HangmanStyled } from './pages/HangmanStyled/HangmanStyled.jsx'
 import { MemoryMatch } from './pages/MemoryMatch/MemoryMatch.jsx'
+import { MemorymatchStyled } from './pages/MemorymatchStyled/MemorymatchStyled.jsx'
 import { MemoryMatchMLB } from './pages/MemoryMatchMLB/MemoryMatchMLB.jsx'
 import { MemoryMatchNFL } from './pages/MemoryMatchNFL/MemoryMatchNFL.jsx'
 import { NoPage } from './pages/Navigation/NoPage.jsx'
@@ -43,8 +44,12 @@ export const App = () => {
 						element={<HangmanStyled />}
 					/>
 					<Route
-						path='/memory-match'
+						path='/memory-match-original'
 						element={<MemoryMatch />}
+					/>
+					<Route
+						path='/memory-match'
+						element={<MemorymatchStyled />}
 					/>
 					<Route
 						path='/memory-match-mlb'

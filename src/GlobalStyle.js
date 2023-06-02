@@ -11,9 +11,9 @@ const breakpoints = {
 }
 
 const responsive = Object.keys(breakpoints).reduce((acc, label) => {
-	acc[label] = (...args) => css`
+	acc[label] = (...args) => `
 		@media (min-width: ${breakpoints[label]}) {
-			${css(...args)}
+			${args.join('')}
 		}
 	`
 	return acc

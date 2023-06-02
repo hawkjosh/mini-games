@@ -48,9 +48,6 @@ export const DifficultySelection = ({ onSelectOption }) => {
 					<Link to='/memory-match'>
 						<Button sx={difficultyMenuBonusLinkSX}>Normal Version</Button>
 					</Link>
-					<Link to='/memory-match-mlb'>
-						<Button sx={difficultyMenuBonusLinkSX}>⚾ MLB Version</Button>
-					</Link>
 				</Box>
 			</Box>
 		</ThemeProvider>

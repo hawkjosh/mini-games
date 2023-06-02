@@ -59,7 +59,7 @@ const StyledText = styled.div`
   `}
 `
 
-const StyledButton = styled.div`
+const StyledButton = styled.button`
 	font-family: 'Fredoka', sans-serif;
 	font-weight: 500;
 	line-height: 1.75;
@@ -67,13 +67,12 @@ const StyledButton = styled.div`
 	text-transform: uppercase;
 	text-decoration: none;
 	color: hsl(0, 0%, 100%);
-	background-color: hsl(120, 100%, 25%);
+	background-color: hsl(120, 100%, 30%);
 	border: 0.25rem solid hsl(0, 0%, 100%);
 	border-radius: 0.75rem;
 	margin-top: 2.5rem;
 	padding: 0.25rem 1rem;
 	transition: all 0.25s ease;
-	cursor: pointer;
 
 	${responsive.mobile`
     font-size: 1.5rem;
@@ -88,9 +87,10 @@ const StyledButton = styled.div`
   `}
 
 	&:hover {
-		color: hsl(120, 100%, 25%);
+		cursor: pointer;
+		color: hsl(120, 100%, 30%);
 		background-color: hsl(0, 0%, 100%);
-		border-color: hsl(120, 100%, 25%);
+		border-color: hsl(120, 100%, 30%);
 	}
 `
 

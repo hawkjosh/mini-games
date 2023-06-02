@@ -48,36 +48,41 @@ const sx = {
 
 		bonus: {
 			display: 'flex',
-			justifyContent: 'center',
+			justifyContent: 'space-evenly',
 			alignItems: 'center',
-			gap: '1rem',
+			width: {
+				mobile: '95%',
+				tablet: '80%',
+				laptop: '65%',
+			},
 
 			link: {
-				display: 'inline-block',
-				padding: '0.75rem 1.25rem',
-				fontSize: {
-					mobile: '0.75rem',
-					tablet: '1rem',
-					laptop: '1.125rem',
-				},
-				fontWeight: 'bold',
-				textAlign: 'center',
-				textDecoration: 'none',
-				borderRadius: '0.5rem',
-				bgcolor: '#007bff',
-				color: '#fff',
+				display: 'flex',
+				backgroundColor: 'hsl(211, 100%, 50%)',
 				border: 'none',
-				cursor: 'pointer',
-				transition: 'background-color 0.375s ease',
-				'&:hover': {
-					bgcolor: '#0056b3',
-				},
-				'&:active': {
-					bgcolor: '#003d80',
+				borderRadius: '50%',
+				padding: '0.75rem',
+
+				linkImg: {
+					aspectRatio: '1/1',
+					width: '3.5rem',
 				},
 			},
 		},
 	},
+}
+
+const styledLink = {
+	display: 'flex',
+	backgroundColor: 'hsl(211, 100%, 50%)',
+	border: 'none',
+	borderRadius: '50%',
+	padding: '0.75rem',
+}
+
+const styledLinkImg = {
+	aspectRatio: '1/1',
+	width: '3.5rem',
 }
 
 export { theme, sx }
