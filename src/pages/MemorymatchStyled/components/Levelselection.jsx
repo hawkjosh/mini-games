@@ -48,16 +48,14 @@ export const Levelselection = ({ onSelectOption }) => {
 				))}
 			</StyledItemsGroup>
 			<StyledBonus>
-				<Link
-					to='/memory-match-mlb'
+				<a
+					href='https://hawkjosh-memory-match.onrender.com/'
+					target='_blank'
+					rel='noreferrer'
 					style={styledLink}>
 					<MLBLogo style={styledLinkImg} />
-				</Link>
-				<Link
-					to='/memory-match-nfl'
-					style={styledLink}>
 					<NFLLogo style={styledLinkImg} />
-				</Link>
+				</a>
 			</StyledBonus>
 		</StyledMenu>
 	)

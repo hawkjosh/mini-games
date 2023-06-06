@@ -10,8 +10,6 @@ import { Hangman } from './pages/Hangman/Hangman.jsx'
 import { HangmanStyled } from './pages/HangmanStyled/HangmanStyled.jsx'
 import { MemoryMatch } from './pages/MemoryMatch/MemoryMatch.jsx'
 import { MemorymatchStyled } from './pages/MemorymatchStyled/MemorymatchStyled.jsx'
-import { MemoryMatchMLB } from './pages/MemoryMatchMLB/MemoryMatchMLB.jsx'
-import { MemoryMatchNFL } from './pages/MemoryMatchNFL/MemoryMatchNFL.jsx'
 import { NoPage } from './pages/Navigation/NoPage.jsx'
 
 import { TestPage } from './pages/TestPage/TestPage.jsx'
@@ -50,14 +48,6 @@ export const App = () => {
 					<Route
 						path='/memory-match'
 						element={<MemorymatchStyled />}
-					/>
-					<Route
-						path='/memory-match-mlb'
-						element={<MemoryMatchMLB />}
-					/>
-					<Route
-						path='/memory-match-nfl'
-						element={<MemoryMatchNFL />}
 					/>
 				</Route>
 				<Route
