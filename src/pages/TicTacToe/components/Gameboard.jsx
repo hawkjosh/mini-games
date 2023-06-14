@@ -1,31 +1,24 @@
-import * as React from 'react'
-
-import { Box, ThemeProvider } from '@mui/material'
-
-import { Square } from './Square.jsx'
+import { Gamesquare } from './Gamesquare.jsx'
 
 import {
-	theme,
-	gameboardContainerSX,
-	gameboardWrapperSX,
-} from './gameboardSX.js'
+	StyledContainer,
+	StyledWrapper,
+} from './styles/Gameboard.styled.js'
 
 export const Gameboard = ({ board, onClick }) => {
 	return (
-		<ThemeProvider theme={theme}>
-			<Box sx={gameboardContainerSX}>
-				<Box sx={gameboardWrapperSX}>
-					{board.map((value, index) => {
-						return (
-							<Square
-								key={index}
-								value={value}
-								onClick={() => value === null && onClick(index)}
-							/>
-						)
-					})}
-				</Box>
-			</Box>
-		</ThemeProvider>
+		<StyledContainer>
+			<StyledWrapper>
+				{board.map((value, index) => {
+					return (
+						<Gamesquare
+							key={index}
+							value={value}
+							onClick={() => value === null && onClick(index)}
+						/>
+					)
+				})}
+			</StyledWrapper>
+		</StyledContainer>
 	)
 }

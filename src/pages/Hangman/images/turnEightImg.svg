@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox='0 0 205 230'>
-  <path fill='none' stroke='black' stroke-width='2' d='M5 225h80M45 225v-220h125v50M45 35l30 -30' />
-  <circle fill='none' stroke='black' cx='170' cy='75' r='20' />
-  <path transform='rotate(25, 170, 75)' fill='none' stroke='black' stroke-width='0.75'
-    d='M161 71.5l3 -3M161 68.5l3 3M176 71.5l3 -3M176 68.5l3 3M160 82.5h20M170 82.5a1 1.75 0 0 0 5 0' />
-  <path fill='none' stroke='black' d='M170 95v75M140 205l30 -35M170 170l30 35M145 140l25 -25M170 115l25 25' />
-</svg>

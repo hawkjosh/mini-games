@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-
 import { MLBLogo } from './MLBLogo.jsx'
 import { NFLLogo } from './NFLLogo.jsx'
 
@@ -9,8 +7,6 @@ import {
 	StyledItemsGroup,
 	StyledItem,
 	StyledBonus,
-	styledLink,
-	styledLinkImg,
 } from './styles/Levelselection.styled.js'
 
 const levelOptions = [
@@ -47,15 +43,12 @@ export const Levelselection = ({ onSelectOption }) => {
 					</StyledItem>
 				))}
 			</StyledItemsGroup>
-			<StyledBonus>
-				<a
-					href='https://hawkjosh-memory-match.onrender.com/'
-					target='_blank'
-					rel='noreferrer'
-					style={styledLink}>
-					<MLBLogo style={styledLinkImg} />
-					<NFLLogo style={styledLinkImg} />
-				</a>
+			<StyledBonus
+				href='https://hawkjosh-memory-match.onrender.com/'
+				target='_blank'
+				rel='noreferrer'>
+				<MLBLogo width='3.5rem' />
+				<NFLLogo width='3.5rem' />
 			</StyledBonus>
 		</StyledMenu>
 	)

@@ -1,22 +1,100 @@
-import * as React from 'react'
-
-import { Box, Button, ThemeProvider, Typography } from '@mui/material'
+import { useEffect, useState } from 'react'
 
 import {
-	theme,
-	hangmanContainerSX,
-	hangmanImgSX,
-	alphaBtnsAreaSX,
-	alphaBtnSX,
-	playAreaSX,
-	hiddenWordSX,
-	endMsgContainerSX,
-	endMsgTxt1SX,
-	endMsgTxt2SX,
-	resetBtnSX,
-} from './hangmanSX.js'
+	StyledContainer,
+	StyledAreaOne,
+	StyledAreaOneContent,
+	StyledAreaTwo,
+	StyledAreaTwoContent,
+	StyledEndMessage,
+	StyledTextOne,
+	StyledTextTwo,
+	StyledButton,
+} from './components/styles/Hangman.styled.js'
 
-import { alphabet, wordOptions, images } from './hangmanUtils.js'
+import { HangmanImage } from './components/HangmanImage.jsx'
+
+const alphabet = [
+	'A',
+	'B',
+	'C',
+	'D',
+	'E',
+	'F',
+	'G',
+	'H',
+	'I',
+	'J',
+	'K',
+	'L',
+	'M',
+	'N',
+	'O',
+	'P',
+	'Q',
+	'R',
+	'S',
+	'T',
+	'U',
+	'V',
+	'W',
+	'X',
+	'Y',
+	'Z',
+]
+
+const wordOptions = [
+	'maintenance',
+	'emotion',
+	'childhood',
+	'dirt',
+	'garbage',
+	'basket',
+	'player',
+	'solution',
+	'politics',
+	'orange',
+	'virus',
+	'driver',
+	'fishing',
+	'pizza',
+	'bread',
+	'drawer',
+	'moment',
+	'paper',
+	'resolution',
+	'tea',
+	'control',
+	'potato',
+	'hearing',
+	'television',
+	'assumption',
+	'sir',
+	'leadership',
+	'midnight',
+	'feedback',
+	'technology',
+	'temperature',
+	'economics',
+	'setting',
+	'message',
+	'penalty',
+	'university',
+	'army',
+	'teacher',
+	'way',
+	'insect',
+	'database',
+	'software',
+	'opinion',
+	'connection',
+	'historian',
+	'strategy',
+	'bird',
+	'safety',
+	'responsibility',
+	'photo',
+]
 
 export const Hangman = () => {
 	const getRandomWord = (arr) => {
@@ -25,20 +103,18 @@ export const Hangman = () => {
 		return selection
 	}
 
-	const [word, setWord] = React.useState(
-		getRandomWord(wordOptions).toUpperCase()
-	)
-	const [image, setImage] = React.useState(images[0])
-	const [correctGuesses, setCorrectGuesses] = React.useState([])
-	const [wrongGuesses, setWrongGuesses] = React.useState([])
-	const [gameOver, setGameOver] = React.useState(false)
-	const [endMsgTxt1, setEndMsgTxt1] = React.useState('')
-	const [endMsgTxt2, setEndMsgTxt2] = React.useState('')
-	const [endMsgColor, setEndMsgColor] = React.useState('')
+	const [word, setWord] = useState(getRandomWord(wordOptions).toUpperCase())
+	const [count, setCount] = useState(0)
+	const [correctGuesses, setCorrectGuesses] = useState([])
+	const [wrongGuesses, setWrongGuesses] = useState([])
+	const [gameOver, setGameOver] = useState(false)
+	const [endMsgTxt1, setEndMsgTxt1] = useState('')
+	const [endMsgTxt2, setEndMsgTxt2] = useState('')
+	const [endMsgColor, setEndMsgColor] = useState('')
 
 	const letterCount = [...new Set(word)].length
 
-	const [buttonStyles, setButtonStyles] = React.useState(
+	const [buttonStyles, setButtonStyles] = useState(
 		Array(26).fill({
 			color: '#1976d2',
 			borderColor: 'rgb(44, 135, 255)',
@@ -70,10 +146,9 @@ export const Hangman = () => {
 		const index = Array.from(button.parentNode.children).indexOf(button)
 		let correctLetters = correctGuesses.length + 1
 		let wrongLetters = wrongGuesses.length + 1
-		let addImg = wrongGuesses.length
 		checkGuess(guess)
 		if (checkGuess(guess) === 'Wrong' && wrongLetters <= 8) {
-			setImage(images[(addImg += 1)])
+			setCount((prev) => (prev += 1))
 			setButtonStyles((prevStyles) => {
 				const newStyles = [...prevStyles]
 				newStyles[index] = {
@@ -86,6 +161,7 @@ export const Hangman = () => {
 			})
 		}
 		if (checkGuess(guess) === 'Wrong' && wrongLetters === 8) {
+			setCount((prev) => (prev += 1))
 			setGameOver(true)
 			setEndMsgTxt1('Sorry, you lost!')
 			setEndMsgColor('hsl(0, 75%, 50%)')
@@ -115,15 +191,15 @@ export const Hangman = () => {
 
 	const resetGame = () => {
 		setGameOver(false)
+		setCount(0)
 		setEndMsgTxt1('')
 		setEndMsgTxt2('')
-		setImage(images[0])
 		setCorrectGuesses([])
 		setWrongGuesses([])
 		setWord(getRandomWord(wordOptions).toUpperCase())
 	}
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (gameOver) {
 			setButtonStyles(
 				Array(26).fill({
@@ -136,54 +212,35 @@ export const Hangman = () => {
 	}, [gameOver])
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Box sx={hangmanContainerSX}>
-				<Box
-					sx={hangmanImgSX}
-					component='img'
-					src={image}
-				/>
-				<Box sx={alphaBtnsAreaSX}>
-					{alphabet.map((guess, index) => (
-						<Box
-							sx={{
-								...alphaBtnSX,
-								color: buttonStyles[index].color,
-								borderColor: buttonStyles[index].borderColor,
-								opacity: buttonStyles[index].opacity,
-								pointerEvents: buttonStyles[index].pointerEvents,
-							}}
-							key={index}
-							onClick={handleChoice}>
-							{guess}
-						</Box>
-					))}
-				</Box>
-				<Box sx={playAreaSX}>
-					<Typography sx={hiddenWordSX}>{hiddenWord}</Typography>
-				</Box>
-				{gameOver && (
-					<Box sx={endMsgContainerSX}>
-						<Box
-							sx={{
-								...endMsgTxt1SX,
-								color: endMsgColor,
-							}}>
-							{endMsgTxt1}
-						</Box>
-						<Box sx={endMsgTxt2SX}>{endMsgTxt2}</Box>
-						<Button
-							sx={{
-								...resetBtnSX,
-								color: endMsgColor,
-								borderColor: endMsgColor,
-							}}
-							onClick={resetGame}>
-							Play Again
-						</Button>
-					</Box>
-				)}
-			</Box>
-		</ThemeProvider>
+		<StyledContainer>
+			<HangmanImage count={count} />
+			<StyledAreaOne>
+				{alphabet.map((guess, index) => (
+					<StyledAreaOneContent
+						style={{
+							color: buttonStyles[index].color,
+							borderColor: buttonStyles[index].borderColor,
+							opacity: buttonStyles[index].opacity,
+							pointerEvents: buttonStyles[index].pointerEvents,
+						}}
+						key={index}
+						onClick={handleChoice}>
+						{guess}
+					</StyledAreaOneContent>
+				))}
+			</StyledAreaOne>
+			<StyledAreaTwo>
+				<StyledAreaTwoContent>{hiddenWord}</StyledAreaTwoContent>
+			</StyledAreaTwo>
+			{gameOver && (
+				<StyledEndMessage>
+					<StyledTextOne style={{ color: endMsgColor }}>
+						{endMsgTxt1}
+					</StyledTextOne>
+					<StyledTextTwo>{endMsgTxt2}</StyledTextTwo>
+					<StyledButton onClick={resetGame}>Play Again</StyledButton>
+				</StyledEndMessage>
+			)}
+		</StyledContainer>
 	)
 }

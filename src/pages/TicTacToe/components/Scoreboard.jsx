@@ -1,28 +1,22 @@
-import * as React from 'react'
+import { useEffect, useState } from 'react'
 
-import { Box, Button, ThemeProvider } from '@mui/material'
-
-import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
-import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown'
+import { ArrowIconUp } from './ArrowIconUp.jsx'
+import { ArrowIconDown } from './ArrowIconDown.jsx'
 
 import {
-	theme,
-	scoreContainerSX,
-	scoreWrapperSX,
-	scoreTxtSX,
-	xScoreSX,
-	oScoreSX,
-	xArrowIconSX,
-	oArrowIconSX,
-	resetBtnSX,
-} from './scoreboardSX.js'
+	StyledContainer,
+	StyledWrapper,
+	StyledText,
+	StyledScore,
+	StyledButton,
+} from './styles/Scoreboard.styled.js'
 
 export const Scoreboard = ({ score, xPlaying, resetGame }) => {
 	const { xScore, oScore } = score
-	const [xScoreInactive, setXScoreInactive] = React.useState(false)
-	const [oScoreInactive, setOScoreInactive] = React.useState(false)
+	const [xScoreInactive, setXScoreInactive] = useState(false)
+	const [oScoreInactive, setOScoreInactive] = useState(false)
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (!xPlaying) {
 			setXScoreInactive(true)
 			setOScoreInactive(false)
@@ -33,55 +27,48 @@ export const Scoreboard = ({ score, xPlaying, resetGame }) => {
 	})
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Box sx={scoreContainerSX}>
-				<Box sx={scoreWrapperSX}>
-					<Box
-						sx={{
-							...xScoreSX,
-							color: xScoreInactive ? '#888' : 'rgb(255, 70, 37)',
-							opacity: xScoreInactive ? 0.75 : 1,
-							borderColor: xScoreInactive ? 'transparent' : 'rgb(255, 70, 37)',
-						}}>
-						<Box sx={scoreTxtSX}>X's</Box>
-						<Box sx={scoreTxtSX}>‣</Box>
-						<Box sx={scoreTxtSX}>{xScore}</Box>
-					</Box>
-					<ArrowCircleUpIcon
-						sx={{
-							...xArrowIconSX,
-							color: xScoreInactive ? '#888' : 'rgb(255, 70, 37)',
-							opacity: xScoreInactive ? 0.5 : 1,
-						}}
-					/>
-				</Box>
-				<Button
-					variant='contained'
-					onClick={() => resetGame()}
-					sx={resetBtnSX}>
-					Reset
-				</Button>
-				<Box sx={scoreWrapperSX}>
-					<ArrowCircleDownIcon
-						sx={{
-							...oArrowIconSX,
-							color: oScoreInactive ? '#888' : 'rgb(44, 135, 255)',
-							opacity: oScoreInactive ? 0.5 : 1,
-						}}
-					/>
-					<Box
-						sx={{
-							...oScoreSX,
-							color: oScoreInactive ? '#888' : 'rgb(44, 135, 255)',
-							opacity: oScoreInactive ? 0.75 : 1,
-							borderColor: oScoreInactive ? 'transparent' : 'rgb(44, 135, 255)',
-						}}>
-						<Box sx={scoreTxtSX}>O's</Box>
-						<Box sx={scoreTxtSX}>‣</Box>
-						<Box sx={scoreTxtSX}>{oScore}</Box>
-					</Box>
-				</Box>
-			</Box>
-		</ThemeProvider>
+		<StyledContainer>
+			<StyledWrapper>
+				<StyledScore
+					style={{
+						color: xScoreInactive
+							? 'hsla(0, 0%, 53%, 0.75)'
+							: 'hsla(9, 100%, 57%, 1)',
+						borderColor: xScoreInactive ? 'transparent' : 'hsl(9, 100%, 57%)',
+					}}>
+					<StyledText>X's</StyledText>
+					<StyledText>‣</StyledText>
+					<StyledText>{xScore}</StyledText>
+				</StyledScore>
+				<ArrowIconUp
+					style={{
+						fill: xScoreInactive
+							? 'hsla(0, 0%, 53%, 0.5)'
+							: 'hsla(9, 100%, 57%, 1)',
+					}}
+				/>
+			</StyledWrapper>
+			<StyledButton onClick={() => resetGame()}>Reset</StyledButton>
+			<StyledWrapper>
+				<ArrowIconDown
+					style={{
+						fill: oScoreInactive
+							? 'hsla(0, 0%, 53%, 0.5)'
+							: 'hsla(214, 100%, 59%, 1)',
+					}}
+				/>
+				<StyledScore
+					style={{
+						color: oScoreInactive
+							? 'hsla(0, 0%, 53%, 0.75)'
+							: 'hsla(214, 100%, 59%, 1)',
+						borderColor: oScoreInactive ? 'transparent' : 'hsl(214, 100%, 59%)',
+					}}>
+					<StyledText>O's</StyledText>
+					<StyledText>‣</StyledText>
+					<StyledText>{oScore}</StyledText>
+				</StyledScore>
+			</StyledWrapper>
+		</StyledContainer>
 	)
 }

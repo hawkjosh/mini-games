@@ -88,43 +88,15 @@ const StyledItem = styled.button`
 	}
 `
 
-const StyledBonus = styled.div`
+const StyledBonus = styled.a`
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-
-	${responsive.mobile`
-		width: 95%;
-	`}
-
-	${responsive.tablet`
-		width: 80%;
-	`}
-
-	${responsive.laptop`
-		width: 65%;
-	`}
+	gap: 2rem;
+	background-color: hsl(211, 100%, 50%);
+	border: none;
+	border-radius: 5rem;
+	padding: 0.5rem 1.25rem;
 `
 
-const styledLink = {
-	display: 'flex',
-	backgroundColor: 'hsl(211, 100%, 50%)',
-	border: 'none',
-	borderRadius: '50%',
-	padding: '0.75rem',
-}
-
-const styledLinkImg = {
-	aspectRatio: '1/1',
-	width: '3.5rem',
-}
-
-export {
-	StyledMenu,
-	StyledTitle,
-	StyledItemsGroup,
-	StyledItem,
-	StyledBonus,
-	styledLink,
-	styledLinkImg,
-}
+export { StyledMenu, StyledTitle, StyledItemsGroup, StyledItem, StyledBonus }

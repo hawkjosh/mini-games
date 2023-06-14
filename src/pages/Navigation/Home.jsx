@@ -1,55 +1,27 @@
-import * as React from 'react'
-
-import { Link } from 'react-router-dom'
-
-import { Box, ThemeProvider } from '@mui/material'
-
-import { TicTacToeIcon } from './components/TicTacToeIcon.jsx'
-import { HangmanIcon } from './components/HangmanIcon.jsx'
-import { MemoryMatchIcon } from './components/MemoryMatchIcon.jsx'
+import React from 'react'
 
 import {
-	theme,
-	homeContainerSX,
-	gameIconWrapperSX,
-	gameIconLinkSX,
-	gameIconSX,
-} from './homeSX.js'
+	StyledContainer,
+	StyledLink,
+	StyledTictactoeIcon,
+	StyledHangmanIcon,
+	StyledMemorymatchIcon,
+} from './components/styles/Home.styled.js'
 
 export const Home = () => {
 	return (
-		<ThemeProvider theme={theme}>
-			<Box sx={homeContainerSX}>
-				<Link
-					to='/tic-tac-toe'
-					style={gameIconLinkSX}>
-					<Box sx={gameIconWrapperSX}>
-						<Box sx={gameIconSX}>
-							<TicTacToeIcon />
-						</Box>
-					</Box>
-				</Link>
+		<StyledContainer>
+			<StyledLink to='/tic-tac-toe'>
+				<StyledTictactoeIcon />
+			</StyledLink>
 
-				<Link
-					to='/hangman'
-					style={gameIconLinkSX}>
-					<Box sx={gameIconWrapperSX}>
-						<Box sx={gameIconSX}>
-							<HangmanIcon />
-						</Box>
-					</Box>
-				</Link>
+			<StyledLink to='/hangman'>
+				<StyledHangmanIcon />
+			</StyledLink>
 
-				<Link
-					to='/memory-match'
-					style={gameIconLinkSX}>
-					<Box sx={gameIconWrapperSX}>
-						<Box sx={gameIconSX}>
-							<MemoryMatchIcon />
-						</Box>
-					</Box>
-				</Link>
-			</Box>
-		</ThemeProvider>
+			<StyledLink to='/memory-match'>
+				<StyledMemorymatchIcon />
+			</StyledLink>
+		</StyledContainer>
 	)
 }

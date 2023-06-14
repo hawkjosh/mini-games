@@ -1,27 +1,33 @@
-import * as React from 'react'
-
-import { Box, Button, ThemeProvider } from '@mui/material'
+import { useState } from 'react'
 
 import { Gameboard } from './components/Gameboard.jsx'
 import { Scoreboard } from './components/Scoreboard.jsx'
 
 import {
-	theme,
-	tictactoeContainerSX,
-	endMsgContainerSX,
-	endMsgTxtSX,
-	resetBtnSX,
-} from './tictactoeSX.js'
+	StyledContainer,
+	StyledEndMessage,
+	StyledText,
+	StyledButton,
+} from './components/styles/Tictactoe.styled.js'
 
-import { winCombos } from './tictactoeUtils.js'
+const winCombos = [
+	[0, 1, 2],
+	[3, 4, 5],
+	[6, 7, 8],
+	[0, 3, 6],
+	[1, 4, 7],
+	[2, 5, 8],
+	[0, 4, 8],
+	[2, 4, 6],
+]
 
-export const TicTacToe = () => {
-	const [board, setBoard] = React.useState(Array(9).fill(null))
-	const [xPlaying, setXPlaying] = React.useState(true)
-	const [score, setScore] = React.useState({ xScore: 0, oScore: 0 })
-	const [gameOver, setGameOver] = React.useState(false)
-	const [endMsgTxt, setEndMsgTxt] = React.useState('')
-	const [endMsgColor, setEndMsgColor] = React.useState('')
+export const Tictactoe = () => {
+	const [board, setBoard] = useState(Array(9).fill(null))
+	const [xPlaying, setXPlaying] = useState(true)
+	const [score, setScore] = useState({ xScore: 0, oScore: 0 })
+	const [gameOver, setGameOver] = useState(false)
+	const [endMsgTxt, setEndMsgTxt] = useState('')
+	const [endMsgColor, setEndMsgColor] = useState('')
 
 	const handleBoxClick = (squareIndex) => {
 		const updatedBoard = board.map((value, index) => {
@@ -41,20 +47,20 @@ export const TicTacToe = () => {
 				xScore += 1
 				setScore({ ...score, xScore })
 				setEndMsgTxt(`X's Win!`)
-				setEndMsgColor('rgb(255, 70, 37)')
+				setEndMsgColor('hsl(9, 100%, 57%)')
 			} else if (winner === 'O') {
 				let { oScore } = score
 				oScore += 1
 				setScore({ ...score, oScore })
 				setEndMsgTxt(`O's Win!`)
-				setEndMsgColor('rgb(44, 135, 255)')
+				setEndMsgColor('hsl(214, 100%, 59%)')
 			}
 		}
 		if (!winner && updatedBoard.every(empty)) {
 			console.log('no winner, its a draw!')
 			setGameOver(true)
 			setEndMsgTxt('Draw!')
-			setEndMsgColor('white')
+			setEndMsgColor('hsl(0, 0%, 100%)')
 		}
 
 		setBoard(updatedBoard)
@@ -89,8 +95,8 @@ export const TicTacToe = () => {
 	}
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Box sx={tictactoeContainerSX}>
+		<>
+			<StyledContainer>
 				<Scoreboard
 					score={score}
 					xPlaying={xPlaying}
@@ -100,24 +106,14 @@ export const TicTacToe = () => {
 					board={board}
 					onClick={gameOver ? resetBoard : handleBoxClick}
 				/>
-			</Box>
+			</StyledContainer>
 
 			{gameOver && (
-				<Box sx={endMsgContainerSX}>
-					<Box
-						sx={{
-							...endMsgTxtSX,
-							color: endMsgColor,
-						}}>
-						{endMsgTxt}
-					</Box>
-					<Button
-						sx={resetBtnSX}
-						onClick={resetBoard}>
-						Play Again
-					</Button>
-				</Box>
+				<StyledEndMessage>
+					<StyledText style={{ color: endMsgColor }}>{endMsgTxt}</StyledText>
+					<StyledButton onClick={resetBoard}>Play Again</StyledButton>
+				</StyledEndMessage>
 			)}
-		</ThemeProvider>
+		</>
 	)
 }
