@@ -118,7 +118,7 @@ const images = [
 	},
 ]
 
-export const Memorymatch = () => {
+export const MemoryMatch = () => {
 	const [cards, setCards] = useState([])
 	const [turns, setTurns] = useState(0)
 	const [choiceOne, setChoiceOne] = useState(null)

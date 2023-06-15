@@ -4,7 +4,7 @@ import {
 	StyledBack,
 } from './styles/Singlecard.styled.js'
 
-export const Singlecard = ({ card, handleChoice, flipped, disabled }) => {
+export const SingleCard = ({ card, handleChoice, flipped, disabled }) => {
 	const handleClick = () => {
 		if (!disabled) {
 			handleChoice(card)

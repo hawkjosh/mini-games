@@ -21,7 +21,7 @@ const winCombos = [
 	[2, 4, 6],
 ]
 
-export const Tictactoe = () => {
+export const TicTacToe = () => {
 	const [board, setBoard] = useState(Array(9).fill(null))
 	const [xPlaying, setXPlaying] = useState(true)
 	const [score, setScore] = useState({ xScore: 0, oScore: 0 })
