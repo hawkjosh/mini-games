@@ -15,7 +15,7 @@ const StyledContainer = styled.div`
 	align-items: center;
 	padding-bottom: 2.5rem;
 
-	${responsive.tablet`
+	${responsive.mobile`
     margin-top: 2.5rem;
     row-gap: 1.5rem;
   `}
@@ -50,7 +50,7 @@ const StyledTictactoeIcon = styled(TicTacToeIcon)`
 		transform: scale(1.125);
 	}
 
-	${responsive.tablet`
+	${responsive.mobile`
     width: 12.5rem;
   `}
 
@@ -70,7 +70,7 @@ const StyledHangmanIcon = styled(HangmanIcon)`
 		transform: scale(1.125);
 	}
 
-	${responsive.tablet`
+	${responsive.mobile`
   width: 12.5rem;
 `}
 
@@ -90,7 +90,7 @@ const StyledMemorymatchIcon = styled(MemoryMatchIcon)`
 		transform: scale(1.125);
 	}
 
-	${responsive.tablet`
+	${responsive.mobile`
     width: 12.5rem;
   `}
 
