@@ -3,12 +3,10 @@ import styled from 'styled-components'
 import { responsive } from '../../../../GlobalStyle.js'
 
 const StyledImage = styled.svg`
-	${responsive.mobile`
-    grid-column: 1 / 1;
-    grid-row: 1 / 2;
-    width: 70%;
-    max-width: 25rem;
-  `}
+  grid-column: 1 / 1;
+  grid-row: 1 / 2;
+  width: 70%;
+  max-width: 25rem;
 
 	${responsive.tablet`
     grid-column: 1 / 2;

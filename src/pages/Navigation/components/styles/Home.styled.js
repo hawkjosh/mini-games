@@ -14,11 +14,8 @@ const StyledContainer = styled.div`
 	justify-content: space-evenly;
 	align-items: center;
 	padding-bottom: 2.5rem;
-
-	${responsive.mobile`
-    margin-top: 2.5rem;
-    row-gap: 1.5rem;
-  `}
+	margin-top: 2.5rem;
+	row-gap: 1.5rem;
 
 	${responsive.tablet`
     margin-top: 3.5rem;
@@ -45,14 +42,11 @@ const StyledLink = styled(NavLink)`
 
 const StyledTictactoeIcon = styled(TicTacToeIcon)`
 	transition: transform 0.5s ease;
+	width: 12.5rem;
 
 	&:hover {
 		transform: scale(1.125);
 	}
-
-	${responsive.mobile`
-    width: 12.5rem;
-  `}
 
 	${responsive.tablet`
     width: 14rem;
@@ -65,14 +59,11 @@ const StyledTictactoeIcon = styled(TicTacToeIcon)`
 
 const StyledHangmanIcon = styled(HangmanIcon)`
 	transition: transform 0.5s ease;
+	width: 12.5rem;
 
 	&:hover {
 		transform: scale(1.125);
 	}
-
-	${responsive.mobile`
-  width: 12.5rem;
-`}
 
 	${responsive.tablet`
   width: 14rem;
@@ -85,14 +76,11 @@ ${responsive.laptop`
 
 const StyledMemorymatchIcon = styled(MemoryMatchIcon)`
 	transition: transform 0.5s ease;
+	width: 12.5rem;
 
 	&:hover {
 		transform: scale(1.125);
 	}
-
-	${responsive.mobile`
-    width: 12.5rem;
-  `}
 
 	${responsive.tablet`
     width: 14rem;

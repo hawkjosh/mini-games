@@ -18,13 +18,10 @@ const StyledCard = styled.div`
 	background-color: lightgray;
 	border: 0.25rem solid yellow;
 	border-radius: 1.5rem;
+	gap: 1.5rem;
+	padding: 2rem;
 	box-shadow: 0px 8px 9px -5px rgba(0, 0, 0, 0.2),
 		0px 15px 22px 2px rgba(0, 0, 0, 0.14), 0px 6px 28px 5px rgba(0, 0, 0, 0.12);
-
-	${responsive.mobile`
-    gap: 1.5rem;
-    padding: 2rem;
-  `}
 
 	${responsive.tablet`
     gap: 2rem;
@@ -46,10 +43,7 @@ const StyledTitle = styled.div`
 	font-weight: bold;
 	text-decoration: underline;
 	color: hsl(250, 25%, 46%);
-
-	${responsive.mobile`
-    font-size: 2rem;
-  `}
+	font-size: 2rem;
 
 	${responsive.tablet`
     font-size: 2.5rem;
@@ -64,10 +58,7 @@ const StyledCardBody = styled.div`
 	width: 100%;
 	display: flex;
 	place-content: center;
-
-	${responsive.mobile`
-    gap: 0.75rem;
-  `}
+	gap: 0.75rem;
 
 	${responsive.tablet`
     gap: 1.5rem;
@@ -85,10 +76,7 @@ const StyledCountBtn = styled.div`
 	border-radius: 1rem;
 	background-color: white;
 	cursor: pointer;
-
-	${responsive.mobile`
-    padding: 0.25rem 0.5rem;
-  `}
+	padding: 0.25rem 0.5rem;
 
 	${responsive.tablet`
     padding: 0.375rem 0.75rem;
@@ -101,10 +89,7 @@ const StyledCountBtn = styled.div`
 
 const StyledCountBtnText = styled.div`
 	font-weight: bold;
-
-	${responsive.mobile`
-    font-size: 2rem;
-  `}
+	font-size: 2rem;
 
 	${responsive.tablet`
     font-size: 2.25rem;
@@ -120,10 +105,7 @@ const StyledCountBadge = styled.div`
 	border: 0.25rem solid white;
 	background-color: hsl(250, 25%, 46%);
 	pointer-events: none;
-
-	${responsive.mobile`
-    padding: 0.5rem;
-  `}
+	padding: 0.5rem;
 
 	${responsive.tablet`
     padding: 0.75rem;
@@ -138,10 +120,7 @@ const StyledCountBadgeText = styled.div`
 	font-weight: bold;
 	color: white;
 	text-align: center;
-
-	${responsive.mobile`
-    font-size: 1.5rem;
-  `}
+	font-size: 1.5rem;
 
 	${responsive.tablet`
     font-size: 2rem;
@@ -179,10 +158,7 @@ const StyledResetBtnText = styled.div`
 	font-weight: bold;
 	text-transform: uppercase;
 	transition: all 0.375s ease;
-
-	${responsive.mobile`
-    font-size: 1.5rem;
-  `}
+	font-size: 1.5rem;
 
 	${responsive.tablet`
     font-size: 1.75rem;

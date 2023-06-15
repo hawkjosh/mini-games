@@ -14,23 +14,20 @@ const StyledSquare = styled.div`
 	border-radius: 1rem;
 	box-shadow: 0 0 0.5rem hsl(0, 0%, 53%);
 	aspect-ratio: 1/1;
-
-	${responsive.mobile`
-    font-size: 5rem;
-  `}
-
-	${responsive.tablet`
-		font-size: 10rem;
-  `}
-
-  ${responsive.laptop`
-		font-size: 11rem;
-  `}
+	font-size: 5rem;
 
 	&:hover {
 		cursor: pointer;
 		box-shadow: 0 0 1rem hsl(0, 1%, 18%);
 	}
+
+	${responsive.tablet`
+		font-size: 10rem;
+  `}
+
+	${responsive.laptop`
+		font-size: 11rem;
+  `}
 `
 
 export { StyledSquare }

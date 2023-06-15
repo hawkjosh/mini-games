@@ -6,11 +6,8 @@ const StyledContainer = styled.div`
 	aspect-ratio: 1/1;
 	border: solid hsl(0, 0%, 66%);
 	border-radius: 1rem;
-
-	${responsive.mobile`
-    width: 100%;
-    padding: 1rem;
-  `}
+  width: 100%;
+  padding: 1rem;
 
 	${responsive.tablet`
     width: 92.5%;
@@ -27,10 +24,7 @@ const StyledWrapper = styled.div`
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	place-content: center;
-
-	${responsive.mobile`
-    gap: 1rem;
-  `}
+  gap: 1rem;
 
 	${responsive.tablet`
     gap: 1.25rem;

@@ -3,9 +3,7 @@ import styled from 'styled-components'
 import { responsive } from '../../../../GlobalStyle.js'
 
 const StyledArrowIcon = styled.svg`
-	${responsive.mobile`
-    display: none;
-  `}
+  display: none;
 
 	${responsive.tablet`
     display: block;

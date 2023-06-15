@@ -10,12 +10,9 @@ const StyledContainer = styled.div`
 	place-content: center;
 	column-gap: 1rem;
 	margin: 1rem auto;
-
-	${responsive.mobile`
-    grid-template-columns: 100%;
-    row-gap: 1rem;
-    padding: 0 1rem;
-  `}
+	grid-template-columns: 100%;
+	row-gap: 1rem;
+	padding: 0 1rem;
 
 	${responsive.tablet`
     grid-template-columns: 50% 50%;
@@ -34,12 +31,9 @@ const StyledAreaOne = styled.div`
 	width: 100%;
 	display: grid;
 	gap: 1rem;
-
-	${responsive.mobile`
-    grid-column: 1 / 1;
-    grid-row: 2 / 3;
-    grid-template-columns: repeat(auto-fit, minmax(2.5rem, 1fr));
-  `}
+	grid-column: 1 / 1;
+	grid-row: 2 / 3;
+	grid-template-columns: repeat(auto-fit, minmax(2.5rem, 1fr));
 
 	${responsive.tablet`
     grid-column: 2 / 3;
@@ -64,10 +58,12 @@ const StyledAreaOneContent = styled.div`
 	aspect-ratio: 1/1;
 	border: 0.15rem solid hsl(214, 100%, 59%);
 	border-radius: 0.5rem;
+	font-size: 1rem;
 
-	${responsive.mobile`
-    font-size: 1rem;
-  `}
+  &:hover {
+		cursor: pointer;
+		box-shadow: -0.25rem 0.25rem 0.5rem hsl(0, 0%, 53%);
+	}
 
 	${responsive.tablet`
     font-size: 1.25rem;
@@ -76,11 +72,6 @@ const StyledAreaOneContent = styled.div`
   ${responsive.laptop`
     font-size: 1.75rem;
   `}
-
-  &:hover {
-		cursor: pointer;
-		box-shadow: -0.25rem 0.25rem 0.5rem hsl(0, 0%, 53%);
-	}
 `
 
 const StyledAreaTwo = styled.div`
@@ -88,10 +79,8 @@ const StyledAreaTwo = styled.div`
 	background-color: hsl(0, 0%, 83%);
 	border-radius: 0.5rem;
 	box-shadow: 0 0 0.75rem hsl(210, 13%, 50%);
-	${responsive.mobile`
-    grid-column: 1 / 1;
-    grid-row: 3 / 4;
-  `}
+	grid-column: 1 / 1;
+	grid-row: 3 / 4;
 
 	${responsive.tablet`
     grid-column: 1 / 3;
@@ -109,12 +98,9 @@ const StyledAreaTwoContent = styled.div`
 	font-weight: 500;
 	text-align: center;
 	vertical-align: middle;
-
-	${responsive.mobile`
-    font-size: 1.5rem;
-    letter-spacing: 0.125rem;
-    margin: 2rem auto;
-  `}
+	font-size: 1.5rem;
+	letter-spacing: 0.125rem;
+	margin: 2rem auto;
 
 	${responsive.tablet`
     font-size: 2.5rem;
@@ -122,7 +108,7 @@ const StyledAreaTwoContent = styled.div`
     margin: 2.25rem auto;
   `}
 
-${responsive.laptop`
+	${responsive.laptop`
     font-size: 2.625rem;
     letter-spacing: 0.375rem;
     margin: 2.5rem auto;
@@ -144,10 +130,7 @@ const StyledEndMessage = styled.div`
 
 const StyledTextOne = styled.div`
 	font-weight: bold;
-
-	${responsive.mobile`
-    font-size: 2.125rem;
-  `}
+	font-size: 2.125rem;
 
 	${responsive.tablet`
     font-size: 4rem;
@@ -161,10 +144,7 @@ const StyledTextOne = styled.div`
 const StyledTextTwo = styled.div`
 	color: hsl(360, 100%, 100%);
 	margin-top: 1rem;
-
-	${responsive.mobile`
-    font-size: 1.5rem;
-  `}
+	font-size: 1.5rem;
 
 	${responsive.tablet`
     font-size: 2.5rem;
@@ -189,10 +169,14 @@ const StyledButton = styled.button`
 	margin-top: 2.5rem;
 	padding: 0.25rem 1rem;
 	transition: all 0.25s ease;
+	font-size: 1.5rem;
 
-	${responsive.mobile`
-    font-size: 1.5rem;
-  `}
+	&:hover {
+		cursor: pointer;
+		color: hsl(120, 100%, 30%);
+		background-color: hsl(0, 0%, 100%);
+		border-color: hsl(120, 100%, 30%);
+	}
 
 	${responsive.tablet`
     font-size: 2rem;
@@ -201,13 +185,6 @@ const StyledButton = styled.button`
   ${responsive.laptop`
     font-size: 2.5rem;
   `}
-
-	&:hover {
-		cursor: pointer;
-		color: hsl(120, 100%, 30%);
-		background-color: hsl(0, 0%, 100%);
-		border-color: hsl(120, 100%, 30%);
-	}
 `
 
 export {

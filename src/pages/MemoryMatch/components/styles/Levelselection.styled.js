@@ -10,11 +10,8 @@ const StyledMenu = styled.div`
 	gap: 1rem;
 	border: 0.25rem solid hsl(210, 79%, 46%);
 	border-radius: 1rem;
-
-	${responsive.mobile`
-		width: 95%;
-		padding: 1rem;
-	`}
+	width: 95%;
+	padding: 1rem;
 
 	${responsive.tablet`
 		width: 85%;
@@ -33,10 +30,7 @@ const StyledTitle = styled.div`
 	letter-spacing: 0.0625rem;
 	line-height: 1.5;
 	color: hsl(210, 79%, 46%);
-
-	${responsive.mobile`
-		font-size: 1.5rem;
-	`}
+	font-size: 1.5rem;
 
 	${responsive.tablet`
 		font-size: 2.125rem;

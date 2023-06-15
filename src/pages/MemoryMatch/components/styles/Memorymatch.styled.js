@@ -9,10 +9,7 @@ const StyledContainer = styled.div`
 	flex-direction: column;
 	margin: auto;
 	padding: 1rem;
-
-	${responsive.mobile`
-		gap: 2rem;
-  `}
+	gap: 2rem;
 
 	${responsive.tablet`
 		gap: 1.75rem;
@@ -27,10 +24,7 @@ const StyledHeader = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
-	${responsive.mobile`
-		gap: 3rem;
-	`}
+	gap: 3rem;
 
 	${responsive.tablet`
 		gap: 6rem;
@@ -87,11 +81,8 @@ const StyledAreaEasy = styled.div`
 	grid-template-columns: repeat(4, 1fr);
 	place-content: center;
 	margin: auto;
-
-	${responsive.mobile`
-		width: 100%;
-		gap: 0.625rem;
-	`}
+	width: 100%;
+	gap: 0.625rem;
 
 	${responsive.tablet`
 		width: 95%;
@@ -109,11 +100,8 @@ const StyledAreaMedium = styled.div`
 	grid-template-columns: repeat(4, 1fr);
 	place-content: center;
 	margin: auto;
-
-	${responsive.mobile`
-		width: 95%;
-		gap: 0.625rem;
-	`}
+	width: 95%;
+	gap: 0.625rem;
 
 	${responsive.tablet`
 		width: 72.5%;
@@ -132,11 +120,8 @@ const StyledAreaHard = styled.div`
 	grid-template-columns: repeat(4, 1fr);
 	place-content: center;
 	margin: auto;
-
-	${responsive.mobile`
-		width: 97.5%;
-		gap: 0.625rem;
-	`}
+	width: 97.5%;
+	gap: 0.625rem;
 
 	${responsive.tablet`
 		width: 75%;
@@ -167,10 +152,7 @@ const StyledText = styled.div`
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 600;
 	color: hsl(360, 100%, 100%);
-
-	${responsive.mobile`
-    font-size: 1.5rem;
-  `}
+	font-size: 1.5rem;
 
 	${responsive.tablet`
     font-size: 2.5rem;
@@ -195,10 +177,14 @@ const StyledButtonTwo = styled.button`
 	margin-top: 2.5rem;
 	padding: 0.25rem 1rem;
 	transition: all 0.25s ease;
+	font-size: 1.5rem;
 
-	${responsive.mobile`
-    font-size: 1.5rem;
-  `}
+  &:hover {
+		cursor: pointer;
+		color: hsl(120, 100%, 30%);
+		background-color: hsl(360, 100%, 100%);
+		border-color: hsl(120, 100%, 30%);
+	}
 
 	${responsive.tablet`
     font-size: 2rem;
@@ -207,13 +193,6 @@ const StyledButtonTwo = styled.button`
   ${responsive.laptop`
     font-size: 2.5rem;
   `}
-
-  &:hover {
-		cursor: pointer;
-		color: hsl(120, 100%, 30%);
-		background-color: hsl(360, 100%, 100%);
-		border-color: hsl(120, 100%, 30%);
-	}
 `
 
 export {

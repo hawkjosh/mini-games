@@ -8,12 +8,9 @@ const StyledContainer = styled.div`
 	place-items: center;
 	place-content: center;
 	margin: 1rem auto;
-
-	${responsive.mobile`
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding: 0 1rem;
-  `}
+	grid-template-columns: 1fr;
+	gap: 2.5rem;
+	padding: 0 1rem;
 
 	${responsive.tablet`
     grid-template-columns: 1fr;
@@ -45,10 +42,7 @@ const StyledText = styled.div`
 	font-family: 'Fredoka', sans-serif;
 	font-weight: 600;
 	letter-spacing: 1rem;
-
-	${responsive.mobile`
-    font-size: 4rem;
-  `}
+	font-size: 4rem;
 
 	${responsive.tablet`
     font-size: 6rem;
@@ -73,10 +67,14 @@ const StyledButton = styled.button`
 	margin-top: 2.5rem;
 	padding: 0.25rem 1rem;
 	transition: all 0.25s ease;
+	font-size: 1.5rem;
 
-	${responsive.mobile`
-    font-size: 1.5rem;
-  `}
+	&:hover {
+		cursor: pointer;
+		color: hsl(120, 100%, 30%);
+		background-color: hsl(0, 0%, 100%);
+		border-color: hsl(120, 100%, 30%);
+	}
 
 	${responsive.tablet`
     font-size: 2rem;
@@ -85,13 +83,6 @@ const StyledButton = styled.button`
   ${responsive.laptop`
     font-size: 2.5rem;
   `}
-
-	&:hover {
-		cursor: pointer;
-		color: hsl(120, 100%, 30%);
-		background-color: hsl(0, 0%, 100%);
-		border-color: hsl(120, 100%, 30%);
-	}
 `
 
 export { StyledContainer, StyledEndMessage, StyledText, StyledButton }

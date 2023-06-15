@@ -19,6 +19,9 @@ const StyledMenuWrapper = styled.div`
 	position: relative;
 	height: 100%;
 	min-height: 4rem;
+	width: 100%;
+	max-width: 90rem;
+	margin: auto;
 `
 
 const StyledMenuIcon = styled(MenuIcon)`

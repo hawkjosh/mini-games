@@ -7,11 +7,8 @@ const StyledContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
-	${responsive.mobile`
-    flex-direction: row;
-    gap: 2rem;
-  `}
+  flex-direction: row;
+  gap: 2rem;
 
 	${responsive.tablet`
     flex-direction: row;
@@ -54,13 +51,10 @@ const StyledScore = styled.div`
 	border: 0.25rem solid;
 	border-radius: 0.5rem;
 	box-shadow: 0 0 0.5rem hsl(0, 0%, 53%);
-
-	${responsive.mobile`
-    gap: 0.5rem;
-    font-size: 1.25rem;
-    letter-spacing: 0.125rem;
-    padding: 0.5rem;
-  `}
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  letter-spacing: 0.125rem;
+  padding: 0.5rem;
 
 	${responsive.tablet`
     gap: 0.75rem;
@@ -89,11 +83,15 @@ const StyledButton = styled.div`
 	border-radius: 0.25rem;
 	transition: all 0.25s ease;
 	cursor: pointer;
+  font-size: 1rem;
+  padding: 0.125rem 0.25rem;
 
-	${responsive.mobile`
-    font-size: 1rem;
-    padding: 0.125rem 0.25rem;
-  `}
+  &:hover {
+		background-color: hsl(120, 100%, 25%);
+		box-shadow: 0 0.25rem 0.25rem -0.25rem hsla(0, 0%, 0%, 0.25),
+			0 0.25rem 0.5rem 0 hsla(0, 0%, 0%, 0.125),
+			0 0.25rem 0.75rem 0 hsla(0, 0%, 0%, 0.125);
+	}
 
 	${responsive.tablet`
     font-size: 1.125rem;
@@ -104,13 +102,6 @@ const StyledButton = styled.div`
     font-size: 1.25rem;
     padding: 0.375rem 0.5rem;
   `}
-
-  &:hover {
-		background-color: hsl(120, 100%, 25%);
-		box-shadow: 0 0.25rem 0.25rem -0.25rem hsla(0, 0%, 0%, 0.25),
-			0 0.25rem 0.5rem 0 hsla(0, 0%, 0%, 0.125),
-			0 0.25rem 0.75rem 0 hsla(0, 0%, 0%, 0.125);
-	}
 `
 
 export { StyledContainer, StyledWrapper, StyledText, StyledScore, StyledButton }
