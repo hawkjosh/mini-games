@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { Levelselection } from './components/Levelselection.jsx'
-import { Singlecard } from './components/Singlecard.jsx'
+import { SingleCard } from './components/SingleCard.jsx'
 
 import {
 	StyledContainer,
@@ -245,7 +245,7 @@ export const Memorymatch = () => {
 			{level === 'Easy' && (
 				<StyledAreaEasy>
 					{cards.map((card, index) => (
-						<Singlecard
+						<SingleCard
 							key={index}
 							card={card}
 							handleChoice={handleChoice}
@@ -258,7 +258,7 @@ export const Memorymatch = () => {
 			{level === 'Medium' && (
 				<StyledAreaMedium>
 					{cards.map((card, index) => (
-						<Singlecard
+						<SingleCard
 							key={index}
 							card={card}
 							handleChoice={handleChoice}
@@ -271,7 +271,7 @@ export const Memorymatch = () => {
 			{level === 'Hard' && (
 				<StyledAreaHard>
 					{cards.map((card, index) => (
-						<Singlecard
+						<SingleCard
 							key={index}
 							card={card}
 							handleChoice={handleChoice}
