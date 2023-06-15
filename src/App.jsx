@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import { Navbar } from './pages/Navigation/components/Navbar.jsx'
 import { Home } from './pages/Navigation/Home.jsx'
-import { Tictactoe } from './pages/Tictactoe/Tictactoe.jsx'
+import { TicTacToe } from './pages/TicTacToe/TicTacToe.jsx'
 import { Hangman } from './pages/Hangman/Hangman.jsx'
-import { Memorymatch } from './pages/Memorymatch/Memorymatch.jsx'
+import { MemoryMatch } from './pages/MemoryMatch/MemoryMatch.jsx'
 import { TestPage } from './pages/TestPage/TestPage.jsx'
 
 export const App = () => {
@@ -22,7 +22,7 @@ export const App = () => {
 					/>
 					<Route
 						path='/tic-tac-toe'
-						element={<Tictactoe />}
+						element={<TicTacToe />}
 					/>
 					<Route
 						path='/hangman'
@@ -30,7 +30,7 @@ export const App = () => {
 					/>
 					<Route
 						path='/memory-match'
-						element={<Memorymatch />}
+						element={<MemoryMatch />}
 					/>
 				</Route>
 				<Route
